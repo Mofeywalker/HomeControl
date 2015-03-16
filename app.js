@@ -67,11 +67,14 @@ io.sockets.on('connection', function(socket) {
     socket.on('tempsensor', function() {
 
         ts.get('28-00000400afdb', function (err, temp) {
-            console.log(temp);
-
-            socket.emit('temperature', {temperature:temp});
+            socket.emit('temperature', { temperature: temp });
         });
 
     })
 
+
+});
+
+io.sockets.on('disconnect', function(socket) {
+    console.log("[Connection closed for: "+socket.request.connection.remoteAddress+"]");
 });
