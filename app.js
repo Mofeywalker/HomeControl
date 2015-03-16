@@ -54,6 +54,10 @@ app.get('/', function(req, res) {
 io.sockets.on('connection', function(socket) {
     console.log("[Connection established for: "+socket.request.connection.remoteAddress+"]");
 
+    socket.on('disconnect', function() {
+        console.log("[Connection closed for: "+socket.request.connection.remoteAddress+"]");
+    });
+
     //Steckdosen
     socket.on('switch_control', function(data) {
 
@@ -75,6 +79,4 @@ io.sockets.on('connection', function(socket) {
 
 });
 
-io.sockets.on('disconnect', function(socket) {
-    console.log("[Connection closed for: "+socket.request.connection.remoteAddress+"]");
-});
+
