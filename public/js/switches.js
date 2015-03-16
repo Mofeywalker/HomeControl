@@ -27,13 +27,13 @@ $(document).ready(function() {
                 console.log("[an]"+ onId);
                 $(onId).click(function() {
 
-                    socket.emit('switch_control', {type: 'request', code: value.code, status:'false'});
+                    socket.emit('switch_control', {type: 'request', code: value.code, status:false});
                 });
                 var offId = '#'+value.id.toLowerCase()+'aus';
                 console.log("[an]"+ offId);
                 $(offId).click(function() {
                     console.log("[aus]");
-                    socket.emit('switch_control', {type: 'request', code: value.code, status:'true'});
+                    socket.emit('switch_control', {type: 'request', code: value.code, status:true});
                 });
             });
 
