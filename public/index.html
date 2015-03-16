@@ -6,6 +6,7 @@
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="css/custom.css" rel="stylesheet">
+        <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
         <script language="javascript" type="text/javascript" src="navigation.js"></script>
     </head>
     <body>
@@ -25,10 +26,10 @@
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li><a href="#" data-cont="navDashboard">Dashboard</a></li>
-                        <li><a href="#" data-cont="navFernbedienung">Steckdosen</a></li>
-                        <li><a href="#" data-cont="navSysinfo">Systeminfo</a></li>
+                    <ul class="nav navbar-nav" id="navigation">
+                        <li><a href="#" onclick="navLoad('navDashboard')">Dashboard</a></li>
+                        <li><a href="#" onclick="navLoad('navSwitch')">Steckdosen</a></li>
+                        <li><a href="#" onclick="navLoad('navSysinfo')">Systeminfo</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
