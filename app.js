@@ -28,14 +28,14 @@ app.get('/', function(req, res) {
 
 //
 io.sockets.on('connection', function(socket) {
-    console.log("[sockets.connection]"+socket.toString());
+    console.log("[sockets.connection]");
 
     socket.on('switch_control', function(data) {
         console.log("[sockets.switch_control]");
 
         //schalten der Steckdosen
         // Code 1111110000, Typ-Dipschalter, an(false)/aus(true)
-        //rc.send(data.code, dip, data.status);
+        rc.send(data.code, dip, data.status);
         console.log("[SEND] " + data.code +" "+ data.status);
     })
 });
