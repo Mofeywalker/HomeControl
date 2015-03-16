@@ -20,7 +20,7 @@ rc.setup({
 ts.isDriverLoaded(function (err, isLoaded) {
     console.log(isLoaded);
 });
-sensor.loadDriver(function (err) {
+ts.loadDriver(function (err) {
     if (err) console.log('something went wrong loading the driver:', err)
     else console.log('driver is loaded');
 });
