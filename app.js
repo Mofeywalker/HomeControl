@@ -105,38 +105,26 @@ io.sockets.on('connection', function(socket) {
 
     //System Informationen
     socket.on('sysinfo', function() {
-
         //Returns hostname
         var hostname = os.hostname();
-
         //Returns the operating system name.
         var ostype = os.type();
-
         //Returns the operating system platform.
         var osplat = os.platform();
-
         //Returns the operating system CPU architecture. Possible values are "x64", "arm" and "ia32".
         var arch = os.arch();
-
         //Returns the operating system release.
         var release = os.release();
-
         //Returns the system uptime in seconds
         var uptime = os.uptime();
-
         //Returns an array containing the 1, 5, and 15 minute load averages.
         var loadavg = os.loadavg();
-
         //Returns the total amount of system memory in bytes.
         var totalmem = os.totalmem();
-
         //Returns the amount of free system memory in bytes.
         var freemem = os.freemem();
 
-        console.log(hostname,  ostype,  osplat,  arch,  release,  uptime,  loadavg,  totalmem,  freemem);
-
         socket.emit('sysinfo', { hostname: hostname, ostype: ostype, osplat: osplat, arch: arch, release: release, uptime: uptime, loadavg: loadavg, totalmem: totalmem, freemem: freemem});
-
     });
 
 });
