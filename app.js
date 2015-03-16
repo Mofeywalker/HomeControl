@@ -17,26 +17,11 @@ rc.setup({
 });
 
 // TempSensor laden
-ts.isDriverLoaded(function (err, isLoaded) {
-    console.log(isLoaded);
-});
 ts.loadDriver(function (err) {
-    if (err) console.log('something went wrong loading the driver:', err)
-    else console.log('driver is loaded');
+    if (err) console.log('[something went wrong loading the driver:', err,']')
+    else console.log('[TempSensor driver is loaded]');
 });
 
-/**
-if(!ts.isDriverLoaded()) {
-    try {
-        ts.loadDriver();
-        console.log('[TempSensor driver is loaded]');
-    } catch (err) {
-        console.log('[something went wrong loading the TempSensor driver:'+ err +']')
-    }
-}else{
-    console.log('[TempSensor driver is already loaded]');
-}
-*/
 
 //Server starten
 server.listen(conf.port);
