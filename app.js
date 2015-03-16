@@ -1,3 +1,5 @@
+var wol = require('wake_on_lan');
+
 var ts = require('ds18x20');
 
 var RaspiCam = require('raspicam');
@@ -89,6 +91,17 @@ io.sockets.on('connection', function(socket) {
         camera.start();
     });
 
+    //Wake on Lan
+    socket.on('wol', function(data) {
+
+        wol.wake(data.mac, function(error) {
+            if (error) {
+                console.log('[something went wrong with Wake on Lan', err,']')
+            } else {
+                console.log('[Wake on Lan for:', data.mac,']')
+            }
+        });
+    });
 
     //System Informationen
     socket.on('sysinfo', function() {
