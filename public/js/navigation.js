@@ -20,4 +20,10 @@ function navLoad($what){
             $("#content").load("camera.html");
         default: break;
     }
+    closeCollapse();
+}
+
+function closeCollapse(){
+    $("#bs-example-navbar-collapse-1").attr("aria-expanded", "false");
+    $("#bs-example-navbar-collapse-1").attr("class", "navbar-collapse collapse");
 }
