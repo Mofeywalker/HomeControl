@@ -18,14 +18,16 @@ nav{
     border-top-right-radius: 15px !important;
 }
 
-div#content{
+div#opac{
+    opacity: 0.5;
     background: #000;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
+}
+div#content{
+    color: #fff;
     height: 98%;
     padding: 15px;
-    opacity: 0.5;
-    color: #fff;
     margin-top: 5px;
 }
 
