@@ -20,12 +20,12 @@ rc.setup({
 if(!ts.isDriverLoaded()) {
     try {
         ts.loadDriver();
-        console.log('driver is loaded');
+        console.log('TempSensor driver is loaded');
     } catch (err) {
         console.log('something went wrong loading the driver:', err)
     }
 }else{
-    console.log('driver is loaded');
+    console.log('TempSensor driver is already loaded');
 }
 
 
@@ -43,11 +43,10 @@ app.get('/', function(req, res) {
 
 //Steuerung
 io.sockets.on('connection', function(socket) {
-    console.log("[sockets.connection]");
+    console.log("[Connection established for ]"+socket.toString());
 
     //Steckdosen
     socket.on('switch_control', function(data) {
-        console.log("[sockets.switch_control]");
 
         //schalten der Steckdosen
         // Code 1111110000, Typ-Dipschalter, an(false)/aus(true)
@@ -60,7 +59,7 @@ io.sockets.on('connection', function(socket) {
 
         var temp = ts.get('28-00000400afdb');
         console.log(temp);
-        
+
         socket.emit('temperature', {temperature:temp});
 
     })
