@@ -2,8 +2,6 @@ var socket;
 $(document).ready(function() {
     socket = io.connect();
 
-    socket.emit('sysinfo', {});
-
     socket.on('sysinfo', function(data) {
         console.log(data);
         $("#hostname").text(data.hostname);
@@ -13,6 +11,8 @@ $(document).ready(function() {
         $("#uptime").text(data.uptime);
         $("#freemem").text(data.freemem);
     });
+
+    socket.emit('sysinfo', {});
 
     setInterval(function() {
         socket.emit('sysinfo', {});
