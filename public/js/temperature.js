@@ -4,7 +4,7 @@ $(document).ready(function() {
 
     socket.on('temperature', function(data) {
         console.log("Temperature: " + data.temperature);
-         $("#tempAkt").innerText = data.temperature + " °C";
+         $("#tempAkt").text(data.temperature + " °C");
     });
 
     setInterval(function() {
