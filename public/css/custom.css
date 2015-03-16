@@ -2,11 +2,29 @@ body{
     background: #111;
     background-image: url("img/pi_60pct.png");
     background-position: center center;
-    background-size:30%;
+    background-size:25%;
     background-repeat: no-repeat;
     height: 100%;
+    margin-top: 0;
+    padding-top: 50px;
 }
 
-div.navbar{
-    background: #dedede;
+a:hover{
+    background-color: #00aa00 !important;
+}
+
+nav{
+    border-top-left-radius: 15px !important;
+    border-top-right-radius: 15px !important;
+}
+
+div.content{
+    background: #000;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    height: 98%;
+    padding: 15px;
+    opacity: 0.5;
+    color: #fff;
+    margin-top: 5px;
 }
