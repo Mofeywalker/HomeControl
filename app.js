@@ -43,7 +43,7 @@ app.get('/', function(req, res) {
 
 //Steuerung
 io.sockets.on('connection', function(socket) {
-    console.log("[Connection established for ]"+socket.toString());
+    console.log("[Connection established for ]"+socket.request.connection.remoteAddress);
 
     //Steckdosen
     socket.on('switch_control', function(data) {
