@@ -1,4 +1,4 @@
-var ts = require('index');
+var ts = require('ds18x20');
 
 var rc = require('piswitch');
 
