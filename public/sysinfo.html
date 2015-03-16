@@ -1,6 +1,38 @@
 <!DOCTYPE html>
 <html>
 <body>
-    un do die sysinfos
+<script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
+<script src="js/jquery-2.1.3.min.js"></script>
+<script language="javascript" type="text/javascript" src="js/sysinfo.js"></script>
+
+    <div id="sysinfo" class="col-md-12 col-xs-12" align="center">
+        <table border=0>
+            <tr>
+                <th>Hostname</th>
+                <th id="hostname"></th>
+            </tr>
+            <tr>
+                <th>Betriebssystem</th>
+                <th id="ostype"></th>
+            </tr>
+            <tr>
+                <th>Plattform</th>
+                <th id="osplat"></th>
+            </tr>
+            <tr>
+                <th>Version</th>
+                <th id="release"></th>
+            </tr>
+            <tr>
+                <th>Uptime</th>
+                <th id="uptime"></th>
+            </tr>
+            <tr>
+                <th>Freier Speicher</th>
+                <th id="freemem"></th>
+            </tr>
+        </table>
+
+    </div>
 </body>
 </html>
