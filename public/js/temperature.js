@@ -5,7 +5,9 @@ $(document).ready(function() {
         socket.emit('tempsensor',{});
     }, 1500);
 
-    socket.on('temperature', function(data) {
-        $("#tempAkt").innerHTML = data.temperature + " °C";
-    })
+    io.sockets.on('connection', function(socket) {
+        socket.on('temperature', function(data) {
+            $("#tempAkt").innerHTML = data.temperature + " °C";
+        })
+    });
 });
