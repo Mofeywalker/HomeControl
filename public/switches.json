@@ -1,0 +1,12 @@
+{
+  "switches": [
+    {
+      "id": "Wohnzimmer",
+      "code": "1001010101"
+    },
+    {
+      "id": "Schlafzimmer",
+      "code": "100100011"
+    }
+  ]
+}
