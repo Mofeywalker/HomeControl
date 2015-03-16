@@ -18,7 +18,7 @@ rc.setup({
 server.listen(conf.port);
 
 //Pfad
-app.use(express.static(path.join(dirname, 'public')));
+app.use(express.static(__dirname + '/public'));
 
 //
 app.get('/', function(req, res) {
