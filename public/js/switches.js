@@ -17,9 +17,14 @@ $(document).ready(function() {
                 + '<button type="button" class="btn btn-danger" id=' + value.id.toLowerCase() + 'aus' + '">Aus</button>'
                 + '</div>'
                 );
+                $("#"+value.id.toLowerCase()+"an").click(function() {
+                    console.log("penis")
+                })
 
             });
 
+            console.log($("#switches"));
+/*
             $.each(json.switches, function(index, value) {
                 var onId = '#'+value.id.toLowerCase()+'an';
                 console.log("[an]"+ onId);
@@ -34,6 +39,7 @@ $(document).ready(function() {
                     socket.emit('switch_control', {type: 'request', code: value.code, status:'true'});
                 });
             });
+            */
         }
     });
 });
