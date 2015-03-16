@@ -13,18 +13,15 @@ $(document).ready(function() {
                 + '<div class="switch" class="col-md-12 col-xs-12" align="center">'
                 + '<h2>' + value.id + '</h2>'
                 + '</div>'
-                + '<button type="button" class="btn btn-success" id=' + value.id.toLowerCase() + 'an' + '">An</button>'
-                + '<button type="button" class="btn btn-danger" id=' + value.id.toLowerCase() + 'aus' + '">Aus</button>'
+                + '<button type="button" class="btn btn-success" id="' + value.id.toLowerCase() + '"an' + '">An</button>'
+                + '<button type="button" class="btn btn-danger" id="' + value.id.toLowerCase() + '"aus' + '">Aus</button>'
                 + '</div>'
                 );
-                $("#"+value.id.toLowerCase()+"an").click(function() {
-                    console.log("penis")
-                })
 
             });
 
             console.log($("#switches"));
-/*
+
             $.each(json.switches, function(index, value) {
                 var onId = '#'+value.id.toLowerCase()+'an';
                 console.log("[an]"+ onId);
@@ -39,7 +36,7 @@ $(document).ready(function() {
                     socket.emit('switch_control', {type: 'request', code: value.code, status:'true'});
                 });
             });
-            */
+
         }
     });
 });
