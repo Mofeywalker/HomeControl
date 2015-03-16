@@ -40,3 +40,8 @@ div#dash .row{
 div#dash .row div{
     text-align:center;
 }
+
+div#tempAkt{
+    font-family: Helvetica, Arial;
+    font-size: 3em;
+}
