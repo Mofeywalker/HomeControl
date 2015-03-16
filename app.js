@@ -28,7 +28,7 @@ app.get('/', function(req, res) {
 
 //
 io.sockets.on('connection', function(socket) {
-    console.log("[sockets.connection]"+socket);
+    console.log("[sockets.connection]"+socket.toString());
 
     socket.on('switch_control', function(data) {
         console.log("[sockets.switch_control]");
