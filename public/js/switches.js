@@ -18,11 +18,13 @@ $(document).ready(function() {
                 + '</div>'
                 );
                 var onId = '#'+value.id.toLowerCase()+'an';
+                console.log("[an]"+ onId);
                 $(onId).click(function() {
-                    console.log("[an]");
+
                     socket.emit('switch_control', {type: 'request', code: value.code, status:'false'});
                 });
                 var offId = '#'+value.id.toLowerCase()+'aus';
+                console.log("[an]"+ offId);
                 $(offId).click(function() {
                     console.log("[aus]");
                     socket.emit('switch_control', {type: 'request', code: value.code, status:'true'});
