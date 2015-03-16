@@ -30,7 +30,7 @@ app.get('/', function(req, res) {
 io.sockets.on('connection', function(socket) {
     console.log("[sockets.connection]");
 
-    socket.on('switch_control', function (data) {
+    socket.on('switch_control', function(data) {
         console.log("[sockets.switch_control]");
 
         //schalten der Steckdosen

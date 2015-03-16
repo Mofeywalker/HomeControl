@@ -19,10 +19,12 @@ $(document).ready(function() {
                 );
                 var onId = '#'+value.id.toLowerCase()+'an';
                 $(onId).click(function() {
+                    console.log("[an]");
                     socket.emit('switch_control', {type: 'request', code: value.code, status:'false'});
                 });
                 var offId = '#'+value.id.toLowerCase()+'aus';
                 $(offId).click(function() {
+                    console.log("[aus]");
                     socket.emit('switch_control', {type: 'request', code: value.code, status:'true'});
                 });
             });
