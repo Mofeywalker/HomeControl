@@ -12,4 +12,7 @@ $(document).ready(function() {
     setInterval(function() {
         socket.emit('tempsensor',{});
     }, 10000);
+
+    var now = new Date();
+    $("#date").text(now.getDate()+"."+now.getMonth()+"."+now.getFullYear());
 });
