@@ -6,7 +6,9 @@
   "author": "",
   "dependencies": {
     "express": "*",
-    "socket.io": "*"
+    "socket.io": "*",
+    "piswitch": "*",
+    "ds18x20": "*"
   },
   "license": "ISC"
 }
