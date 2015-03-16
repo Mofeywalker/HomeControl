@@ -16,6 +16,8 @@ function navLoad($what){
         case "navSysinfo":
             $("#content").load("sysinfo.html");
             break;
+        case "navCamera":
+            $("#content").load("camera.html");
         default: break;
     }
 }
