@@ -8,8 +8,8 @@ $(document).ready(function() {
         $("#ostype").text(data.ostype);
         $("#osplat").text(data.osplat);
         $("#release").text(data.release);
-        $("#uptime").text((data.uptime / 60) + " min");
-        $("#freemem").text((data.freemem /1024 /1024) + " MB");
+        $("#uptime").text((Math.round((data.uptime / 60)*100)/100) + " min");
+        $("#freemem").text((Math.round((data.freemem /1024 /1024)*1000)/1000) + " MB");
     });
 
     socket.emit('sysinfo', {});
