@@ -60,7 +60,8 @@ io.sockets.on('connection', function(socket) {
 
         var temp = ts.get('28-00000400afdb');
         console.log(temp);
-        socket.emit('temperature', {temperature:ts.get('28-00000400afdb')});
+        
+        socket.emit('temperature', {temperature:temp});
 
     })
 
