@@ -7,6 +7,8 @@ $(document).ready(function() {
          $("#tempAkt").text(data.temperature + " °C");
     });
 
+    socket.emit('tempsensor',{});
+
     setInterval(function() {
         socket.emit('tempsensor',{});
     }, 10000);
