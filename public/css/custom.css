@@ -28,3 +28,15 @@ div#content{
     color: #fff;
     margin-top: 5px;
 }
+
+div#dash{
+    height: 100%;
+}
+
+div#dash .row{
+    height: 50%;
+}
+
+div#dash .row div{
+    text-align:center;
+}
