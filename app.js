@@ -35,7 +35,8 @@ io.sockets.on('connection', function(socket) {
 
         //schalten der Steckdosen
         // Code 1111110000, Typ-Dipschalter, an(false)/aus(true)
-        rc.send(data.code, dip, data.status);
+        //rc.send(data.code, dip, data.status);
         console.log("[SEND] " + data.code +" "+ data.status);
     })
 });
+console.log("[ENDE]");
