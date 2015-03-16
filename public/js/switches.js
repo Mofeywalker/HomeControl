@@ -17,6 +17,10 @@ $(document).ready(function() {
                 + '<button type="button" class="btn btn-danger" id=' + value.id.toLowerCase() + 'aus' + '">Aus</button>'
                 + '</div>'
                 );
+
+            });
+
+            $.each(json.switches, function(index, value) {
                 var onId = '#'+value.id.toLowerCase()+'an';
                 console.log("[an]"+ onId);
                 $(onId).click(function() {
