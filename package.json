@@ -1,9 +1,9 @@
 {
   "name": "HomeControl",
   "version": "0.0.1",
-  "description": "",
+  "description": "HomeControl - Heimautomatisierung",
   "main": "index.js",
-  "author": "",
+  "author": "MoJuMiCa",
   "dependencies": {
     "express": "*",
     "socket.io": "*",

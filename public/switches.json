@@ -2,11 +2,11 @@
   "switches": [
     {
       "id": "Wohnzimmer",
-      "code": "1001010101"
+      "code": "1111110000"
     },
     {
       "id": "Schlafzimmer",
-      "code": "100100011"
+      "code": "1111110000"
     }
   ]
 }
