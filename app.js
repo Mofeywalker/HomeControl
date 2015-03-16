@@ -75,6 +75,6 @@ io.sockets.on('connection', function(socket) {
 
 });
 
-io.sockets.on('disconnect', function(socket) {
+io.sockets.on('disconnect', function() {
     console.log("[Connection closed for: "+socket.request.connection.remoteAddress+"]");
 });
