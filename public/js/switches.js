@@ -17,12 +17,12 @@ $(document).ready(function() {
                 + '<button type="button" class="btn btn-danger" id=' + value.id.toLowerCase() + 'aus' + '">Aus</button>'
                 + '</div>'
                 );
-
-                $('#'+value.id.toLowerCase()+'an').click(function() {
+                var onId = '#'+value.id.toLowerCase()+'an';
+                $(onId).click(function() {
                     socket.emit('switch_control', {type: 'request', code: value.code, status:'false'});
                 });
-
-                $('#'+value.id.toLowerCase()+'aus').click(function() {
+                var offId = '#'+value.id.toLowerCase()+'aus';
+                $(offId).click(function() {
                     socket.emit('switch_control', {type: 'request', code: value.code, status:'true'});
                 });
             });
