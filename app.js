@@ -1,5 +1,13 @@
 var ts = require('ds18x20');
 
+var RaspiCam = require("raspicam");
+var camera = new RaspiCam({
+    mode: "photo",
+    output: "./photo/image.jpg",
+    encoding: "jpg",
+    timeout: 0 // take the picture immediately
+});
+
 var os = require('os');
 
 var rc = require('piswitch');
@@ -22,6 +30,19 @@ rc.setup({
 ts.loadDriver(function (err) {
     if (err) console.log('[something went wrong loading the driver:', err,']')
     else console.log('[TempSensor driver is loaded]');
+});
+
+//Camera steuern
+camera.on("started", function( err, timestamp ){
+    console.log("photo started at " + timestamp );
+});
+
+camera.on("read", function( err, timestamp, filename ){
+    console.log("photo image captured with filename: " + filename );
+});
+
+camera.on("exit", function( timestamp ){
+    console.log("photo child process has exited at " + timestamp );
 });
 
 
@@ -52,7 +73,7 @@ io.sockets.on('connection', function(socket) {
         // Code 1111110000, Typ-Dipschalter, an(false)/aus(true)
         rc.send(data.code, 'dip', data.status);
         console.log("[SEND] " + data.code +" "+ data.status);
-    })
+    });
 
     //TempSensor
     socket.on('tempsensor', function() {
@@ -61,8 +82,15 @@ io.sockets.on('connection', function(socket) {
             socket.emit('temperature', { temperature: temp });
         });
 
-    })
+    });
 
+    //Kamera
+    socket.on('camera', function() {
+        camera.start();
+    });
+
+
+    //System Informationen
     socket.on('sysinfo', function() {
 
         //Returns hostname
@@ -96,7 +124,7 @@ io.sockets.on('connection', function(socket) {
 
         socket.emit('sysinfo', { hostname: hostname, ostype: ostype, osplat: osplat, arch: arch, release: release, uptime: uptime, loadavg: loadavg, totalmem: totalmem, freemem: freemem});
 
-    })
+    });
 
 });
 
