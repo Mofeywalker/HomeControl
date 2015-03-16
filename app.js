@@ -57,11 +57,10 @@ io.sockets.on('connection', function(socket) {
 
     //TempSensor
     socket.on('tempsensor', function() {
-        console.log("[sockets.tempsensor]");
-        console.log('getAll sync', ts.getAll());
+
         var temp = ts.get('28-00000400afdb');
         console.log(temp);
-        socket.write(temp);
+        socket.emit('temperature', {temperature:ts.get('28-00000400afdb')});
 
     })
 
