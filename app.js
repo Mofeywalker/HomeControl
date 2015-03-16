@@ -20,12 +20,12 @@ rc.setup({
 if(!ts.isDriverLoaded()) {
     try {
         ts.loadDriver();
-        console.log('TempSensor driver is loaded');
+        console.log('[TempSensor driver is loaded]');
     } catch (err) {
-        console.log('something went wrong loading the driver:', err)
+        console.log('[something went wrong loading the TempSensor driver:'+ err +']')
     }
 }else{
-    console.log('TempSensor driver is already loaded');
+    console.log('[TempSensor driver is already loaded}');
 }
 
 
@@ -43,7 +43,7 @@ app.get('/', function(req, res) {
 
 //Steuerung
 io.sockets.on('connection', function(socket) {
-    console.log("[Connection established for ]"+socket.request.connection.remoteAddress);
+    console.log("[Connection established for: "+socket.request.connection.remoteAddress+"]");
 
     //Steckdosen
     socket.on('switch_control', function(data) {
