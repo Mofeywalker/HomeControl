@@ -1,9 +1,10 @@
 var exports = module.exports = {};
 
-exports.systeminfo = function() {
-    
-}
-
+/**
+ * Funktion zum zurueckliefern der Systeminformationen. Wird benoetigt um im Webinterface die
+ * Systeminfos auszugeben und um app.js etwas schlanker zu halten.
+ * @returns {exports}
+ */
 exports.getSystemInfo = function() {
     var os = require('os');
 
