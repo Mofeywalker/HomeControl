@@ -1,7 +1,7 @@
 var wol = require('wake_on_lan');
 var ts = require('ds18x20');
 
-var systeminfo = require('../libs/systeminfo.js');
+var systeminfo = require('./libs/systeminfo.js');
 
 var RaspiCam = require('raspicam');
 var camera = new RaspiCam({
