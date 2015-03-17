@@ -1,6 +1,7 @@
 var wol = require('wake_on_lan');
-
 var ts = require('ds18x20');
+
+var systeminfo = require('../libs/systeminfo.js');
 
 var RaspiCam = require('raspicam');
 var camera = new RaspiCam({
@@ -11,7 +12,6 @@ var camera = new RaspiCam({
 });
 
 var os = require('os');
-
 var rc = require('piswitch');
 
 var express = require('express'),
@@ -47,15 +47,15 @@ camera.on('exit', function( timestamp ){
 server.listen(conf.port);
 console.log("[Server.Listen]");
 
-//Pfad
+// Express im statischen Modus verwenden
 app.use(express.static(__dirname + '/public'));
 
-//
+// Standardroute
 app.get('/', function(req, res) {
     res.sendfile(__dirname + '/public/index.html');
 });
 
-//Steuerung
+// Socket.io Listener
 io.sockets.on('connection', function(socket) {
     console.log("[Connection established for: "+socket.request.connection.remoteAddress+"]");
 
@@ -119,7 +119,8 @@ io.sockets.on('connection', function(socket) {
         //Returns the amount of free system memory in bytes.
         var freemem = os.freemem();
 
-        socket.emit('sysinfo', { hostname: hostname, ostype: ostype, osplat: osplat, arch: arch, release: release, uptime: uptime, loadavg: loadavg, totalmem: totalmem, freemem: freemem});
+        //socket.emit('sysinfo', { hostname: hostname, ostype: ostype, osplat: osplat, arch: arch, release: release, uptime: uptime, loadavg: loadavg, totalmem: totalmem, freemem: freemem});
+        socket.emit('sysinfo', systeminfo.getSystemInfo());
     });
 
 });
