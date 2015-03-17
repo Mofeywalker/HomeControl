@@ -21,12 +21,7 @@ var express = require('express'),
     conf = require('./config.json');
 
 // PiSwitch einrichten
-rc.setup({
-    mode: 'phys',
-    pulseLength: 330,
-    protocol: 1,
-    pin: 11
-});
+rc.setup(conf.remotecontrol);
 
 // TempSensor laden
 ts.loadDriver(function (err) {

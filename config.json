@@ -1,3 +1,11 @@
 {
-  "port": 8888
+  "port": 8888,
+  "remotecontrol":
+  {
+    "mode": "phys",
+    "pulseLength": 330,
+    "protocol": 1,
+    "pin": 11,
+    "repeats": 5
+  }
 }
