@@ -1,28 +1,30 @@
 var exports = module.exports = {};
 
+exports.systeminfo = function() {
+    
+}
+
 exports.getSystemInfo = function() {
     var os = require('os');
 
-    var sysinfos;
-
     //Returns hostname
-    sysinfos.hostname = os.hostname();
+    this.hostname = os.hostname();
     //Returns the operating system name.
-    sysinfos.ostype = os.type();
+    this.ostype = os.type();
     //Returns the operating system platform.
-    sysinfos.osplat = os.platform();
+    this.osplat = os.platform();
     //Returns the operating system CPU architecture. Possible values are "x64", "arm" and "ia32".
-    sysinfos.arch = os.arch();
+    this.arch = os.arch();
     //Returns the operating system release.
-    sysinfos.release = os.release();
+    this.release = os.release();
     //Returns the system uptime in seconds
-    sysinfos.uptime = os.uptime();
+    this.uptime = os.uptime();
     //Returns an array containing the 1, 5, and 15 minute load averages.
-    sysinfos.loadavg = os.loadavg();
+    this.loadavg = os.loadavg();
     //Returns the total amount of system memory in bytes.
-    sysinfos.totalmem = os.totalmem();
+    this.totalmem = os.totalmem();
     //Returns the amount of free system memory in bytes.
-    sysinfos.freemem = os.freemem();
+    this.freemem = os.freemem();
 
-    return sysinfos;
+    return this;
 }
