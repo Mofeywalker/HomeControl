@@ -64,3 +64,25 @@ td{
     text-align: left;
     padding-left: 4px;
 }
+
+/* Allgemeine Spezifierung der Switch Control Buttons, da Probleme mit Bootstrap */
+.btn-on,
+.btn-off{
+    font-family: Helvetica;
+    color: #ffffff;
+    font-size: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+    width: 80px;
+}
+
+/* Farbe fuer den On-Button */
+.btn-on {
+    background: #13c437;
+}
+
+/* Farbe fuer den Off-Button */
+.btn-off {
+    background: #e0163e;
+}
+
