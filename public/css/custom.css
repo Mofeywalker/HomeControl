@@ -43,7 +43,12 @@ div#dash .row div{
 
 div#tempAkt{
     font-family: Helvetica, Arial;
-    font-size: 3em;
+    font-size: 3vw;
+}
+
+div#date{
+    font-family: monospace;
+    font-size: 7vmin;
 }
 
 table{

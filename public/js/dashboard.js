@@ -9,10 +9,11 @@ $(document).ready(function() {
 
     socket.emit('tempsensor',{});
 
+    setInterval(writeDateTime, 1000);
+
     setInterval(function() {
         socket.emit('tempsensor',{});
     }, 10000);
 
-    var now = new Date();
-    $("#date").text(now.getDate()+"."+(now.getMonth()+1)+"."+now.getFullYear());
+
 });
