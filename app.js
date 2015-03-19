@@ -10,7 +10,7 @@ var express     = require('express'),
     rc          = require('piswitch'),
     systeminfo  = require('./libs/systeminfo.js'),
     raspicam    = require('raspicam'),
-    camera      = require('camerapi');
+    Camera      = require('camerapi');
 
 var cam = new Camera();
 
