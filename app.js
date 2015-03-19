@@ -80,17 +80,14 @@ io.sockets.on('connection', function(socket) {
 
     //Kamera
     socket.on('camera', function() {
-        //camera.start();
-
+        cam.baseFolder('./camPic/');
         cam.prepare({"timeout" : 150,
             "width" : 800,
             "height" : 600,
             "quality" : 85
         }).takePicture("camPic.jpg",callback);
 
-
         function callback(file,error){
-            //do some fun stuff
             if (!error) {
                 console.log("Picture filename:" + file);
             }else{
