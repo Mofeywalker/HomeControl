@@ -78,6 +78,8 @@ io.sockets.on('connection', function(socket) {
     //Kamera
     socket.on('camera', function() {
         camera.start();
+        setTimeout(writeDateTime, 2000);
+        camera.stop();
     });
 
     //Wake on Lan
