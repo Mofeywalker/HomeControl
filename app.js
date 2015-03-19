@@ -13,7 +13,7 @@ var express     = require('express'),
     Camera      = require('camerapi');
 
 var cam = new Camera();
-
+cam.baseDirectory('photo');
 // Kamera Konfiguration aus der config.json lesen
 var camera = new raspicam(conf.camera);
 
@@ -82,13 +82,24 @@ io.sockets.on('connection', function(socket) {
     socket.on('camera', function() {
         //camera.start();
         console.log("in teh app.js");
-        cam.baseDirectory('/');
 
         cam.prepare({"timeout" : 150,
             "width" : 2592,
             "height" : 1944,
             "quality" : 85
-        }).takePicture();
+        }).takePicture("mypicture.jpg",callback);
+
+
+        function callback(file,error){
+
+            //do some fun stuff
+            if (!error) {
+                console.log("Picture filename:" + file);
+            }else{
+                console.log("Error:" + error)
+            }
+
+        }
     });
 
     //Wake on Lan
