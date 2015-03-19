@@ -19,7 +19,14 @@ mongoose.connect('mongodb://localhost/switches');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function(callback) {
-    console.log("Yoyoyo");
+    console.log("Verbindung zur Datenbank steht!");
+
+    var switchSchema = mongoose.Schema({
+        id: String,
+        code: String
+    });
+
+    var Switch = mongoose.model.('Switch', switchSchema);
 });
 
 //Kamera
