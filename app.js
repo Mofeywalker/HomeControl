@@ -10,7 +10,8 @@ var express     = require('express'),
     rc          = require('piswitch'),
     systeminfo  = require('./libs/systeminfo.js'),
     Camera      = require('camerapi'),
-    mongoose    = require('mongoose');
+    mongoose    = require('mongoose'),
+    bodyParser  = require('body-parser');
 
 // Verbiondung zur Datenbank aufbauen
 mongoose.connect('mongodb://localhost/switches');
@@ -21,13 +22,15 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function(callback) {
     console.log("Verbindung zur Datenbank steht!");
 
-    var switchSchema = mongoose.Schema({
-        id: String,
-        code: String
-    });
-
-    var Switch = mongoose.model.('Switch', switchSchema);
 });
+
+// Schema fuer die Switches
+var switchSchema = mongoose.Schema({
+    name: String,
+    code: String
+});
+
+var Switch = mongoose.model('Switch', switchSchema);
 
 //Kamera
 var cam = new Camera();
@@ -48,9 +51,38 @@ console.log("[Server.Listen]");
 // Express im statischen Modus verwenden
 app.use(express.static(__dirname + '/public'));
 
+// Benoetigt um Post Anfragen mit application/json zu parsen
+app.use(bodyParser.json());
+
 // Standardroute
 app.get('/', function(req, res) {
     res.sendfile(__dirname + '/public/index.html');
+});
+
+// Route um alle Switches abzufragen
+app.get('/db/switches/all', function(req, res) {
+    Switch.find({}, function(error, data) {
+        res.json(data);
+    });
+});
+
+// Route um neuen Switch anzulegen
+app.post('/db/switches/create', function(req, res) {
+    var new_switch_data = {
+        name: req.body.name,
+        code: req.body.code
+    };
+
+    var newSwitch = new Switch(new_switch_data);
+
+    newSwitch.save(function(err) {
+        if (err) {
+            console.log("Probleme beim anlegen eines neuen Switch!");
+        } else {
+            console.log("Neuer Switch erfolgreich angelegt!");
+        }
+    })
+    res.end("yes");
 });
 
 // Socket.io Listener

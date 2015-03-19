@@ -11,7 +11,8 @@
     "ds18x20": "*",
     "camerapi": "*",
     "wake_on_lan": "*",
-    "mongoose": "*"
+    "mongoose": "*",
+    "body-parser": "*"
   },
   "license": "ISC"
 }
