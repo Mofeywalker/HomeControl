@@ -9,7 +9,10 @@ var express     = require('express'),
     ts          = require('ds18x20'),
     rc          = require('piswitch'),
     systeminfo  = require('./libs/systeminfo.js'),
-    raspicam    = require('raspicam');
+    raspicam    = require('raspicam'),
+    camera      = require('camerapi');
+
+var cam = new Camera();
 
 // Kamera Konfiguration aus der config.json lesen
 var camera = new raspicam(conf.camera);
@@ -77,7 +80,15 @@ io.sockets.on('connection', function(socket) {
 
     //Kamera
     socket.on('camera', function() {
-        camera.start();
+        //camera.start();
+        console.log("in teh app.js");
+        cam.baseDirectory('/');
+
+        cam.prepare({"timeout" : 150,
+            "width" : 2592,
+            "height" : 1944,
+            "quality" : 85
+        }).takePicture();
     });
 
     //Wake on Lan
