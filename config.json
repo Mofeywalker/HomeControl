@@ -8,13 +8,5 @@
     "protocol": 1,
     "pin": 11,
     "repeats": 5
-  },
-
-  "camera":
-  {
-    "mode": "photo",
-    "output": "./photo/image.jpg",
-    "encoding": "jpg",
-    "timeout": 0
   }
 }

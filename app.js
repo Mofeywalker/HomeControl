@@ -9,13 +9,10 @@ var express     = require('express'),
     ts          = require('ds18x20'),
     rc          = require('piswitch'),
     systeminfo  = require('./libs/systeminfo.js'),
-    raspicam    = require('raspicam'),
     Camera      = require('camerapi');
 
+//Kamera
 var cam = new Camera();
-
-// Kamera Konfiguration aus der config.json lesen
-var camera = new raspicam(conf.camera);
 
 // PiSwitch Konfiguration aus der config.json lesen
 rc.setup(conf.remotecontrol);
@@ -80,7 +77,8 @@ io.sockets.on('connection', function(socket) {
 
     //Kamera
     socket.on('camera', function() {
-        cam.baseFolder('./camPic/');
+
+        cam.baseFolder('/opt/nodejs/HomeControl/camPics');
         cam.prepare({"timeout" : 150,
             "width" : 800,
             "height" : 600,
