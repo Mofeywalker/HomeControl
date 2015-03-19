@@ -10,6 +10,7 @@
     "piswitch": "*",
     "ds18x20": "*",
     "raspicam": "*",
+    "camerapi": "*",
     "wake_on_lan": "*"
   },
   "license": "ISC"
