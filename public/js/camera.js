@@ -4,7 +4,8 @@ $(document).ready(function() {
 
     socket.on('camera', function(data) {
         console.log(data);
-        socket.emit('camera', {});
     });
+
+    socket.emit('camera', {});
 
 });
