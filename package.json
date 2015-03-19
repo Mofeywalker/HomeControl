@@ -10,7 +10,8 @@
     "piswitch": "*",
     "ds18x20": "*",
     "camerapi": "*",
-    "wake_on_lan": "*"
+    "wake_on_lan": "*",
+    "mongoose": "*"
   },
   "license": "ISC"
 }

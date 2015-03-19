@@ -9,7 +9,18 @@ var express     = require('express'),
     ts          = require('ds18x20'),
     rc          = require('piswitch'),
     systeminfo  = require('./libs/systeminfo.js'),
-    Camera      = require('camerapi');
+    Camera      = require('camerapi'),
+    mongoose    = require('mongoose');
+
+// Verbiondung zur Datenbank aufbauen
+mongoose.connect('mongodb://localhost/switches');
+
+// Callback fuer Fehler und erfolgreiches Verbinden mit der Datenbank
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function(callback) {
+    console.log("Yoyoyo");
+});
 
 //Kamera
 var cam = new Camera();
