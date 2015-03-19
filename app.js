@@ -13,7 +13,7 @@ var express     = require('express'),
     Camera      = require('camerapi');
 
 var cam = new Camera();
-cam.baseDirectory('photo');
+
 // Kamera Konfiguration aus der config.json lesen
 var camera = new raspicam(conf.camera);
 
