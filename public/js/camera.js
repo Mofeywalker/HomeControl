@@ -6,6 +6,10 @@ $(document).ready(function() {
         console.log(data);
     });
 
-    socket.emit('camera', {});
+    $(camera).click(function() {
+        socket.emit('camera', {});
+    });
+
+
 
 });
