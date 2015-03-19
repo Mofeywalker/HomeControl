@@ -2,9 +2,15 @@ var socket;
 $(document).ready(function() {
     socket = io.connect();
 
-    $(camera).click(function() {
+    socket.on('camera', function(data) {
         console.log(data);
-        socket.emit('camera', {});
-
     });
+
+    $(camera).click(function() {
+        console.log("send" + data);
+        socket.emit('camera', {});
+    });
+
+
+
 });
