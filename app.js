@@ -81,24 +81,21 @@ io.sockets.on('connection', function(socket) {
     //Kamera
     socket.on('camera', function() {
         //camera.start();
-        console.log("in teh app.js");
 
         cam.prepare({"timeout" : 150,
-            "width" : 2592,
-            "height" : 1944,
+            "width" : 800,
+            "height" : 600,
             "quality" : 85
-        }).takePicture("mypicture.jpg",callback);
+        }).takePicture("camPic.jpg",callback);
 
 
         function callback(file,error){
-
             //do some fun stuff
             if (!error) {
                 console.log("Picture filename:" + file);
             }else{
                 console.log("Error:" + error)
             }
-
         }
     });
 
