@@ -12,7 +12,7 @@
     $time_scope = $_GET ['scope'];
     fwrite($fh, "scope - ");fwrite($fh, $time_scope); fwrite($fh, "\n");
 
-    $dbhost = "127.0.0.1";
+    $dbhost = "192.168.178.28";
     $dbuser = "root";
     $dbpass = "1992Annaftw";
     $dbname = "avrio";
