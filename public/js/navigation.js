@@ -18,6 +18,10 @@ function navLoad($what){
             break;
         case "navCamera":
             $("#content").load("camera.html");
+            break;
+        case "navTemp":
+            $("#content").load("temperatur.html");
+            break;
         default: break;
     }
     closeCollapse();
