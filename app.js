@@ -67,6 +67,15 @@ app.get('/api/switches/all', function(req, res) {
     });
 });
 
+// Route um einen bestimmten Switch zurueck geliefert zu bekommen
+// Aufruf folgendermassen: /api/switches/name/Esszimmer, Antowrt als json
+app.get('/api/switches/name/:name', function(req, res) {
+    console.log(req.param("name"));
+    Switch.findOne({name: req.param("name")}, function(error, data) {
+       res.json(data);
+    });
+});
+
 // Route um neuen Switch anzulegen
 app.post('/api/switches/create', function(req, res) {
     var new_switch_data = new Switch ({
@@ -78,9 +87,9 @@ app.post('/api/switches/create', function(req, res) {
 
     newSwitch.save(function(err) {
         if (err) {
-            console.log("Probleme beim anlegen eines neuen Switch!");
+            console.log("[MONGODB - Probleme beim anlegen eines neuen Switch!]");
         } else {
-            console.log("Neuer Switch erfolgreich angelegt!");
+            console.log("[MONGODB - Neuer Switch erfolgreich angelegt!]");
         }
     });
     res.end("\nyes");
@@ -97,7 +106,7 @@ app.post('/api/switches/update', function(req, res) {
 
     delete upsertData._id;
     Switch.update({name: update_switch_data.name}, upsertData, {upsert: true}, function(err) {
-        console.log("Update nicht möglich");
+        console.log("[MONGODB - Update nicht moeglich]");
     });
     res.end("\nyes");
 });
