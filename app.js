@@ -109,6 +109,11 @@ app.post('/api/switches/delete', function(req, res) {
 });
 /*-----------------------------------------------------Ende Switches--------------------------------------------------*/
 
+// 404 Error fuer nicht vorhandene ROuten
+app.get('*', function(req, res){
+    res.sendStatus(404);
+});
+
 // Socket.io Listener
 io.sockets.on('connection', function(socket) {
     console.log("[Connection established for: "+socket.request.connection.remoteAddress+"]");
