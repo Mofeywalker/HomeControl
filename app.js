@@ -59,19 +59,20 @@ app.get('/', function(req, res) {
     res.sendfile(__dirname + '/public/index.html');
 });
 
+/*-------------------------------------------------------Switches-----------------------------------------------------*/
 // Route um alle Switches abzufragen
-app.get('/db/switches/all', function(req, res) {
+app.get('/api/switches/all', function(req, res) {
     Switch.find({}, function(error, data) {
         res.json(data);
     });
 });
 
 // Route um neuen Switch anzulegen
-app.post('/db/switches/create', function(req, res) {
-    var new_switch_data = {
+app.post('/api/switches/create', function(req, res) {
+    var new_switch_data = new Switch ({
         name: req.body.name,
         code: req.body.code
-    };
+    });
 
     var newSwitch = new Switch(new_switch_data);
 
@@ -81,9 +82,32 @@ app.post('/db/switches/create', function(req, res) {
         } else {
             console.log("Neuer Switch erfolgreich angelegt!");
         }
-    })
-    res.end("yes");
+    });
+    res.end("\nyes");
 });
+
+// Route um vorhandenen Switch zu updaten
+app.post('/api/switches/update', function(req, res) {
+    var update_switch_data = new Switch ({
+        name: req.body.name,
+        code: req.body.code
+    });
+
+    var upsertData = update_switch_data.toObject();
+
+    delete upsertData._id;
+    Switch.update({name: update_switch_data.name}, upsertData, {upsert: true}, function(err) {
+        console.log("Update nicht möglich");
+    });
+    res.end("\nyes");
+});
+
+// Route um bestimmte Switch zu loeschen
+app.post('/api/switches/delete', function(req, res) {
+    Switch.find({name: req.body.name}).remove().exec();
+    res.end("\nyes");
+});
+/*-----------------------------------------------------Ende Switches--------------------------------------------------*/
 
 // Socket.io Listener
 io.sockets.on('connection', function(socket) {
