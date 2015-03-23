@@ -24,20 +24,6 @@ db.once('open', function(callback) {
     console.log("Verbindung zur Datenbank steht!");
 });
 
-//Temperatur
-setInterval(function(data){
-    child = exec("cat /sys/bus/w1/devices/28-00000400afdb/w1_slave", function (error, stdout, stderr) {
-        if (error !== null) {
-            console.log('exec error: ' + error);
-        } else {
-            // You must send time (X axis) and a temperature value (Y axis)
-            var date = new Date().getTime();
-            var temp = parseFloat(stdout)/1000;
-            io.socket.emit('temperatureUpdate', date, temp);
-        }
-    });
-}, 5000);
-
 // Schema fuer die Switches
 var switchSchema = mongoose.Schema({
     name: String,
@@ -131,6 +117,22 @@ app.post('/api/switches/delete', function(req, res) {
     res.end("\nyes");
 });
 /*-----------------------------------------------------Ende Switches--------------------------------------------------*/
+
+/*-----------------------------------------------------Temperatur--------------------------------------------------*/
+setInterval(function(data){
+    child = exec("cat /sys/bus/w1/devices/28-00000400afdb/w1_slave", function (error, stdout, stderr) {
+        if (error !== null) {
+            console.log('exec error: ' + error);
+        } else {
+            // You must send time (X axis) and a temperature value (Y axis)
+            var date = new Date().getTime();
+            var temp = parseFloat(stdout)/1000;
+            io.socket.emit('temperatureUpdate', date, temp);
+        }
+    });
+}, 5000);
+
+/*-----------------------------------------------------Ende Temperatur--------------------------------------------------*/
 
 // 404 Error fuer nicht vorhandene ROuten
 app.get('*', function(req, res){
