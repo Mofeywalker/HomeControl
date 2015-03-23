@@ -15,6 +15,22 @@ var express     = require('express'),
     exec        = require('child_process').exec,
     tempSensor;
 
+
+// Schema fuer die Switches
+var switchSchema = mongoose.Schema({
+    name: String,
+    code: String
+});
+
+var Switch = mongoose.model('Switch', switchSchema);
+
+// Schema fuer Tempsensor
+var TempSchema = mongoose.Schema({
+    sensor: String
+});
+
+var TempSensor = mongoose.model('TempSensor', TempSchema);
+
 // Verbiondung zur Datenbank aufbauen
 mongoose.connect('mongodb://localhost/switches');
 
@@ -29,20 +45,7 @@ db.once('open', function(callback) {
     });
 });
 
-// Schema fuer die Switches
-var switchSchema = mongoose.Schema({
-    name: String,
-    code: String
-});
 
-var Switch = mongoose.model('Switch', switchSchema);
-
-// Schema fuer Tempsensor
-var TempSchema = mongoose.Schema({
-   sensor: String
-});
-
-var TempSensor = mongoose.model('TempSensor', TempSchema);
 
 //Kamera
 var cam = new Camera();
