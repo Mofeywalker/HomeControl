@@ -127,6 +127,21 @@ app.get('*', function(req, res){
 io.sockets.on('connection', function(socket) {
     console.log("[Connection established for: "+socket.request.connection.remoteAddress+"]");
 
+    //Temperatur
+        setInterval(function(data){
+            child = exec("cat /sys/bus/w1/devices/28-00000400afdb/w1_slave", function (error, stdout, stderr) {
+                if (error !== null) {
+                    console.log('exec error: ' + error);
+                } else {
+                    // You must send time (X axis) and a temperature value (Y axis)
+                    var date = new Date().getTime();
+                    var temp = parseFloat(stdout)/1000;
+                    socket.emit('temperatureUpdate', date, temp);
+                }
+            });
+        }, 5000);
+
+    //Disconnect
     socket.on('disconnect', function() {
         console.log("[Connection closed for: "+socket.request.connection.remoteAddress+"]");
     });
