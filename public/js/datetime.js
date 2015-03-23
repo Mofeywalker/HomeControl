@@ -1,14 +1,14 @@
 function writeDateTime(){
-    dt = new Date;
+    var dt = new Date;
 
-    d = dt.getDate();
-    m = dt.getMonth();
+    var d = dt.getDate();
+    var m = dt.getMonth();
     m++;
-    y = dt.getFullYear();
+    var y = dt.getFullYear();
 
-    hh = dt.getHours();
-    mm = dt.getMinutes();
-    ss = dt.getSeconds();
+    var hh = dt.getHours();
+    var mm = dt.getMinutes();
+    var ss = dt.getSeconds();
 
     if(m < 10){
         m = "0"+m;
@@ -24,5 +24,11 @@ function writeDateTime(){
     }
 
     res = d+'.'+m+'.'+y+"<br>"+hh+':'+mm+':'+ss;
-    document.getElementById("date").innerHTML = res;
+
+    try{
+        document.getElementById("date").innerHTML = res;
+    }
+    catch (e if e instanceof TypeError) {
+        clearInterval(timeinterval);
+    }
 }

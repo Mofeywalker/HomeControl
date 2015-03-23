@@ -1,8 +1,9 @@
 var socket;
 var chart;
 
+var timeinterval = setInterval(writeDateTime, 1000);
+
 $(document).ready(function() {
-    setInterval(writeDateTime, 1000);
 
     socket = io.connect();
 
@@ -30,13 +31,24 @@ $(document).ready(function() {
                     });
                 }
             }
-
         },
+        backgroundColor: {
+            linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
+            stops: [
+                [0, '#2a2a2b'],
+                [1, '#3e3e40']
+            ]
+        },
+        style: {
+            fontFamily: "'Unica One', sans-serif"
+        },
+        plotBorderColor: '#606063',
         rangeSelector : {
             selected : 100
         },
         title: {
-            text: 'Temperature Wohnzimmer'
+            text: 'Temperature Wohnzimmer',
+            color: '#E0E0E3'
         },
         xAxis: {
             type: 'datetime',
@@ -54,82 +66,6 @@ $(document).ready(function() {
         series: [{
             name: 'Temperature',
             data: []
-        }]
-    });
-
-
-
-    // TEST
-    Highcharts.setOptions({
-        global: {
-            useUTC: false
-        }
-    });
-
-    $('#tempSchnitt').highcharts({
-        chart: {
-            type: 'spline',
-            animation: Highcharts.svg, // don't animate in old IE
-            marginRight: 10,
-            events: {
-                load: function () {
-
-                    // set up the updating of the chart each second
-                    var series = this.series[0];
-                    setInterval(function () {
-                        var x = (new Date()).getTime(), // current time
-                            y = Math.random();
-                        series.addPoint([x, y], true, true);
-                    }, 1000);
-                }
-            }
-        },
-        title: {
-            text: 'Live random data'
-        },
-        xAxis: {
-            type: 'datetime',
-            tickPixelInterval: 150
-        },
-        yAxis: {
-            title: {
-                text: 'Value'
-            },
-            plotLines: [{
-                value: 0,
-                width: 1,
-                color: '#808080'
-            }]
-        },
-        tooltip: {
-            formatter: function () {
-                return '<b>' + this.series.name + '</b><br/>' +
-                    Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
-                    Highcharts.numberFormat(this.y, 2);
-            }
-        },
-        legend: {
-            enabled: false
-        },
-        exporting: {
-            enabled: false
-        },
-        series: [{
-            name: 'Random data',
-            data: (function () {
-                // generate an array of random data
-                var data = [],
-                    time = (new Date()).getTime(),
-                    i;
-
-                for (i = -19; i <= 0; i += 1) {
-                    data.push({
-                        x: time + i * 1000,
-                        y: Math.random()
-                    });
-                }
-                return data;
-            }())
         }]
     });
 
