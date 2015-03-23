@@ -22,7 +22,6 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function(callback) {
     console.log("Verbindung zur Datenbank steht!");
-
 });
 
 // Schema fuer die Switches
@@ -119,6 +118,24 @@ app.post('/api/switches/delete', function(req, res) {
 });
 /*-----------------------------------------------------Ende Switches--------------------------------------------------*/
 
+/*-----------------------------------------------------Temperatur--------------------------------------------------*/
+setInterval(function(data){
+    child = exec("cat /sys/bus/w1/devices/28-00000400afdb/w1_slave", function (error, stdout, stderr) {
+        if (error !== null) {
+            console.log('exec error: ' + error);
+        } else {
+            // You must send time (X axis) and a temperature value (Y axis)
+            var date = new Date().getTime();
+            var temp = parseFloat(stdout);
+            //io.socket.emit('temperatureUpdate', date, temp);
+            io.socket.emit('temperatureUpdate', {  });
+
+        }
+    });
+}, 5000);
+
+/*-----------------------------------------------------Ende Temperatur--------------------------------------------------*/
+
 // 404 Error fuer nicht vorhandene ROuten
 app.get('*', function(req, res){
     res.sendStatus(404);
@@ -127,20 +144,6 @@ app.get('*', function(req, res){
 // Socket.io Listener
 io.sockets.on('connection', function(socket) {
     console.log("[Connection established for: "+socket.request.connection.remoteAddress+"]");
-
-    //Temperatur
-        setInterval(function(data){
-            child = exec("cat /sys/bus/w1/devices/28-00000400afdb/w1_slave", function (error, stdout, stderr) {
-                if (error !== null) {
-                    console.log('exec error: ' + error);
-                } else {
-                    // You must send time (X axis) and a temperature value (Y axis)
-                    var date = new Date().getTime();
-                    var temp = parseFloat(stdout)/1000;
-                    socket.emit('temperatureUpdate', date, temp);
-                }
-            });
-        }, 5000);
 
     //Disconnect
     socket.on('disconnect', function() {
