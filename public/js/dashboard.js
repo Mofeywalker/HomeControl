@@ -17,7 +17,7 @@ $(document).ready(function() {
 
     setInterval(function() {
         socket.emit('tempsensor',{});
-    }, 10000);
+    }, 100000);
 
     chart = new Highcharts.Chart({
         chart: {
