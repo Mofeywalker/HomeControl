@@ -1,5 +1,6 @@
 $(document).ready(function() {
     console.log("Forecast document ready");
+    console.log(cityName);
     $.ajax({
         dataType: "jsonp",
         url: 'http://api.openweathermap.org/data/2.5/forecast/daily?q=Illingen,de&units=metric&lang=de&cnt=4',
