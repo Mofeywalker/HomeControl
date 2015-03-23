@@ -22,6 +22,13 @@ $(document).ready(function() {
         chart: {
             renderTo: 'tempVerlauf',
             defaultSeriesType: 'spline',
+            backgroundColor: {
+                linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
+                stops: [
+                    [0, '#2a2a2b'],
+                    [1, '#3e3e40']
+                ]
+            },
             events: {
                 load: function() {
                     // Each time you receive a value from the socket, I put it on the graph
@@ -36,14 +43,19 @@ $(document).ready(function() {
             selected : 100
         },
         title: {
-            text: 'CPU Temperature Raspberry Pi'
+            color: '#E0E0E3',
+            text: 'Temperatur'
         },
         xAxis: {
+            lineColor: '#707073',
+            grindLineColor: '#707073',
             type: 'datetime',
             tickPixelInterval: 150,
             maxZoom: 20 * 1000
         },
         yAxis: {
+            lineColor: '#707073',
+            grindLineColor: '#707073',
             minPadding: 0.2,
             maxPadding: 0.2,
             title: {
@@ -52,7 +64,8 @@ $(document).ready(function() {
             }
         },
         series: [{
-            name: 'Temperature',
+            color: '#E0E0E3',
+            name: 'Temperatur',
             data: []
         }]
     });
