@@ -25,8 +25,7 @@ $(document).ready(function() {
                 var onId = '#'+value.id.toLowerCase()+'an';
                 console.log("[an]"+ onId);
                 $(onId).click(function() {
-
-                    socket.emit('wakeonlan_control', {type: 'request', mac: value.mac, status:false});
+                    socket.emit('wakeonlan_control', {id: value.id , mac: value.mac});
                 });
             });
 

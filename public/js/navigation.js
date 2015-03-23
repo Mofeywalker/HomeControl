@@ -22,9 +22,6 @@ function navLoad($what){
         case "navCamera":
             $("#content").load("camera.html");
             break;
-        case "navTemp":
-            $("#content").load("temperatur.html");
-            break;
         case "navSettings":
             $("#content").load("settings.html");
         default: break;
