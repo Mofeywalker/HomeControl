@@ -32,6 +32,13 @@ var switchSchema = mongoose.Schema({
 
 var Switch = mongoose.model('Switch', switchSchema);
 
+// Schema fuer Tempsensor
+var TempSchema = mongoose.Schema({
+   sensor: String
+});
+
+var TempSensor = mongoose.model('TempSensor', TempSchema);
+
 //Kamera
 var cam = new Camera();
 
@@ -218,6 +225,18 @@ io.sockets.on('connection', function(socket) {
 
         });
 
+    });
+
+    socket.on('temp_sensor_selection', function(data) {
+        var new_sensor = new TempSensor(data.sensor);
+        TempSensor.find({}, function(error, data) {
+            if (data.length === 0) {
+                new_sensor.save();
+            } else {
+                TempSensor.find({}).remove().exec();
+                new_sensor.save();
+            }
+        })
     });
 
 });

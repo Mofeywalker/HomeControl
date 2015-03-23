@@ -11,5 +11,10 @@ $(document).ready(function() {
         });
     });
 
+    $('#tempsave').click(function(){
+        var tempSensor = $('#tempsensor').val();
+        socket.emit('temp_sensor_selection', {sensor: tempSensor});
+    });
+
     socket.emit('temp_sensors_request', {});
 });
