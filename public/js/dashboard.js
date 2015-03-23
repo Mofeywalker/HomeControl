@@ -47,21 +47,22 @@ $(document).ready(function() {
             }
         },
         title: {
-            text: 'Live random data'
+            color: '#fbfbfb',
+            text: 'Temperatur'
         },
         xAxis: {
             type: 'datetime',
-            tickPixelInterval: 150
+            tickPixelInterval: 150,
+            maxZoom: 20 * 1000
         },
         yAxis: {
+            minPadding: 0.2,
+            maxPadding: 0.2,
             title: {
-                text: 'Value'
-            },
-            plotLines: [{
-                value: 0,
-                width: 1,
-                color: '#808080'
-            }]
+                color: '#fbfbfb',
+                text: 'Temperatur ºC',
+                margin: 2
+            }
         },
         tooltip: {
             formatter: function () {
@@ -77,14 +78,14 @@ $(document).ready(function() {
             enabled: false
         },
         series: [{
-            name: 'Random data',
+            name: 'Temperatur',
             data: (function () {
                 // generate an array of random data
                 var data = [],
                     time = (new Date()).getTime(),
                     i;
 
-                for (i = -10; i <= 0; i += 1) {
+                for (i = -1; i <= 0; i += 1) {
                     data.push({
                         x: time + i * 1000,
                         y: aktTemp
