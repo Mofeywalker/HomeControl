@@ -33,7 +33,7 @@ setInterval(function(data){
             // You must send time (X axis) and a temperature value (Y axis)
             var date = new Date().getTime();
             var temp = parseFloat(stdout)/1000;
-            socket.emit('temperatureUpdate', date, temp);
+            io.socket.emit('temperatureUpdate', date, temp);
         }
     });
 }, 5000);
