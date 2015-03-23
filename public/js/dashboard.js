@@ -19,9 +19,19 @@ $(document).ready(function() {
     }, 10000);
 
     chart = new Highcharts.Chart({
+        renderTo: 'tempVerlauf',
         colors: ["#2b908f", "#90ee7e", "#f45b5b", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee",
             "#55BF3B", "#DF5353", "#7798BF", "#aaeeee"],
         chart: {
+            events: {
+                load: function() {
+                    // Each time you receive a value from the socket, I put it on the graph
+                    socket.on('temperatureUpdate', function (time, data) {
+                        var series = chart.series[0];
+                        series.addPoint([time, data]);
+                    });
+                }
+            },
             backgroundColor: {
                 linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
                 stops: [
