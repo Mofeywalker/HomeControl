@@ -11,8 +11,9 @@ var express     = require('express'),
     systeminfo  = require('./libs/systeminfo.js'),
     Camera      = require('camerapi'),
     mongoose    = require('mongoose'),
-    bodyParser  = require('body-parser')
-    exec        = require('child_process').exec;
+    bodyParser  = require('body-parser'),
+    exec        = require('child_process').exec,
+    tempSensor;
 
 // Verbiondung zur Datenbank aufbauen
 mongoose.connect('mongodb://localhost/switches');
@@ -22,6 +23,10 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function(callback) {
     console.log("Verbindung zur Datenbank steht!");
+    TempSensor.find({}, function(error, data) {
+        tempSensor = data[0].sensor;
+        console.log(tempSensor);
+    });
 });
 
 // Schema fuer die Switches
