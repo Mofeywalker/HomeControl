@@ -238,6 +238,13 @@ io.sockets.on('connection', function(socket) {
 
     socket.on('weatherlocation_update', function(data) {
         nconf.set('weatherlocation', data.weatherlocation);
+        nconf.save(function (err) {
+            if (err) {
+                console.error(err.message);
+                return;
+            }
+            console.log('Configuration saved successfully.');
+        });
     });
 
     /*
