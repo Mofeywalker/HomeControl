@@ -19,6 +19,12 @@ $(document).ready(function() {
         socket.emit('tempsensor',{});
     }, 100000);
 
+
+    Highcharts.setOptions({
+        global: {
+            useUTC: false
+        }
+    });
     chart = new Highcharts.Chart({
         chart: {
             renderTo: 'tempVerlauf',
@@ -34,12 +40,12 @@ $(document).ready(function() {
                 }
             }
         },
-        rangeSelector : {
-            selected : 10
-        },
         title: {
             color: '#fbfbfb',
             text: 'Temperatur'
+        },
+        scrollbar: {
+            enabled: true
         },
         xAxis: {
             type: 'datetime',
@@ -52,7 +58,7 @@ $(document).ready(function() {
             title: {
                 color: '#fbfbfb',
                 text: 'Temperatur ºC',
-                margin: 80
+                margin: 10
             }
         },
         series: [{
@@ -60,7 +66,5 @@ $(document).ready(function() {
             data: []
         }]
     });
-
-
 
 });
