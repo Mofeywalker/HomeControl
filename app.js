@@ -202,6 +202,10 @@ io.sockets.on('connection', function(socket) {
         socket.emit('sysinfo', systeminfo.getSystemInfo());
     });
 
+    socket.on('temp_sensors_request', function(data) {
+        socket.emit('temp_sensors_response', ts.list());
+    });
+
 });
 
 
