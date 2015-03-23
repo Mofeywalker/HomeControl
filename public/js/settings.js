@@ -4,7 +4,8 @@ $(document).ready(function() {
     socket.on('temp_sensors_response', function(data) {
         var json = $.parseJSON(data);
         console.log(data);
-        $.each(data, function(index, value) {
+        $('#tempsensor').text('');
+        $.each(json.sensors, function(index, value) {
             $('#tempsensor').enable();
             $('#tempsensor').append('<option>'+ value + '</option>');
         });

@@ -207,7 +207,7 @@ io.sockets.on('connection', function(socket) {
     });
 
     socket.on('temp_sensors_request', function(data) {
-        socket.emit('temp_sensors_response', ts.list());
+        socket.emit('temp_sensors_response', {sensors: ts.list()});
     });
 
 });
