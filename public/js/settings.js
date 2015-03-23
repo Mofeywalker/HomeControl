@@ -5,9 +5,9 @@ $(document).ready(function() {
 
     socket.on('switch_all_response', function(data){
         $.each(data.list, function(index, data){
-            var str = data.name + '('+data.code+')';
+            var str = data.name + '('+ data.code +')';
             $("#steckdosen-liste").append(str);
-        })
+        });
     });
 
     socket.emit('switch_all_request');
