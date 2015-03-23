@@ -28,7 +28,7 @@ function writeDateTime(){
     try{
         document.getElementById("date").innerHTML = res;
     }
-    catch (e if e instanceof TypeError) {
+    catch (e) {
         clearInterval(timeinterval);
     }
 }
