@@ -33,5 +33,5 @@ $(document).ready(function() {
         else{
             socket.emit('switch_create', {name: valname, code: valcode});
         }
-    })
+    });
 });
