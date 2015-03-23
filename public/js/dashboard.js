@@ -1,6 +1,6 @@
 var socket;
 var chart;
-
+var aktTemp;
 var timeinterval;
 
 $(document).ready(function() {
@@ -11,6 +11,7 @@ $(document).ready(function() {
     socket.on('temperature', function(data) {
         console.log("Temperature: " + data.temperature);
          $("#tempAkt").text(data.temperature + " °C");
+        aktTemp = data.temperature;
     });
 
     socket.emit('tempsensor',{});
@@ -25,7 +26,7 @@ $(document).ready(function() {
             useUTC: false
         }
     });
-    var aktTemp = 26;
+
     chart = new Highcharts.Chart({
         chart: {
             renderTo: 'tempVerlauf',
@@ -83,7 +84,7 @@ $(document).ready(function() {
                     time = (new Date()).getTime(),
                     i;
 
-                for (i = -19; i <= 0; i += 1) {
+                for (i = -10; i <= 0; i += 1) {
                     data.push({
                         x: time + i * 1000,
                         y: aktTemp
