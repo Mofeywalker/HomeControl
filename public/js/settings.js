@@ -4,6 +4,7 @@ $(document).ready(function() {
     socket = io.connect();
 
     socket.on('switch_all_response', function(data){
+        console.log(data);
         $.each(data.list, function(index, data){
             var str = data.name + '('+ data.code +')';
             $("#steckdosen-liste").append(str);
