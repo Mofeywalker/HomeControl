@@ -13,6 +13,9 @@ $(document).ready(function() {
                 console.log(data);
                 //var json = $.parseJSON(data);
                 //console.log(json);
+                $("#forecast").append(
+                    '<h2>' + cityName + '</h2>'
+                )
                 $.each(data.list, function (index, value) {
                     var datum = new Date(value.dt*1000);
                     var tag = datum.getDate();
@@ -26,7 +29,6 @@ $(document).ready(function() {
                     }
                     var datumtext = tag+'.'+monat+'.';
                     console.log(value.dt);
-                    '<h2>' + cityName + '</h2>'
                     $("#forecast").append(
                         '<div class="col-md-3 col-xs-12 wetter">'
                         + datumtext + '<br>'
