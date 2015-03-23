@@ -3,7 +3,8 @@ $(document).ready(function() {
     socket.emit('temp_sensors_request', {});
     socket.on('temp_sensors_response', function(data) {
         var json = $.parseJSON(data);
-        $.each(json, function(index, value) {
+        console.log(data);
+        $.each(data, function(index, value) {
             $('#tempsensor').enable();
             $('#tempsensor').append('<option>'+ value + '</option>');
         });
