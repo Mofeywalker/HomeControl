@@ -13,6 +13,7 @@ var express     = require('express'),
     mongoose    = require('mongoose'),
     bodyParser  = require('body-parser')
     exec        = require('child_process').exec;
+    Highcharts  = require('Highcharts');
 
 // Verbiondung zur Datenbank aufbauen
 mongoose.connect('mongodb://localhost/switches');
