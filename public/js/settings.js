@@ -5,11 +5,12 @@ $(document).ready(function() {
 
     socket.on('switch_all_response', function(response){
         console.log(response);
-        $("#steckdosen-liste").append('<table border="0">')
+        $("#steckdosen-liste").append('<table border="0">');
         $.each(response, function(index, data){
-            var str = "<tr><td>" + data.name + '('+ data.code +')</td><td><button id="change" value="'+data.name+'">&Auml;ndern</button></td></tr>';
+            var str = "<tr><td>" + data.name + '('+ data.code +')</td><td><button class="change" value="'+data.name+'">&Auml;ndern</button></td></tr>';
             $("#steckdosen-liste").append(str);
         });
+        $("#steckdosen-liste").append('</table>');
     });
 
     socket.emit('switch_all_request');
@@ -41,5 +42,7 @@ $(document).ready(function() {
         socket.emit('switch_create', {name: valname, code: valcode});
     });
 
-
+    $(".change").click(function(){
+        alert("ich hab keine ahnung wie ich an den namen kommen soll..."+this.val());
+    });
 });
