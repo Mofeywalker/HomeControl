@@ -1,6 +1,9 @@
+var socket;
 $(document).ready(function() {
-    var socket = io.connect();
-    socket.emit('temp_sensors_request', {});
+    socket = io.connect();
+
+
+
     socket.on('temp_sensors_response', function(data) {
         var json = $.parseJSON(data);
         console.log(data.sensors);
@@ -10,4 +13,6 @@ $(document).ready(function() {
             $('#tempsensor').append('<option>'+ value + '</option>');
         });
     });
+
+    socket.emit('temp_sensors_request', {});
 });
