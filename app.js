@@ -39,10 +39,6 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function(callback) {
     console.log("Verbindung zur Datenbank steht!");
-    TempSensor.find({}, function(error, data) {
-        tempSensor = data[0].sensor;
-        console.log(tempSensor);
-    });
 });
 
 
