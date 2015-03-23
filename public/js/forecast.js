@@ -21,10 +21,10 @@ $(document).ready(function() {
                 var datumtext = tag+'.'+monat+'.';
                 console.log(value.dt);
                 $("#forecast").append(
-                    '<div class="col-md-3 col-xs-12">'
+                    '<div class="col-md-3 col-xs-12 wetter">'
                      + datumtext + '<br>'
                      +'<img src="http://openweathermap.org/img/w/'+value.weather[0].icon+'.png">'
-                     + value.temp.day + " &deg;C  "
+                     + value.temp.day + "&deg;C  "
                      +'</div>'
                 )
             });

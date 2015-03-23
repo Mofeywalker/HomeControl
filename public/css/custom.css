@@ -32,8 +32,12 @@ div#dash{
     height: 100%;
 }
 
-div#dash .row{
-    height: 50%;
+div#dash .oben{
+    height: 70%;
+}
+
+div#dash .unten{
+    height: 30%;
 }
 
 div#dash .row div{
@@ -43,6 +47,10 @@ div#dash .row div{
 div#tempAkt{
     font-family: 'Source Code Pro', Helvetica, Arial;
     font-size: 8vmin;
+}
+
+div#forecast{
+    font-size: 4vmin;
 }
 
 div#tempVerlauf{
