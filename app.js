@@ -155,7 +155,7 @@ io.sockets.on('connection', function(socket) {
                 socket.emit('temperatureUpdate', date, temp);
             }
         });
-    }, 5000);
+    }, 10000);
 
     /*-----------------------------------------------------Ende Temperatur--------------------------------------------------*/
 
