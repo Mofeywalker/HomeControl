@@ -83,7 +83,7 @@ $(document).ready(function() {
 
                 for (i = -19; i <= 0; i += 1) {
                     data.push({
-                        x: time + i * 1000
+                        x: time + i
                     });
                 }
                 return data;
