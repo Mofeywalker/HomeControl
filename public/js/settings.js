@@ -7,7 +7,7 @@ $(document).ready(function() {
         console.log(response);
         $("#steckdosen-liste").append('<table border="0">');
         $.each(response, function(index, data){
-            var str = "<tr><td>" + data.name + '('+ data.code +')</td><td><button class="change" onclick="changeButton('+index+')">&Auml;ndern</button></td></tr>';
+            var str = "<tr><td>" + data.name + '('+ data.code +')</td><td><button class="change" onclick="changeButton('+data.name+')">&Auml;ndern</button></td></tr>';
             $("#steckdosen-liste").append(str);
         });
         $("#steckdosen-liste").append('</table>');
