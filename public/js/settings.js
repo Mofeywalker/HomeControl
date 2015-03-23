@@ -6,7 +6,7 @@ $(document).ready(function() {
     socket.on('switch_all_response', function(response){
         console.log(response);
         $.each(response, function(index, data){
-            var str = data.name + '('+ data.code +')';
+            var str = data.name + '('+ data.code +')<button id="change" value="'+data.name+'">&Auml;ndern</button><br>';
             $("#steckdosen-liste").append(str);
         });
     });
