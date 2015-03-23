@@ -41,6 +41,8 @@ chart = new Highcharts.Chart({
 });
 
 $(document).ready(function() {
+    setInterval(writeDateTime, 1000);
+
     socket = io.connect();
 
     socket.on('temperature', function(data) {
@@ -49,8 +51,6 @@ $(document).ready(function() {
     });
 
     socket.emit('tempsensor',{});
-
-    setInterval(writeDateTime, 1000);
 
     setInterval(function() {
         socket.emit('tempsensor',{});
