@@ -60,7 +60,7 @@ $(document).ready(function() {
             labels: {
                 style: {
                     color: '#E0E0E3'
-                }
+                } 
             },
             lineColor: '#707073',
             minorGridLineColor: '#505053',
