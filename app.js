@@ -11,7 +11,8 @@ var express     = require('express'),
     systeminfo  = require('./libs/systeminfo.js'),
     Camera      = require('camerapi'),
     mongoose    = require('mongoose'),
-    bodyParser  = require('body-parser');
+    bodyParser  = require('body-parser')
+    exec        = require('child_process').exec;
 
 // Verbiondung zur Datenbank aufbauen
 mongoose.connect('mongodb://localhost/switches');

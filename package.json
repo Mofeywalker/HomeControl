@@ -12,7 +12,8 @@
     "camerapi": "*",
     "wake_on_lan": "*",
     "mongoose": "*",
-    "body-parser": "*"
+    "body-parser": "*",
+    "child_process": "*"
   },
   "license": "ISC"
 }
