@@ -13,7 +13,6 @@
     "wake_on_lan": "*",
     "mongoose": "*",
     "body-parser": "*",
-    "child_process": "*",
     "nconf": "*"
   },
   "license": "ISC"
