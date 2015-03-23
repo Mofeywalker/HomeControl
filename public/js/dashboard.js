@@ -19,7 +19,7 @@ chart = new Highcharts.Chart({
         selected : 100
     },
     title: {
-        text: 'Temperature Home'
+        text: 'Temperature Wohnzimmer'
     },
     xAxis: {
         type: 'datetime',

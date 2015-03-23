@@ -135,9 +135,14 @@ io.sockets.on('connection', function(socket) {
                 console.log('exec error: ' + error);
             } else {
                 // You must send time (X axis) and a temperature value (Y axis)
+                var pos = stdout.indexOf("t=");
+                var res = stdout.substring(2, 7);
+                var temp = parseFloat(res)/1000;
                 var date = new Date().getTime();
-                var temp = parseFloat(stdout);
-                io.socket.emit('temperatureUpdate', date, temp);
+
+                console.log(pos," ", res);
+
+                socket.emit('temperatureUpdate', date, temp);
             }
         });
     }, 5000);
