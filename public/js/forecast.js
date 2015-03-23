@@ -26,9 +26,9 @@ $(document).ready(function() {
                     }
                     var datumtext = tag+'.'+monat+'.';
                     console.log(value.dt);
+                    '<h2>' + cityName + '</h2>'
                     $("#forecast").append(
-                        '<h2>' + cityName + '</h2>'
-                        + '<div class="col-md-3 col-xs-12 wetter">'
+                        '<div class="col-md-3 col-xs-12 wetter">'
                         + datumtext + '<br>'
                         +'<img src="http://openweathermap.org/img/w/'+value.weather[0].icon+'.png">'
                         + value.temp.day + "&deg;C  "
