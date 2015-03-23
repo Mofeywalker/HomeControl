@@ -23,13 +23,7 @@ $(document).ready(function() {
         chart: {
             renderTo: 'tempVerlauf',
             defaultSeriesType: 'spline',
-            backgroundColor: {
-                linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
-                stops: [
-                    [0, '#2a2a2b'],
-                    [1, '#3e3e40']
-                ]
-            },
+            backgroundColor: 'rgba(20,20,20,0.2)',
             events: {
                 load: function() {
                     // Each time you receive a value from the socket, I put it on the graph
@@ -48,15 +42,11 @@ $(document).ready(function() {
             text: 'Temperatur'
         },
         xAxis: {
-            lineColor: '#707073',
-            grindLineColor: '#707073',
             type: 'datetime',
             tickPixelInterval: 150,
             maxZoom: 20 * 1000
         },
         yAxis: {
-            lineColor: '#707073',
-            grindLineColor: '#707073',
             minPadding: 0.2,
             maxPadding: 0.2,
             title: {
@@ -64,7 +54,11 @@ $(document).ready(function() {
                 text: 'Temperatur ºC',
                 margin: 80
             }
-        }
+        },
+        series: [{
+            name: 'Temperatur',
+            data: []
+        }]
     });
 
 });
