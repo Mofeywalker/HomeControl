@@ -20,6 +20,7 @@ $(document).ready(function() {
     socket.emit('temp_sensors_request', {});
     $('#save_city').click(function(){
         socket.emit('weatherlocation_update', {weatherlocation: $('#city').val()});
+        alert('Standort geändert');
     });
 
     $("#steck-save").click(function(){
