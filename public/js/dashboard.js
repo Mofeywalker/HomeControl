@@ -25,7 +25,7 @@ $(document).ready(function() {
             useUTC: false
         }
     });
-    var aktTemp;
+    var aktTemp = 26;
     chart = new Highcharts.Chart({
         chart: {
             renderTo: 'tempVerlauf',
@@ -40,7 +40,7 @@ $(document).ready(function() {
                     socket.on('temperatureUpdate', function (time, data) {
                         var series = chart.series[0];
                         aktTemp = data;
-                        series.addPoint([time, data]);
+                        series.addPoint([time, data], true, true);
                     });
                 }
             }
