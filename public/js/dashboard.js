@@ -19,10 +19,11 @@ $(document).ready(function() {
     }, 10000);
 
     chart = new Highcharts.Chart({
-        renderTo: 'tempVerlauf',
+
         colors: ["#2b908f", "#90ee7e", "#f45b5b", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee",
             "#55BF3B", "#DF5353", "#7798BF", "#aaeeee"],
         chart: {
+            renderTo: 'tempVerlauf',
             events: {
                 load: function() {
                     // Each time you receive a value from the socket, I put it on the graph
@@ -38,9 +39,6 @@ $(document).ready(function() {
                     [0, '#2a2a2b'],
                     [1, '#3e3e40']
                 ]
-            },
-            style: {
-                fontFamily: "'Unica One', sans-serif"
             },
             plotBorderColor: '#606063'
         },
@@ -62,7 +60,7 @@ $(document).ready(function() {
             labels: {
                 style: {
                     color: '#E0E0E3'
-                }
+                } 
             },
             lineColor: '#707073',
             minorGridLineColor: '#505053',
@@ -205,17 +203,6 @@ $(document).ready(function() {
             xAxis: {
                 gridLineColor: '#505053'
             }
-        },
-
-        scrollbar: {
-            barBackgroundColor: '#808083',
-            barBorderColor: '#808083',
-            buttonArrowColor: '#CCC',
-            buttonBackgroundColor: '#606063',
-            buttonBorderColor: '#606063',
-            rifleColor: '#FFF',
-            trackBackgroundColor: '#404043',
-            trackBorderColor: '#404043'
         },
 
         // special colors for some of the
