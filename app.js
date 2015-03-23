@@ -152,7 +152,7 @@ io.sockets.on('connection', function(socket) {
     //Kamera
     socket.on('camera', function() {
 
-        cam.baseFolder('/opt/nodejs/HomeControl/camPics');
+        cam.baseFolder('/opt/nodejs/HomeControl/public/camPics');
         cam.prepare({"timeout" : 150,
             "width" : 800,
             "height" : 600,
@@ -162,6 +162,7 @@ io.sockets.on('connection', function(socket) {
         function callback(file,error){
             if (!error) {
                 console.log("Picture filename:" + file);
+                socket.emit('camera', { camera: file });
             }else{
                 console.log("Error:" + error)
             }
