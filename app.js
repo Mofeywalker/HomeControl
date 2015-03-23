@@ -24,13 +24,6 @@ var switchSchema = mongoose.Schema({
 
 var Switch = mongoose.model('Switch', switchSchema);
 
-// Schema fuer Tempsensor
-var TempSchema = mongoose.Schema({
-    sensor: String
-});
-
-var TempSensor = mongoose.model('TempSensor', TempSchema);
-
 // Verbiondung zur Datenbank aufbauen
 mongoose.connect('mongodb://localhost/switches');
 
@@ -42,7 +35,6 @@ db.once('open', function(callback) {
 });
 
 
-
 //Kamera
 var cam = new Camera();
 
@@ -51,8 +43,14 @@ rc.setup(conf.remotecontrol);
 
 // Treiber fuer den Temperatursensor testen
 ts.loadDriver(function (err) {
-    if (err) console.log('[something went wrong loading the driver:', err,']')
-    else console.log('[TempSensor driver is loaded]');
+    if (err) {
+        console.log('[something went wrong loading the driver:', err,']')
+    }
+    else {
+        console.log('[TempSensor driver is loaded]');
+        tempSensor = ts.list()[0];
+    }
+
 });
 
 //Server starten
@@ -141,7 +139,7 @@ io.sockets.on('connection', function(socket) {
 
     /*-----------------------------------------------------Temperatur--------------------------------------------------*/
     setInterval(function(data){
-        child = exec("cat /sys/bus/w1/devices/28-00000400afdb/w1_slave", function (error, stdout, stderr) {
+        child = exec("cat /sys/bus/w1/devices/"+ tempSensor+ "/w1_slave", function (error, stdout, stderr) {
             if (error !== null) {
                 console.log('exec error: ' + error);
             } else {
@@ -175,7 +173,7 @@ io.sockets.on('connection', function(socket) {
     //TempSensor
     socket.on('tempsensor', function() {
 
-        ts.get('28-00000400afdb', function (err, temp) {
+        ts.get(tempSensor, function (err, temp) {
             socket.emit('temperature', { temperature: temp });
         });
 
@@ -231,6 +229,7 @@ io.sockets.on('connection', function(socket) {
 
     });
 
+    /*
     socket.on('temp_sensor_selection', function(data) {
         var new_sensor = new TempSensor(data.sensor);
         TempSensor.find({}, function(error, sensors) {
@@ -242,6 +241,7 @@ io.sockets.on('connection', function(socket) {
             }
         })
     });
+    */
 
 });
 
