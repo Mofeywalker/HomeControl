@@ -22,4 +22,16 @@ $(document).ready(function() {
         socket.emit('weatherlocation_update', {weatherlocation: $('#city').val()});
         alert('Standort geändert');
     });
+
+    $("#steck-save").click(function(){
+        var valname = $("#name").val();
+        var valcode = $("#code").val();
+        name = name.trim();
+        if(name.empty()){
+            alert("Name leer!");
+        }
+        else{
+            socket.emit('switch_create', {name: valname, code: valcode});
+        }
+    })
 });
