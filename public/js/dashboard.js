@@ -31,13 +31,24 @@ $(document).ready(function() {
                     });
                 }
             }
-
         },
+        backgroundColor: {
+            linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
+            stops: [
+                [0, '#2a2a2b'],
+                [1, '#3e3e40']
+            ]
+        },
+        style: {
+            fontFamily: "'Unica One', sans-serif"
+        },
+        plotBorderColor: '#606063',
         rangeSelector : {
             selected : 100
         },
         title: {
-            text: 'Temperature Wohnzimmer'
+            text: 'Temperature Wohnzimmer',
+            color: '#E0E0E3'
         },
         xAxis: {
             type: 'datetime',
