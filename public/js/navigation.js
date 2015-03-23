@@ -25,6 +25,8 @@ function navLoad($what){
         case "navTemp":
             $("#content").load("temperatur.html");
             break;
+        case "navSettings":
+            $("#content").load("settings.html");
         default: break;
     }
     closeCollapse();
