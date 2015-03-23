@@ -8,5 +8,7 @@
     "protocol": 1,
     "pin": 11,
     "repeats": 5
-  }
+  },
+
+  "weatherlocation": "Illingen"
 }

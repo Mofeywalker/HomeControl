@@ -13,8 +13,11 @@ var express     = require('express'),
     mongoose    = require('mongoose'),
     bodyParser  = require('body-parser'),
     exec        = require('child_process').exec,
+    nconf       = require('nconf'),
     tempSensor;
 
+nconf.use('file', {file: './config.json'});
+nconf.load();
 
 // Schema fuer die Switches
 var switchSchema = mongoose.Schema({
@@ -227,6 +230,10 @@ io.sockets.on('connection', function(socket) {
 
         });
 
+    });
+
+    socket.on('weatherlocation_request', function() {
+        socket.emit('weatherlocation_response', {weatherlocation: nconf.get('weatherlocation')});
     });
 
     /*
