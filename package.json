@@ -13,8 +13,7 @@
     "wake_on_lan": "*",
     "mongoose": "*",
     "body-parser": "*",
-    "child_process": "*",
-    "Highcharts": "*"
+    "child_process": "*"
   },
   "license": "ISC"
 }
