@@ -42,7 +42,7 @@ div#dash .row div{
 
 div#tempAkt{
     font-family: Helvetica, Arial;
-    font-size: 3vw;
+    font-size: 3vmax;
 }
 
 div#image{
@@ -61,11 +61,13 @@ table{
 th{
     text-align: right;
     padding-right: 4px;
+    font-size: 2vmax;
 }
 
 td{
     text-align: left;
     padding-left: 4px;
+    font-size: 2vmax;
 }
 
 /* Allgemeine Spezifierung der Switch Control Buttons, da Probleme mit Bootstrap */
