@@ -35,7 +35,7 @@ $(document).ready(function() {
             }
         },
         rangeSelector : {
-            selected : 100
+            selected : 10
         },
         title: {
             color: '#fbfbfb',
