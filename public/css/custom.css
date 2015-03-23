@@ -105,9 +105,11 @@ td{
 }
 
 input{
-    text-color: #000;
+    background-color: #555;
+    color: #000;
 }
 
 button{
-    text-color: #000;
+    background-color: #555;
+    color: #000;
 }
