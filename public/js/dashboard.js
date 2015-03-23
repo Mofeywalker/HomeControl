@@ -36,13 +36,10 @@ $(document).ready(function() {
             events: {
                 load: function () {
 
-                    // set up the updating of the chart each second
-                    var series = this.series[0];
-                    setInterval(function () {
-                        var x = (new Date()).getTime(), // current time
-                            y = Math.random();
-                        series.addPoint([x, y], true, true);
-                    }, 1000);
+                    socket.on('temperatureUpdate', function (time, data) {
+                        var series = chart.series[0];
+                        series.addPoint([time, data]);
+                    });
                 }
             }
         },
@@ -77,21 +74,8 @@ $(document).ready(function() {
             enabled: false
         },
         series: [{
-            name: 'Random data',
-            data: (function () {
-                // generate an array of random data
-                var data = [],
-                    time = (new Date()).getTime(),
-                    i;
-
-                for (i = -19; i <= 0; i += 1) {
-                    data.push({
-                        x: time + i * 1000,
-                        y: Math.random()
-                    });
-                }
-                return data;
-            }())
+            name: 'Temperatur',
+            data: []
         }]
     });
 
