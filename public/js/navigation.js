@@ -13,6 +13,9 @@ function navLoad($what){
         case "navSwitch":
             $("#content").load("switch.html");
             break;
+        case "navWol":
+            $("#content").load("wakeonlan.html");
+            break;
         case "navSysinfo":
             $("#content").load("sysinfo.html");
             break;
