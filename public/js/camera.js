@@ -4,7 +4,7 @@ $(document).ready(function() {
 
     socket.on('camera', function(data) {
         console.log(data);
-        document.getElementById("camPic").innerHTML="<img id='camPic' src='camPics/camPic.jpg' width='800' height='600'>";
+        document.getElementById("camPic").innerHTML="<img id='camPic' src='camPics/camPic.jpg'>";
     });
 
     socket.emit('camera', {});
