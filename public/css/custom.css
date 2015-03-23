@@ -45,6 +45,11 @@ div#tempAkt{
     font-size: 8vmin;
 }
 
+div#tempVerlauf{
+    height: 100%;
+    width: 100%;
+}
+
 div#image{
     margin: 0 auto;
 }
