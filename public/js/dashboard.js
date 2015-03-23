@@ -1,9 +1,10 @@
 var socket;
 var chart;
 
-var timeinterval = setInterval(writeDateTime, 1000);
+var timeinterval;
 
 $(document).ready(function() {
+    timeinterval = setInterval(writeDateTime, 1000);
 
     socket = io.connect();
 
