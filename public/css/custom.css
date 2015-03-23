@@ -45,6 +45,10 @@ div#tempAkt{
     font-size: 3vw;
 }
 
+div#camPic{
+    text-align:center;
+}
+
 div#date{
     font-family: monospace;
     font-size: 3vmax;
