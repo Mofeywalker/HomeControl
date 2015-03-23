@@ -19,7 +19,7 @@ $(document).ready(function() {
 
     chart = new Highcharts.Chart({
         chart: {
-            renderTo: 'chart',
+            renderTo: 'tempVerlauf',
             defaultSeriesType: 'spline',
             events: {
                 load: function() {
