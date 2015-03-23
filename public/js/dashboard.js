@@ -23,7 +23,7 @@ $(document).ready(function() {
         chart: {
             renderTo: 'tempVerlauf',
             defaultSeriesType: 'spline',
-            backgroundColor: 'rgba(20,20,20,0.2)',
+            backgroundColor: 'rgba(20,20,20,0.1)',
             events: {
                 load: function() {
                     // Each time you receive a value from the socket, I put it on the graph
@@ -38,7 +38,7 @@ $(document).ready(function() {
             selected : 100
         },
         title: {
-            color: '#E0E0E3',
+            color: '#fbfbfb',
             text: 'Temperatur'
         },
         xAxis: {
@@ -50,7 +50,7 @@ $(document).ready(function() {
             minPadding: 0.2,
             maxPadding: 0.2,
             title: {
-                color: '#E0E0E3',
+                color: '#fbfbfb',
                 text: 'Temperatur ºC',
                 margin: 80
             }
