@@ -45,8 +45,8 @@ div#tempAkt{
     font-size: 3vw;
 }
 
-div#camPic{
-    text-align:center;
+div#image{
+    margin: 0 auto;
 }
 
 div#date{
