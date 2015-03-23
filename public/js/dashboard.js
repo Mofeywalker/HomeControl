@@ -87,7 +87,7 @@ $(document).ready(function() {
 
                 for (i = -10; i <= 0; i += 1) {
                     data.push({
-                        x: time + i + 1000,
+                        x: time + i + 10000,
                         y: aktTemp
                     });
                 }
