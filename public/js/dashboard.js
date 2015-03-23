@@ -89,7 +89,7 @@ $(document).ready(function() {
                     data.push({
                         x: time + i * 1000,
                         y: aktTemp
-                    });
+                    }); 
                 }
                 return data;
             }())
