@@ -247,6 +247,55 @@ io.sockets.on('connection', function(socket) {
         });
     });
 
+    ////////////////////Switches///////////////////////
+    socket.on('switch_create', function(data) {
+        var new_switch_data = new Switch ({
+            name: data.name,
+            code: data.code
+        });
+
+        var newSwitch = new Switch(new_switch_data);
+
+        newSwitch.save(function(err) {
+            if (err) {
+                console.log("[MONGODB - Probleme beim anlegen eines neuen Switch!]");
+            } else {
+                console.log("[MONGODB - Neuer Switch erfolgreich angelegt!]");
+            }
+        });
+    });
+
+    socket.on('switch_all_request', function() {
+        Switch.find({}, function(error, data) {
+            socket.emit('switch_all_response', data);
+        });
+
+    });
+    
+    socket.on('switch_name_request', function(req) {
+        Switch.findOne({name: req.name}, function(error, data) {
+            socket.emit('switch_name_response', data);
+        });
+    });
+
+    socket.on('switch_update_request', function(req) {
+        var update_switch_data = new Switch ({
+            name: req.name,
+            code: req.code
+        });
+
+        var upsertData = update_switch_data.toObject();
+
+        delete upsertData._id;
+        Switch.update({name: update_switch_data.name}, upsertData, {upsert: true}, function(err) {
+            console.log("[MONGODB - Update nicht moeglich]");
+        });
+    });
+
+    socket.on('switch_delete_request', function(req) {
+
+    });
+
     /*
     socket.on('temp_sensor_selection', function(data) {
         var new_sensor = new TempSensor(data.sensor);
