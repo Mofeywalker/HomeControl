@@ -59,15 +59,11 @@ $(document).ready(function() {
             minPadding: 0.2,
             maxPadding: 0.2,
             title: {
-                text: 'Temperature ºC',
+                color: '#E0E0E3',
+                text: 'Temperatur ºC',
                 margin: 80
             }
-        },
-        series: [{
-            color: '#E0E0E3',
-            name: 'Temperatur',
-            data: []
-        }]
+        }
     });
 
 });
