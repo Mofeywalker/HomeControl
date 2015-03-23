@@ -23,14 +23,14 @@ $(document).ready(function() {
     });
 
     $("#steck-save").click(function(){
-        var name = $("#name").val();
-        var code = $("#code").val();
+        var valname = $("#name").val();
+        var valcode = $("#code").val();
         name = name.trim();
         if(name.empty()){
             alert("Name leer!");
         }
         else{
-            socket.emit('switch_create', {name: name, code: code});
+            socket.emit('switch_create', {name: valname, code: valcode});
         }
     })
 });
