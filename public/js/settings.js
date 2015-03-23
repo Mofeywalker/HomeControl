@@ -1,4 +1,5 @@
 var socket;
+var cityName;
 $(document).ready(function() {
     socket = io.connect();
 
@@ -17,4 +18,7 @@ $(document).ready(function() {
     });
 
     socket.emit('temp_sensors_request', {});
+    $('#save_city').click(function(){
+        cityName = $('#city').val();
+    });
 });
