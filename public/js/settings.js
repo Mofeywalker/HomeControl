@@ -3,6 +3,15 @@ var cityName;
 $(document).ready(function() {
     socket = io.connect();
 
+    socket.on('switch_all_response', function(data){
+        $.each(data.list, function(index, data){
+            var str = data.name + '('+data.code+')';
+            $("#steckdosen-liste").append(str);
+        })
+    });
+
+    socket.emit('switch_all_request');
+
     socket.on('temp_sensors_response', function(data) {
         //var json = $.parseJSON(data);
         console.log(data.sensors);
@@ -29,4 +38,6 @@ $(document).ready(function() {
         name = name.trim();
         socket.emit('switch_create', {name: valname, code: valcode});
     });
+
+
 });
