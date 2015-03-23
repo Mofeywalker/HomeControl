@@ -229,8 +229,8 @@ io.sockets.on('connection', function(socket) {
 
     socket.on('temp_sensor_selection', function(data) {
         var new_sensor = new TempSensor(data.sensor);
-        TempSensor.find({}, function(error, data) {
-            if (data.length === 0) {
+        TempSensor.find({}, function(error, sensors) {
+            if (sensors.length === 0) {
                 new_sensor.save();
             } else {
                 TempSensor.find({}).remove().exec();
