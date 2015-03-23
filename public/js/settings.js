@@ -21,4 +21,16 @@ $(document).ready(function() {
     $('#save_city').click(function(){
         cityName = $('#city').val();
     });
+
+    $("#steck-save").click(function(){
+        var name = $("#name").val();
+        var code = $("#code").val();
+        name = name.trim();
+        if(name.empty()){
+            alert("Name leer!");
+        }
+        else{
+            socket.emit('switch_create', {name: name, code: code});
+        }
+    })
 });
