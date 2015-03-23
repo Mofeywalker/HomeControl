@@ -5,8 +5,9 @@ $(document).ready(function() {
 
     socket.on('switch_all_response', function(response){
         console.log(response);
+        $("#steckdosen-liste").append('<table border="0">')
         $.each(response, function(index, data){
-            var str = data.name + '('+ data.code +')<button id="change" value="'+data.name+'">&Auml;ndern</button><br>';
+            var str = "<tr><td>" + data.name + '('+ data.code +')</td><td><button id="change" value="'+data.name+'">&Auml;ndern</button></td></tr>';
             $("#steckdosen-liste").append(str);
         });
     });
