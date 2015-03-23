@@ -85,11 +85,11 @@ $(document).ready(function() {
                     time = (new Date()).getTime(),
                     i;
 
-                for (i = -1; i <= 0; i += 1) {
+                for (i = -10; i <= 0; i += 1) {
                     data.push({
-                        x: time + i * 1000,
+                        x: time + i,
                         y: aktTemp
-                    }); 
+                    });
                 }
                 return data;
             }())
