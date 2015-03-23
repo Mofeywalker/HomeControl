@@ -8,7 +8,7 @@ $(document).ready(function() {
         console.log(cityName);
         $.ajax({
             dataType: "jsonp",
-            url: 'http://api.openweathermap.org/data/2.5/forecast/daily?q=Illingen,de&units=metric&lang=de&cnt=4',
+            url: 'http://api.openweathermap.org/data/2.5/forecast/daily?q=' + cityName + ',de&units=metric&lang=de&cnt=4',
             success: function(data) {
                 console.log(data);
                 //var json = $.parseJSON(data);
@@ -27,7 +27,8 @@ $(document).ready(function() {
                     var datumtext = tag+'.'+monat+'.';
                     console.log(value.dt);
                     $("#forecast").append(
-                        '<div class="col-md-3 col-xs-12 wetter">'
+                        '<h2>' + cityName + '</h2>'
+                        + '<div class="col-md-3 col-xs-12 wetter">'
                         + datumtext + '<br>'
                         +'<img src="http://openweathermap.org/img/w/'+value.weather[0].icon+'.png">'
                         + value.temp.day + "&deg;C  "

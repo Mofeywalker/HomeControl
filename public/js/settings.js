@@ -19,7 +19,6 @@ $(document).ready(function() {
 
     socket.emit('temp_sensors_request', {});
     $('#save_city').click(function(){
-        //cityName = $('#city').val();
         socket.emit('weatherlocation_update', {weatherlocation: $('#city').val()});
     });
 });
