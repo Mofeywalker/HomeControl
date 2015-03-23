@@ -138,7 +138,7 @@ io.sockets.on('connection', function(socket) {
                 console.log(stdout);
                 var pos = stdout.indexOf("t=");
                 console.log(pos);
-                var res = stdout.substring(pos, 7);
+                var res = stdout.substring(pos, pos+6);
                 console.log(res);
                 var temp = parseFloat(res)/1000;
                 console.log(temp);
