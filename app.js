@@ -236,6 +236,10 @@ io.sockets.on('connection', function(socket) {
         socket.emit('weatherlocation_response', {weatherlocation: nconf.get('weatherlocation')});
     });
 
+    socket.on('weatherlocation_update', function(data) {
+        nconf.set('weatherlocation', data.weatherlocation);
+    });
+
     /*
     socket.on('temp_sensor_selection', function(data) {
         var new_sensor = new TempSensor(data.sensor);
