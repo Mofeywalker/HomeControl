@@ -23,6 +23,6 @@ function writeDateTime(){
         ss = "0"+ss;
     }
 
-    res = d+'.'+m+'.'+y+' '+hh+':'+mm+':'+ss;
-    $("#date").text(res);
+    res = d+'.'+m+'.'+y+"<br>"+hh+':'+mm+':'+ss;
+    document.getElementById("date").innerHTML = res;
 }
