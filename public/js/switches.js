@@ -17,25 +17,7 @@ $(document).ready(function() {
             );
 
         });
-
         console.log($("#switches"));
-
-        /*
-        $.each(switches, function(index, value) {
-            var onId = '#'+value.id.toLowerCase()+'an';
-            console.log("[an]"+ onId);
-            $(onId).click(function() {
-
-                socket.emit('switch_control', {type: 'request', code: value.code, status:false});
-            });
-            var offId = '#'+value.id.toLowerCase()+'aus';
-            console.log("[an]"+ offId);
-            $(offId).click(function() {
-                console.log("[aus]");
-                socket.emit('switch_control', {type: 'request', code: value.code, status:true});
-            });
-        });
-        */
     });
 
     socket.emit('switch_all_request');

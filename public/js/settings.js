@@ -5,13 +5,14 @@ $(document).ready(function() {
     socket.on('switch_all_response', function(response){
         console.log(response);
         $("#steckdosen-liste").append('<table border="0">');
-        $.each(response, function(index, data){
-            var str = '<tr><td>' + data.name +
-                '</td><td>' + '('+ data.code +')' +
-                '</td><td><button class="change" onclick="changeButton('+new String(data._id)+')">&Auml;ndern</button>' +
-                '</td><td><button class="delete" onclick="deleteButton('+new String(data._id)+')">L&ouml;schen</button>' +
-                '</td></tr>';
-            $("#steckdosen-liste").append(str);
+        $.each(response, function(index, value){
+            $('#steckdosen-liste').append(
+                '<tr><td>' + value.name +
+                '</td><td>' + '('+ value.code +')' +
+                '</td><td><button class="change" onclick="changeButton(' + value.name + ',' +value.code+')">&Auml;ndern</button>' +
+                '</td><td><button class="delete" onclick="deleteButton('+value.code+')">L&ouml;schen</button>' +
+                '</td></tr>'
+            );
         });
         $("#steckdosen-liste").append('</table>');
     });
@@ -47,10 +48,12 @@ $(document).ready(function() {
 
 });
 
-function changeButton(val){
-    alert(val);
+function changeButton(name, code){
+    //alert(val.toString());
+    socket.emit('switch_update_request', {name: name, code: code.toString()});
 }
 
-function deleteButton(val){
-    alert(val);
+function deleteButton(code){
+    //alert(val.toString());
+    socket.emit('switch_delete_request', {code: code.toString()});
 }

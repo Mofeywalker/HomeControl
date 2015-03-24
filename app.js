@@ -318,7 +318,7 @@ io.sockets.on('connection', function(socket) {
         var upsertData = update_switch_data.toObject();
 
         delete upsertData._id;
-        Switch.update({name: update_switch_data.name}, upsertData, {upsert: true}, function(err) {
+        Switch.update({code: update_switch_data.code}, upsertData, {upsert: true}, function(err) {
             console.log("[MONGODB - Update nicht moeglich]");
         });
     });
