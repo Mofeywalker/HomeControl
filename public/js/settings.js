@@ -8,8 +8,8 @@ $(document).ready(function() {
         $.each(response, function(index, data){
             var str = '<tr><td>' + data.name +
                 '</td><td>' + '('+ data.code +')' +
-                '</td><td><button class="change" onclick="changeButton('+data._id+')">&Auml;ndern</button>' +
-                '</td><td><button class="delete" onclick="deleteButton('+data._id+')">L&ouml;schen</button>' +
+                '</td><td><button class="change" onclick="changeButton('+new String(data._id)+')">&Auml;ndern</button>' +
+                '</td><td><button class="delete" onclick="deleteButton('+new String(data._id)+')">L&ouml;schen</button>' +
                 '</td></tr>';
             $("#steckdosen-liste").append(str);
         });

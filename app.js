@@ -27,14 +27,22 @@ var switchSchema = mongoose.Schema({
 
 var Switch = mongoose.model('Switch', switchSchema);
 
-// Verbiondung zur Datenbank aufbauen
+// Schema fuer Wake on LAN
+var WOLSchema = mongoose.model({
+    name: String,
+    mac: String
+});
+
+var WOL = mongoose.model('WOL', WOLSchema);
+
+// Verbindung zur Datenbank aufbauen
 mongoose.connect('mongodb://localhost/switches');
 
 // Callback fuer Fehler und erfolgreiches Verbinden mit der Datenbank
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function(callback) {
-    console.log("Verbindung zur Datenbank steht!");
+    console.log("[MongoDB - Verbindung zur Datenbank steht!]");
 });
 
 
