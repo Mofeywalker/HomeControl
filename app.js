@@ -325,7 +325,7 @@ io.sockets.on('connection', function(socket) {
     });
 
     socket.on('switch_delete_request', function(req) {
-
+        Switch.find({code: req.code}).remove().exec();
     });
 
     /*
