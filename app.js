@@ -272,14 +272,19 @@ io.sockets.on('connection', function(socket) {
             code: data.code
         });
 
-        var newSwitch;
-
         Switch.find({code: data.code}, function (error, objects)  {
             if (error) {
                 console.log("[MONGODB - Fehler beim Suchen in der Datenbank]");
             } else {
                 if (objects.length === 0) {
-                    newSwitch = new Switch(new_switch_data);
+                    var newSwitch = new Switch(new_switch_data);
+                    newSwitch.save(function(err) {
+                        if (err) {
+                            console.log("[MONGODB - Probleme beim anlegen eines neuen Switch!]");
+                        } else {
+                            console.log("[MONGODB - Neuer Switch erfolgreich angelegt!]");
+                        }
+                    });
                 } else {
                     console.log("[MONGODB - Fehler, Switch mit dem Code schon vorhanden]");
                 }
@@ -288,13 +293,7 @@ io.sockets.on('connection', function(socket) {
 
         //var newSwitch = new Switch(new_switch_data);
 
-        newSwitch.save(function(err) {
-            if (err) {
-                console.log("[MONGODB - Probleme beim anlegen eines neuen Switch!]");
-            } else {
-                console.log("[MONGODB - Neuer Switch erfolgreich angelegt!]");
-            }
-        });
+
     });
 
     socket.on('switch_all_request', function() {
