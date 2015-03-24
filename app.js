@@ -51,7 +51,14 @@ ts.loadDriver(function (err) {
     }
     else {
         console.log('[TempSensor driver is loaded]');
-        tempSensor = ts.list()[0];
+        ts.list(function(error, sensors) {
+            if (error) {
+                console.log("Keine Temperatursensoren gefunden");
+                tempSensor = "null";
+            } else {
+                tempSensor = sensors[0];
+            }
+        });
     }
 
 });
@@ -141,21 +148,24 @@ io.sockets.on('connection', function(socket) {
     console.log("[Connection established for: "+socket.request.connection.remoteAddress+"]");
 
     /*-----------------------------------------------------Temperatur--------------------------------------------------*/
-    setInterval(function(data){
-        child = exec("cat /sys/bus/w1/devices/"+ tempSensor+ "/w1_slave", function (error, stdout, stderr) {
-            if (error !== null) {
-                console.log('exec error: ' + error);
-            } else {
-                // You must send time (X axis) and a temperature value (Y axis)
-                var pos = stdout.indexOf("t=");
-                var res = stdout.substring(pos+2, pos+8);
-                var temp = parseFloat(res)/1000;
-                var date = new Date().getTime();
+    if (tempSensor === null || tempSensor === "null") {
+        setInterval(function(data){
+            child = exec("cat /sys/bus/w1/devices/"+ tempSensor+ "/w1_slave", function (error, stdout, stderr) {
+                if (error !== null) {
+                    console.log('exec error: ' + error);
+                } else {
+                    // You must send time (X axis) and a temperature value (Y axis)
+                    var pos = stdout.indexOf("t=");
+                    var res = stdout.substring(pos+2, pos+8);
+                    var temp = parseFloat(res)/1000;
+                    var date = new Date().getTime();
 
-                socket.emit('temperatureUpdate', date, temp);
-            }
-        });
-    }, 10000);
+                    socket.emit('temperatureUpdate', date, temp);
+                }
+            });
+        }, 10000);
+    }
+
 
     /*-----------------------------------------------------Ende Temperatur--------------------------------------------------*/
 
@@ -222,7 +232,7 @@ io.sockets.on('connection', function(socket) {
     socket.on('temp_sensors_request', function(data) {
         ts.list(function(error, sensors) {
             if (error) {
-                console.log.error("Fehler bei Auslesen der Temperatur-Sensoren");
+                console.log("Fehler bei Auslesen der Temperatur-Sensoren");
             } else {
                 console.log(sensors);
                 socket.emit('temp_sensors_response', {sensors: sensors});
