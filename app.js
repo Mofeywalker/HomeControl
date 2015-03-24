@@ -28,7 +28,7 @@ var switchSchema = mongoose.Schema({
 var Switch = mongoose.model('Switch', switchSchema);
 
 // Schema fuer Wake on LAN
-var WOLSchema = mongoose.model({
+var WOLSchema = mongoose.Schema({
     name: String,
     mac: String
 });
@@ -272,7 +272,21 @@ io.sockets.on('connection', function(socket) {
             code: data.code
         });
 
-        var newSwitch = new Switch(new_switch_data);
+        var newSwitch;
+
+        Switch.find({code: data.code}, function (error, objects)  {
+            if (error) {
+                console.log("[MONGODB - Fehler beim Suchen in der Datenbank]");
+            } else {
+                if (objects.length === 0) {
+                    newSwitch = new Switch(new_switch_data);
+                } else {
+                    console.log("[MONGODB - Fehler, Switch mit dem Code schon vorhanden]");
+                }
+            }
+        });
+
+        //var newSwitch = new Switch(new_switch_data);
 
         newSwitch.save(function(err) {
             if (err) {
