@@ -57,8 +57,8 @@ $(document).ready(function() {
 function switchView(index){
     document.getElementById("steck"+index).style.display = "none";
     document.getElementById("steckAendern"+index).style.display = "block";
-    $("#steck"+index+"-name").value = document.getElementById("row"+index+"-name").innerHTML();
-    $("#steck"+index+"-code").value = document.getElementById("row"+index+"-code").innerHTML();
+    $("#steck"+index+"-name").value = document.getElementById("row"+index+"-name").innerHTML;
+    $("#steck"+index+"-code").value = document.getElementById("row"+index+"-code").innerHTML;
 }
 
 function changeButton(oldcode, index){
