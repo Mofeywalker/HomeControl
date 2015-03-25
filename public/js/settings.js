@@ -17,7 +17,7 @@ $(document).ready(function() {
                 + '<div class="row gone" id="steckAendern'+index+'">'
                     + '<div class="col-md-4"><input type="text" id="steck'+index+'-name"></div>'
                     + '<div class="col-md-4"><input type="text" id="steck'+index+'-code"></div>'
-                    + '<div class="col-md-4"><button onclick="changeButton('+data.code+','+index+')">Speichern</button></div>'
+                    + '<div class="col-md-4"><button onclick="changeButton('+value.code+','+index+')">Speichern</button></div>'
                 +'</div>'
             );
         });
@@ -61,7 +61,9 @@ function switchView(index){
 
 function changeButton(oldcode, index){
     //alert(val.toString());
-    socket.emit('switch_update_request', {oldcode: oldcode.toString(), newname: name, newcode: newcode.toString()});
+    var valnewname = $("#steck"+index+"-name").val();
+    var valnewcode = $("#steck"+index+"-code").val();
+    socket.emit('switch_update_request', {oldcode: oldcode.toString(), newname: valnewname, newcode: valnewcode.toString()});
 }
 
 function deleteButton(code){
