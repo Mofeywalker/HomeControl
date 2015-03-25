@@ -17,7 +17,7 @@ $(document).ready(function() {
                 + '<div class="row gone" id="steckAendern'+index+'">'
                     + '<div class="col-md-4"><input type="text" id="steck'+index+'name"></div>'
                     + '<div class="col-md-4"><input type="text" id="steck'+index+'code"></div>'
-                    + '<div class="col-md-4"><button onclick="changeButton('+value.code+','+index+')">Speichern</button></div>'
+                    + '<div class="col-md-4"><button id="steck'+index+'save" onclick="changeButton('+value.code+','+index+')">Speichern</button></div>'
                 +'</div>'
             );
         });
@@ -59,6 +59,8 @@ function switchView(index){
     document.getElementById("steckAendern"+index).style.display = "block";
     $("#steck"+index+"name").val(document.getElementById("row"+index+"name").innerHTML);
     $("#steck"+index+"code").val(document.getElementById("row"+index+"code").innerHTML);
+
+    $("#steck"+index+"code").keyup(checkCode(index));
 }
 
 function changeButton(oldcode, index){
