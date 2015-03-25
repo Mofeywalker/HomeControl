@@ -59,15 +59,15 @@ module.exports = function(socket) {
 
     socket.on('switch_update_request', function(req) {
         var update_switch_data = new Switch ({
-            name: req.name,
-            code: req.code
+            name: req.newname,
+            code: req.newcode
         });
 
         var upsertData = update_switch_data.toObject();
 
         delete upsertData._id;
-        Switch.update({code: update_switch_data.code}, upsertData, {upsert: true}, function(err) {
-            console.log("[MONGODB - Update nicht moeglich]");
+        Switch.update({code: req.oldcode}, upsertData, {upsert: true}, function(err) {
+            console.log("[MONGODB - Update nicht moeglich!]");
         });
     });
 
