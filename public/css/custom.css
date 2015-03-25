@@ -67,6 +67,10 @@ div#date{
     font-size: 8vmin;
 }
 
+div.gone{
+    display: none;
+}
+
 table{
     color:#fff !important;
 }
