@@ -54,12 +54,11 @@ $(document).ready(function() {
 
 });
 
-function switchView(index, name, code){
-    alert(index+name+code);
+function switchView(index, existingname, existingcode){
     document.getElementById("steck"+index).style.display = "none";
     document.getElementById("steckAendern"+index).style.display = "block";
-    $("#steck"+index+"-name").value = name.toString();
-    $("#steck"+index+"-code").value = code.toString();
+    $("#steck"+index+"-name").value = existingname.toString();
+    $("#steck"+index+"-code").value = existingcode.toString();
 }
 
 function changeButton(oldcode, index){
