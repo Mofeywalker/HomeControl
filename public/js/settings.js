@@ -4,17 +4,23 @@ $(document).ready(function() {
 
     socket.on('switch_all_response', function(response){
         console.log(response);
-        $("#steckdosen-liste").append('<table border="0">');
         $.each(response, function(index, value){
             $('#steckdosen-liste').append(
-                '<tr><td>' + value.name +
-                '</td><td>' + '('+ value.code +')' +
-                '</td><td><button class="change" onclick="changeButton(' + value.name + ',' +value.code+')">&Auml;ndern</button>' +
-                '</td><td><button class="delete" onclick="deleteButton('+value.code+')">L&ouml;schen</button>' +
-                '</td></tr>'
+                '<div class="row" id="steck'+index+'">'
+                    + '<div class="col-md-4">'+value.name+'</div>'
+                    + '<div class="col-md-4">'+value.code+'</div>'
+                    + '<div class="col-md-4">'
+                        + '<button onclick="switchView('+index+')">&Auml;ndern</button>'
+                        + '<button onclick="deleteButton('+value.code+')">L&ouml;schen</button>'
+                    + '</div>'
+                + '</div>'
+                + '<div class="row gone" id="steckAendern'+index+'">'
+                    + '<div class="col-md-4"><input type="text" id="steck'+index+'-name"></div>'
+                    + '<div class="col-md-4"><input type="text" id="steck'+index+'-code"></div>'
+                    + '<div class="col-md-4"><button onclick="changeButton('+data.code+','+index+')">Speichern</button></div>'
+                +'</div>'
             );
         });
-        $("#steckdosen-liste").append('</table>');
     });
 
     socket.emit('switch_all_request');
@@ -48,9 +54,14 @@ $(document).ready(function() {
 
 });
 
-function changeButton(name, code){
+function switchView(index){
+    $('#steck'+index).style.display = 'none';
+    $('#steck'+index+'Aendern').style.display = 'block';
+}
+
+function changeButton(oldcode, index){
     //alert(val.toString());
-    socket.emit('switch_update_request', {name: name, code: code.toString()});
+    socket.emit('switch_update_request', {oldcode: oldcode.toString(), newname: name, newcode: newcode.toString()});
 }
 
 function deleteButton(code){
