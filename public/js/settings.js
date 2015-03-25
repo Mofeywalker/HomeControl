@@ -10,7 +10,7 @@ $(document).ready(function() {
                     + '<div class="col-md-4">'+value.name+'</div>'
                     + '<div class="col-md-4">'+value.code+'</div>'
                     + '<div class="col-md-4">'
-                        + '<button onclick="switchView('+index+')">&Auml;ndern</button>'
+                        + '<button onclick="switchView('+index+','+value.name+','+value.code+')">&Auml;ndern</button>'
                         + '<button onclick="deleteButton('+value.code+')">L&ouml;schen</button>'
                     + '</div>'
                 + '</div>'
@@ -54,9 +54,11 @@ $(document).ready(function() {
 
 });
 
-function switchView(index){
-    $('#steck'+index).style.display = 'none';
-    $('#steckAendern'+index).style.display = 'block';
+function switchView(index, name, code){
+    document.getElementById("steck"+index).style.display = "none";
+    document.getElementById("steckAendern"+index).style.display = "block";
+    document.getElementById("steck"+index+"-name").value = name;
+    document.getElementById("steck"+index+"-code").value = code.toString();
 }
 
 function changeButton(oldcode, index){
