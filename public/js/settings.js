@@ -57,8 +57,8 @@ $(document).ready(function() {
 function switchView(index, name, code){
     document.getElementById("steck"+index).style.display = "none";
     document.getElementById("steckAendern"+index).style.display = "block";
-    document.getElementById("steck"+index+"-name").value = name.toString();
-    document.getElementById("steck"+index+"-code").value = code.toString();
+    $("#steck"+index+"-name").value = name;
+    $("#steck"+index+"-code").value = code.toString();
 }
 
 function changeButton(oldcode, index){
