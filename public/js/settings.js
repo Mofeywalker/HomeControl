@@ -56,7 +56,7 @@ $(document).ready(function() {
 
 function switchView(index){
     $('#steck'+index).style.display = 'none';
-    $('#steck'+index+'Aendern').style.display = 'block';
+    $('#steckAendern'+index).style.display = 'block';
 }
 
 function changeButton(oldcode, index){
