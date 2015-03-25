@@ -16,24 +16,14 @@ var express     = require('express'),
     nconf       = require('nconf'),
     tempSensor;
 
+// Models der MongoDB laden
+require('./models/models.js').initialize();
+var Switch = mongoose.model('Switch');
+var Wol = mongoose.model('Wol');
+
+// Config einlesen
 nconf.use('file', {file: './config.json'});
 nconf.load();
-
-// Schema fuer die Switches
-var switchSchema = mongoose.Schema({
-    name: String,
-    code: String
-});
-
-var Switch = mongoose.model('Switch', switchSchema);
-
-// Schema fuer Wake on LAN
-var WOLSchema = mongoose.Schema({
-    name: String,
-    mac: String
-});
-
-var WOL = mongoose.model('WOL', WOLSchema);
 
 // Verbindung zur Datenbank aufbauen
 mongoose.connect('mongodb://localhost/switches');
@@ -265,19 +255,21 @@ io.sockets.on('connection', function(socket) {
         });
     });
 
-    ////////////////////Switches///////////////////////
+    /*---------------------------------------------Switches-----------------------------------------------------------*/
+    /**
+     * Listener fuer das Erstellen eines Switches.
+     */
     socket.on('switch_create', function(data) {
-        var new_switch_data = new Switch ({
-            name: data.name,
-            code: data.code
-        });
-
         Switch.find({code: data.code}, function (error, objects)  {
             if (error) {
                 console.log("[MONGODB - Fehler beim Suchen in der Datenbank]");
             } else {
                 if (objects.length === 0) {
-                    var newSwitch = new Switch(new_switch_data);
+                    var newSwitch = new Switch({
+                            name: data.name,
+                            code: data.code
+                        });
+
                     newSwitch.save(function(err) {
                         if (err) {
                             console.log("[MONGODB - Probleme beim anlegen eines neuen Switch!]");
@@ -290,22 +282,26 @@ io.sockets.on('connection', function(socket) {
                 }
             }
         });
-
-        //var newSwitch = new Switch(new_switch_data);
-
-
     });
 
     socket.on('switch_all_request', function() {
-        Switch.find({}, function(error, data) {
-            socket.emit('switch_all_response', data);
+        Switch.find({}, function(error, objects) {
+            if (error) {
+                console.log(error.toString());
+            } else {
+                socket.emit('switch_all_response', objects);
+            }
         });
 
     });
     
     socket.on('switch_name_request', function(req) {
-        Switch.findOne({name: req.name}, function(error, data) {
-            socket.emit('switch_name_response', data);
+        Switch.findOne({name: req.name}, function(error, objects) {
+            if (error) {
+                console.log(error.toString());
+            } else {
+                socket.emit('switch_name_response', objects);
+            }
         });
     });
 
@@ -327,6 +323,65 @@ io.sockets.on('connection', function(socket) {
         Switch.find({code: req.code}).remove().exec();
     });
 
+    /*---------------------------------------------Switches Ende------------------------------------------------------*/
+
+    /*----------------------------------------------------WOL---------------------------------------------------------*/
+
+    socket.on('wol_create', function(req) {
+        Wol.find({mac: req.mac}, function(error, objects) {
+            if (error) {
+                console.log('[MONGODB - Fehler beim Suchen in der Datenbank]');
+            } else {
+                if (objects.length === 0) {
+                    var newWol = new Wol({
+                        name: req.name,
+                        mac: req.mac
+                    });
+                    newWol.save(function(err) {
+                        if (err) {
+                            console.log("[MONGODB - Probleme beim anlegen eines neuen WOL-Objekts!]");
+                        } else {
+                            console.log("[MONGODB - Neues WOL-Objekt erfolgreich angelegt!]");
+                        }
+                    });
+                }
+            }
+        });
+    });
+
+    socket.on('wol_all_request', function() {
+        Wol.find({}, function(error, objects) {
+            if (error) {
+                console.log(error.toString());
+            } else {
+                socket.emit('wol_all_response', objects);
+            }
+        })
+    });
+
+    socket.on('wol_update_request', function(req) {
+        var update_wol_data = new Wol ({
+            name: req.name,
+            mac: req.mac
+        });
+
+        var upsertData = update_wol_data.toObject();
+
+        delete upsertData._id;
+        Wol.update({code: update_wol_data.code}, upsertData, {upsert: true}, function(err) {
+            console.log("[MONGODB - Update nicht moeglich]");
+        });
+    });
+
+
+    socket.on('wol_delete_request', function(req) {
+        Wol.find({mac: req.mac}).remove().exec();
+    });
+});
+
+    /*-------------------------------------------------WOL Ende-------------------------------------------------------*/
+
+
     /*
     socket.on('temp_sensor_selection', function(data) {
         var new_sensor = new TempSensor(data.sensor);
@@ -341,6 +396,6 @@ io.sockets.on('connection', function(socket) {
     });
     */
 
-});
+
 
 
