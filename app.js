@@ -28,7 +28,7 @@ nconf.use('file', {file: './config.json'});
 nconf.load();
 
 // Verbindung zur Datenbank aufbauen
-mongoose.connect('mongodb://localhost/switches');
+mongoose.connect('mongodb://localhost/homecontrol');
 
 // Callback fuer Fehler und erfolgreiches Verbinden mit der Datenbank
 var db = mongoose.connection;
