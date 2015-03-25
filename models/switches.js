@@ -6,5 +6,4 @@ module.exports = function() {
         code: String
     });
     mongoose.model('Switch', Switch);
-    console.log("export Switch");
 };

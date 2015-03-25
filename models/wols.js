@@ -6,5 +6,4 @@ module.exports = function() {
         mac: String
     });
     mongoose.model('Wol', Wol);
-    console.log("export Wol");
 };
