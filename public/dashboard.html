@@ -7,23 +7,34 @@
     <script language="javascript" type="text/javascript" src="js/datetime.js"></script>
     <script src="http://code.highcharts.com/highcharts.js"></script>
     <script src="js/forecast.js"></script>
+
     <div id="dash">
         <div class="row oben">
+            <!-- spacer -->
             <div class="col-md-1"></div>
             <div class="col-md-4 col-xs-12">
+                <!-- Datum und Uhrzeit -->
                 <div id="date"></div>
+                <!-- Aktuelle Temperatur -->
                 <div id="tempAkt"></div>
             </div>
+            <!-- spacer -->
             <div class="col-md-2"></div>
             <div class="col-md-4 col-xs-12">
+                <!-- Temperaturverlauf, Highchart -->
                 <div id="tempVerlauf">#tempVerlauf</div>
+                <!-- Durchschnittstemperatur (noch nicht implementiert) -->
                 <div id="tempSchnitt">#tempSchnitt</div>
             </div>
+            <!-- spacer -->
             <div class="col-md-1"></div>
         </div>
         <div class="row unten">
+            <!-- spacer -->
             <div class="col-md-1"></div>
+            <!-- Wetter der nächsten Tage -->
             <div class="row col-md-10 col-xs-12" id="forecast"></div>
+            <!-- spacer -->
             <div class="col-md-1"></div>
         </div>
     </div>
