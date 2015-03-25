@@ -8,25 +8,32 @@
 
     <div class="container">
         <h2>Einstellungen</h2>
+
+        <!-- Auswahl des Temperatursensors -->
         <h3>Temperatursensor</h3>
         Temperatursensor
+        <!-- Dropdown Menü für verfügbare Sensoren -->
         <select id="tempsensor">
         </select>
         <button id="tempsave">Speichern</button>
 
+        <!-- Standort für Wetteranzeige -->
         <h3>Standort</h3>
         <input type="text" id="city" name="city" placeholder="Name der Stadt">
         <button id="save_city">Speichern</button>
 
         <h3>Steckdosen</h3>
         <div id="steckdosen">
+            <!-- Neue Steckdose anlegen -->
             <input type="text" id="name" placeholder="Name der Steckdose">
             <input type="text" id="code" placeholder="Code der Steckdose">
             <button id="steck-save" disabled>Speichern</button>
-            <div id="steckdosen-liste">
 
+            <!-- Hier werden angelegte Steckdosen aufgelistet -->
+            <div id="steckdosen-liste">
             </div>
         </div>
     </div>
+
 </body>
 </html>
