@@ -65,8 +65,8 @@ function switchView(index){
 
 function changeButton(oldcode, index){
     //alert(val.toString());
-    var valnewname = $("#steck"+index+"-name").val();
-    var valnewcode = $("#steck"+index+"-code").val();
+    var valnewname = $("#steck"+index+"name").val();
+    var valnewcode = $("#steck"+index+"code").val();
     socket.emit('switch_update_request', {oldcode: oldcode.toString(), newname: valnewname, newcode: valnewcode.toString()});
 }
 
