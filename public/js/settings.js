@@ -55,6 +55,7 @@ $(document).ready(function() {
 });
 
 function switchView(index){
+    alert(index);
     document.getElementById("steck"+index).style.display = "none";
     document.getElementById("steckAendern"+index).style.display = "block";
     $("#steck"+index+"name").value = document.getElementById("row"+index+"name").innerHTML;
