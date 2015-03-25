@@ -7,10 +7,10 @@ $(document).ready(function() {
         $.each(response, function(index, value){
             $('#steckdosen-liste').append(
                 '<div class="row" id="steck'+index+'">'
-                    + '<div class="col-md-4">'+value.name+'</div>'
-                    + '<div class="col-md-4">'+value.code+'</div>'
+                    + '<div class="col-md-4" id="row'+index+'-name">'+value.name+'</div>'
+                    + '<div class="col-md-4" id="row'+index+'-code">'+value.code+'</div>'
                     + '<div class="col-md-4">'
-                        + '<button onclick="switchView('+index+','+value.name.toString()+','+value.code+')">&Auml;ndern</button>'
+                        + '<button onclick="switchView('+index+')">&Auml;ndern</button>'
                         + '<button onclick="deleteButton('+value.code+')">L&ouml;schen</button>'
                     + '</div>'
                 + '</div>'
@@ -54,11 +54,11 @@ $(document).ready(function() {
 
 });
 
-function switchView(index, existingname, existingcode){
+function switchView(index){
     document.getElementById("steck"+index).style.display = "none";
     document.getElementById("steckAendern"+index).style.display = "block";
-    $("#steck"+index+"-name").value = existingname.toString();
-    $("#steck"+index+"-code").value = existingcode.toString();
+    $("#steck"+index+"-name").value = $("#row"+index+"-name").innerHTML;
+    $("#steck"+index+"-code").value = $("#row"+index+"-code").innerHTML;
 }
 
 function changeButton(oldcode, index){
