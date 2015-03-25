@@ -60,7 +60,7 @@ function switchView(index){
     $("#steck"+index+"name").val(document.getElementById("row"+index+"name").innerHTML);
     $("#steck"+index+"code").val(document.getElementById("row"+index+"code").innerHTML);
 
-    $("#steck"+index+"code").keyup(checkCode(index));
+    $("#steck"+index+"code").keyup(checkCodeIndex(index));
 }
 
 function changeButton(oldcode, index){

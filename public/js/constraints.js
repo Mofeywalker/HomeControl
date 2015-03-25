@@ -17,7 +17,7 @@ function checkCode(){
     }
 }
 
-function checkCode(index){
+function checkCodeIndex(index){
     var code = $("#steck"+index+"code").val();
     var regex = '^[0-1]{10}$';
     var constraint = new RegExp(regex);
