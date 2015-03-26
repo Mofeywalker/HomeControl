@@ -74,19 +74,3 @@ function deleteButton(code){
     //alert(val.toString());
     socket.emit('switch_delete_request', {code: code.toString()});
 }
-
-function checkCodeIndex(index){
-    alert("checkCodeIndex aufgerufen");
-    var code = $("#steck"+index+"code").val();
-    var regex = '^[0-1]{10}$';
-    var constraint = new RegExp(regex);
-
-    if(constraint.test(code)){
-        document.getElementById("steck"+index+"save").disabled = false;
-        document.getElementById("steck"+index+"save").innerHTML = "Speichern";
-    }
-    else{
-        document.getElementById("steck"+index+"save").disabled = true;
-        document.getElementById("steck"+index+"save").innerHTML = "Pr&uuml;fe Code";
-    }
-}

@@ -3,6 +3,7 @@
  */
 
 function checkCode(){
+    alert("checkCode aufgerufen");
     var code = $("#code").val();
     var regex = '^[0-1]{10}$';
     var constraint = new RegExp(regex);
@@ -18,3 +19,19 @@ function checkCode(){
 }
 
 $("#code").keyup(checkCode);
+
+function checkCodeIndex(index){
+    alert("checkCodeIndex aufgerufen");
+    var code = $("#steck"+index+"code").val();
+    var regex = '^[0-1]{10}$';
+    var constraint = new RegExp(regex);
+
+    if(constraint.test(code)){
+        document.getElementById("steck"+index+"save").disabled = false;
+        document.getElementById("steck"+index+"save").innerHTML = "Speichern";
+    }
+    else{
+        document.getElementById("steck"+index+"save").disabled = true;
+        document.getElementById("steck"+index+"save").innerHTML = "Pr&uuml;fe Code";
+    }
+}
