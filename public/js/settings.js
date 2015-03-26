@@ -2,7 +2,7 @@ $(document).ready(function() {
     var socket;
     socket = io.connect();
 
-    socket.on('switch_all_response', function(response){
+    socket.on('switch_all_response_settings', function(response){
         console.log(response);
         $.each(response, function(index, value){
             $('#steckdosen-liste').append(
@@ -78,5 +78,5 @@ function refreshListOfSwitches(){
     $("#steckdosen-liste").empty();
     document.getElementById("steckdosen-liste").innerHTML = "";
 
-    socket.emit('switch_all_request');
+    socket.emit('switch_all_request', {type: 'settings'});
 }

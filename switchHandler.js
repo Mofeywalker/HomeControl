@@ -36,12 +36,17 @@ module.exports = function(socket) {
         });
     });
 
-    socket.on('switch_all_request', function() {
+    socket.on('switch_all_request', function(req) {
         Switch.find({}, function(error, objects) {
             if (error) {
                 console.log(error.toString());
             } else {
-                socket.emit('switch_all_response', objects);
+                if (req.type === 'overview') {
+                    socket.emit('switch_all_response_overview', objects);
+                }
+                else {
+                    socket.emit('switch_all_response_settings', objects);
+                }
             }
         });
 

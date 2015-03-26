@@ -1,8 +1,7 @@
-var socket;
-
 $(document).ready(function() {
+    var socket;
     socket = io.connect();
-    socket.on('switch_all_response', function(switches) {
+    socket.on('switch_all_response_overview', function(switches) {
         //var json = $.parseJSON(data);
         console.log(switches);
         $.each(switches, function (index, value) {
@@ -20,7 +19,7 @@ $(document).ready(function() {
         console.log($("#switches"));
     });
 
-    socket.emit('switch_all_request');
+    socket.emit('switch_all_request', {type: "overview"});
 });
 
 function switchOn(code) {
