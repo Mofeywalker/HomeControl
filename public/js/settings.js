@@ -4,6 +4,7 @@ $(document).ready(function() {
 
     socket.on('switch_all_response_settings', function(response){
         console.log(response);
+        $("#steckdosen-liste").text("Angelegte Steckdosen");
         $.each(response, function(index, value){
             $('#steckdosen-liste').append(
                 '<div class="row" id="steck'+index+'">'
@@ -23,7 +24,7 @@ $(document).ready(function() {
         });
     });
 
-    refreshListOfSwitches();
+    socket.emit('switch_all_request', {type: 'settings'});
 
     socket.on('temp_sensors_response', function(data) {
         //var json = $.parseJSON(data);
@@ -32,6 +33,10 @@ $(document).ready(function() {
         $.each(data.sensors, function(index, value) {
             $('#tempsensor').append('<option>'+ value + '</option>');
         });
+    });
+
+    socket.on('switch_created', function(){
+       refreshListOfSwitches();
     });
 
     $('#tempsave').click(function(){
@@ -50,6 +55,7 @@ $(document).ready(function() {
         var valcode = $("#code").val();
         name = name.trim();
         socket.emit('switch_create', {name: valname, code: valcode});
+        refreshListOfSwitches();
     });
 
 });
@@ -75,8 +81,30 @@ function deleteButton(code){
 }
 
 function refreshListOfSwitches(){
-    $("#steckdosen-liste").empty();
-    document.getElementById("steckdosen-liste").innerHTML = "";
+    var socket;
+    socket = io.connect();
+
+    socket.on('switch_all_response_settings', function(response){
+        console.log(response);
+        $("#steckdosen-liste").text("Angelegte Steckdosen");
+        $.each(response, function(index, value){
+            $('#steckdosen-liste').append(
+                '<div class="row" id="steck'+index+'">'
+                + '<div class="col-md-4" id="row'+index+'name">'+value.name+'</div>'
+                + '<div class="col-md-4" id="row'+index+'code">'+value.code+'</div>'
+                + '<div class="col-md-4">'
+                + '<button onclick="switchView('+index+')">&Auml;ndern</button>'
+                + '<button onclick="deleteButton('+value.code+')">L&ouml;schen</button>'
+                + '</div>'
+                + '</div>'
+                + '<div class="row gone" id="steckAendern'+index+'">'
+                + '<div class="col-md-4"><input type="text" id="steck'+index+'name"></div>'
+                + '<div class="col-md-4"><input type="text" id="steck'+index+'code" onkeyup="checkCodeIndex('+index+')"></div>'
+                + '<div class="col-md-4"><button id="steck'+index+'save" onclick="changeButton('+value.code+','+index+')">Speichern</button></div>'
+                +'</div>'
+            );
+        });
+    });
 
     socket.emit('switch_all_request', {type: 'settings'});
 }

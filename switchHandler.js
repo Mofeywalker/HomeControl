@@ -27,6 +27,7 @@ module.exports = function(socket) {
                             console.log("[MONGODB - Probleme beim anlegen eines neuen Switch!]");
                         } else {
                             console.log("[MONGODB - Neuer Switch erfolgreich angelegt!]");
+                            socket.emit('switch_created');
                         }
                     });
                 } else {
@@ -41,11 +42,12 @@ module.exports = function(socket) {
             if (error) {
                 console.log(error.toString());
             } else {
-                console.log(reg.type);
                 if (req.type === 'overview') {
+                    console.log("overview");
                     socket.emit('switch_all_response_overview', objects);
                 }
                 else {
+                    console.log("settings");
                     socket.emit('switch_all_response_settings', objects);
                 }
             }
