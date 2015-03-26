@@ -54,6 +54,9 @@ function deleteButton(code){
 }
 
 function refreshListOfSwitches(){
+    var socket;
+    socket = io.connect();
+
     $("#steckdosen-liste").empty();
 
     socket.on('switch_all_response', function(response){
@@ -75,6 +78,8 @@ function refreshListOfSwitches(){
                 +'</div>'
             );
         });
+
+        socket.disconnect();
     });
 
     socket.emit('switch_all_request');
