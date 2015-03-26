@@ -2,28 +2,7 @@ $(document).ready(function() {
     var socket;
     socket = io.connect();
 
-    socket.on('switch_all_response', function(response){
-        console.log(response);
-        $.each(response, function(index, value){
-            $('#steckdosen-liste').append(
-                '<div class="row" id="steck'+index+'">'
-                    + '<div class="col-md-4" id="row'+index+'name">'+value.name+'</div>'
-                    + '<div class="col-md-4" id="row'+index+'code">'+value.code+'</div>'
-                    + '<div class="col-md-4">'
-                        + '<button onclick="switchView('+index+')">&Auml;ndern</button>'
-                        + '<button onclick="deleteButton('+value.code+')">L&ouml;schen</button>'
-                    + '</div>'
-                + '</div>'
-                + '<div class="row gone" id="steckAendern'+index+'">'
-                    + '<div class="col-md-4"><input type="text" id="steck'+index+'name"></div>'
-                    + '<div class="col-md-4"><input type="text" id="steck'+index+'code" onkeyup="checkCodeIndex('+index+')"></div>'
-                    + '<div class="col-md-4"><button id="steck'+index+'save" onclick="changeButton('+value.code+','+index+')">Speichern</button></div>'
-                +'</div>'
-            );
-        });
-    });
-
-    socket.emit('switch_all_request');
+    refreshListOfSwitches();
 
     socket.on('temp_sensors_response', function(data) {
         //var json = $.parseJSON(data);
@@ -66,8 +45,37 @@ function changeButton(oldcode, index){
     var valnewname = $("#steck"+index+"name").val();
     var valnewcode = $("#steck"+index+"code").val();
     socket.emit('switch_update_request', {oldcode: oldcode.toString(), newname: valnewname, newcode: valnewcode.toString()});
+    refreshListOfSwitches();
 }
 
 function deleteButton(code){
     socket.emit('switch_delete_request', {code: code.toString()});
+    refreshListOfSwitches();
+}
+
+function refreshListOfSwitches(){
+    $("#steckdosen-liste").empty();
+
+    socket.on('switch_all_response', function(response){
+        console.log(response);
+        $.each(response, function(index, value){
+            $('#steckdosen-liste').append(
+                '<div class="row" id="steck'+index+'">'
+                + '<div class="col-md-4" id="row'+index+'name">'+value.name+'</div>'
+                + '<div class="col-md-4" id="row'+index+'code">'+value.code+'</div>'
+                + '<div class="col-md-4">'
+                + '<button onclick="switchView('+index+')">&Auml;ndern</button>'
+                + '<button onclick="deleteButton('+value.code+')">L&ouml;schen</button>'
+                + '</div>'
+                + '</div>'
+                + '<div class="row gone" id="steckAendern'+index+'">'
+                + '<div class="col-md-4"><input type="text" id="steck'+index+'name"></div>'
+                + '<div class="col-md-4"><input type="text" id="steck'+index+'code" onkeyup="checkCodeIndex('+index+')"></div>'
+                + '<div class="col-md-4"><button id="steck'+index+'save" onclick="changeButton('+value.code+','+index+')">Speichern</button></div>'
+                +'</div>'
+            );
+        });
+    });
+
+    socket.emit('switch_all_request');
 }
