@@ -34,11 +34,11 @@ if (tempSensorAvailable) {
 module.exports = function(socket) {
     //TempSensor
     socket.on('tempsensor', function() {
-
-        ts.get(tempSensor, function (err, temp) {
-            socket.emit('temperature', { temperature: temp });
-        });
-
+        if (tempSensorAvailable) {
+            ts.get(tempSensor, function (err, temp) {
+                socket.emit('temperature', { temperature: temp });
+            });
+        }
     });
 
     socket.on('temp_sensors_request', function(data) {
