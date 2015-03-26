@@ -78,8 +78,6 @@ function refreshListOfSwitches(){
                 +'</div>'
             );
         });
-
-        socket.disconnect();
     });
 
     socket.emit('switch_all_request');
