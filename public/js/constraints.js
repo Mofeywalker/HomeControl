@@ -18,7 +18,8 @@ function checkCode(){
     }
 }
 
-$("#code").keyup(checkCode);
+// jetzt im <input> selbst (onkeyup="fkt()")
+//$("#code").keyup(checkCode);
 
 function checkCodeIndex(index){
     alert("checkCodeIndex aufgerufen");
