@@ -41,6 +41,7 @@ module.exports = function(socket) {
             if (error) {
                 console.log(error.toString());
             } else {
+                console.log(reg.type);
                 if (req.type === 'overview') {
                     socket.emit('switch_all_response_overview', objects);
                 }
