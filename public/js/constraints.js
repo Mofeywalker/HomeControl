@@ -3,7 +3,6 @@
  */
 
 function checkCode(){
-    alert("checkCode aufgerufen");
     var code = $("#code").val();
     var regex = '^[0-1]{10}$';
     var constraint = new RegExp(regex);
@@ -18,11 +17,7 @@ function checkCode(){
     }
 }
 
-// jetzt im <input> selbst (onkeyup="fkt()")
-//$("#code").keyup(checkCode);
-
 function checkCodeIndex(index){
-    alert("checkCodeIndex aufgerufen");
     var code = $("#steck"+index+"code").val();
     var regex = '^[0-1]{10}$';
     var constraint = new RegExp(regex);

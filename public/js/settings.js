@@ -60,18 +60,14 @@ function switchView(index){
     $("#steck"+index+"name").val(document.getElementById("row"+index+"name").innerHTML);
     $("#steck"+index+"code").val(document.getElementById("row"+index+"code").innerHTML);
 
-    // jetzt im <input> selbst
-    //$("#steck"+index+"code").keyup(checkCodeIndex(index));
 }
 
 function changeButton(oldcode, index){
-    //alert(val.toString());
     var valnewname = $("#steck"+index+"name").val();
     var valnewcode = $("#steck"+index+"code").val();
     socket.emit('switch_update_request', {oldcode: oldcode.toString(), newname: valnewname, newcode: valnewcode.toString()});
 }
 
 function deleteButton(code){
-    //alert(val.toString());
     socket.emit('switch_delete_request', {code: code.toString()});
 }
