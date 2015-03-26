@@ -76,6 +76,7 @@ function deleteButton(code){
 }
 
 function checkCodeIndex(index){
+    alert("checkCodeIndex aufgerufen");
     var code = $("#steck"+index+"code").val();
     var regex = '^[0-1]{10}$';
     var constraint = new RegExp(regex);
