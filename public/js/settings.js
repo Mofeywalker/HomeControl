@@ -16,7 +16,7 @@ $(document).ready(function() {
                 + '</div>'
                 + '<div class="row gone" id="steckAendern'+index+'">'
                     + '<div class="col-md-4"><input type="text" id="steck'+index+'name"></div>'
-                    + '<div class="col-md-4"><input type="text" id="steck'+index+'code" onkeyup="checkCode('+index+')"></div>'
+                    + '<div class="col-md-4"><input type="text" id="steck'+index+'code" onkeyup="checkCodeIndex('+index+')"></div>'
                     + '<div class="col-md-4"><button id="steck'+index+'save" onclick="changeButton('+value.code+','+index+')">Speichern</button></div>'
                 +'</div>'
             );
