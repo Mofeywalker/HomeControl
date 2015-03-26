@@ -25,11 +25,18 @@
         <h3>Steckdosen</h3>
         <div id="steckdosen">
             <!-- Neue Steckdose anlegen -->
+            Neue Steckdose anlegen:
             <input type="text" id="name" placeholder="Name der Steckdose">
             <input type="text" id="code" placeholder="Code der Steckdose" onkeyup="checkCode()">
-            <button id="steck-save" disabled>Speichern</button>
+            <button id="steck-save" disabled>Speichern</button><br>
 
             <!-- Hier werden angelegte Steckdosen aufgelistet -->
+            <br>Steckdosen bearbeiten<br><br>
+            <div class="row">
+                <div class="col-md-4">Name</div>
+                <div class="col-md-4">Code</div>
+                <div class="col-md-4">Optionen</div>
+            </div>
             <div id="steckdosen-liste">
             </div>
         </div>
