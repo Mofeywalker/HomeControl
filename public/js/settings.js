@@ -58,6 +58,7 @@ function refreshListOfSwitches(){
     socket = io.connect();
 
     $("#steckdosen-liste").empty();
+    document.getElementById("steckdosen-liste").innerHTML = "";
 
     socket.on('switch_all_response', function(response){
         console.log(response);
