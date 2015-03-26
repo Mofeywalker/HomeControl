@@ -75,8 +75,8 @@ function deleteButton(code){
 }
 
 function refreshListOfSwitches(){
-    $("#steckdosen-liste").empty();
-    document.getElementById("steckdosen-liste").innerHTML = "";
+//    $("#steckdosen-liste").empty();
+//    document.getElementById("steckdosen-liste").innerHTML = "";
 
     socket.emit('switch_all_request');
 }
