@@ -18,19 +18,15 @@ ts.loadDriver(function (err) {
             } else {
                 tempSensor = sensors[0];
                 tempSensorAvailable = true;
+                setInterval(function(){
+                    var temp = ts.get(tempSensor);
+                    var date = new Date().getTime();
+                    socket.emit('temperatureUpdate', date, temp);
+                }, 10000);
             }
         });
     }
 });
-
-if (tempSensorAvailable) {
-    console.log("tempSensor da - vor Intervall");
-    setInterval(function(){
-        var temp = ts.get(tempSensor);
-        var date = new Date().getTime();
-        socket.emit('temperatureUpdate', date, temp);
-    }, 10000);
-}
 
 module.exports = function(socket) {
     //TempSensor
