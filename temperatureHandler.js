@@ -24,6 +24,7 @@ ts.loadDriver(function (err) {
 });
 
 if (tempSensorAvailable) {
+    console.log("tempSensor da - vor Intervall");
     setInterval(function(){
         var temp = ts.get(tempSensor);
         var date = new Date().getTime();
