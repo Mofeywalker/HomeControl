@@ -40,6 +40,25 @@
             <div id="steckdosen-liste">
             </div>
         </div>
+
+        <h3>Wake on LAN</h3>
+        <div id="wol">
+            <!-- WOL anlegen -->
+            Neuen Weckruf anlegen:
+            <input type="text" id="wol-name" placeholder="Name des Weckrufs">
+            <input type="text" id="mac-id" placeholder="MAC-ID" onkeyup="checkMac()">
+            <button id="wol-save" disabled>Speichern</button><br>
+
+            <!-- Hier werden angelegte WOL aufgelistet -->
+            <br>Steckdosen bearbeiten<br><br>
+            <div class="row">
+                <div class="col-md-4">Name</div>
+                <div class="col-md-4">MAC-Adresse</div>
+                <div class="col-md-4">Optionen</div>
+            </div>
+            <div id="wol-liste">
+            </div>
+        </div>
     </div>
 
 </body>

@@ -19,12 +19,34 @@ $(document).ready(function() {
                     + '<div class="col-md-4"><input type="text" id="steck'+index+'name"></div>'
                     + '<div class="col-md-4"><input type="text" id="steck'+index+'code" onkeyup="checkCodeIndex('+index+')"></div>'
                     + '<div class="col-md-4"><button id="steck'+index+'save" onclick="changeButton('+value.code+','+index+')">Speichern</button></div>'
-                +'</div>'
+                + '</div>'
             );
         });
     });
-
     socket.emit('switch_all_request', {type: 'settings'});
+
+    socket.on('wol_all_response_settings', function(response){
+        console.log(response);
+        $("#wol-liste").text("Angelegte Weckrufe");
+        $.each(response, function(index, value){
+            $('#wol-liste').append(
+                '<div class="row" id="wol'+index+'">'
+                    + '<div class="col-md-4" id="wolRow'+index+'name">'+value.name+'</div>'
+                    + '<div class="col-md-4" id="wolRow'+index+'mac-id">'+value.mac+'</div>'
+                    + '<div class="col-md-4">'
+                        + '<button onclick="wolSwitchView('+index+')">&Auml;ndern</button>'
+                        + '<button onclick="wolDeleteButton('+value.mac+')">L&ouml;schen</button>'
+                    + '</div>'
+                + '</div>'
+                + '<div class="row gone" id="wolAendern'+index+'">'
+                    + '<div class="col-md-4"><input type="text" id="wol'+index+'name"></div>'
+                    + '<div class="col-md-4"><input type="text" id="wol'+index+'code" onkeyup="checkMacIndex('+index+')"></div>'
+                    + '<div class="col-md-4"><button id="steck'+index+'save" onclick="wolChangeButton('+value.mac+','+index+')">Speichern</button></div>'
+                + '</div>'
+            );
+        });
+    });
+    socket.emit('wol_all_request', {type: 'settings'});
 
     socket.on('temp_sensors_response', function(data) {
         //var json = $.parseJSON(data);
@@ -37,6 +59,10 @@ $(document).ready(function() {
 
     socket.on('switch_created', function(){
        refreshListOfSwitches();
+    });
+
+    socket.on('wol_created', function(){
+        refreshWolList();
     });
 
     $('#tempsave').click(function(){
@@ -53,8 +79,16 @@ $(document).ready(function() {
     $("#steck-save").click(function(){
         var valname = $("#name").val();
         var valcode = $("#code").val();
-        name = name.trim();
+        valname = valname.trim();
         socket.emit('switch_create', {name: valname, code: valcode});
+        refreshListOfSwitches();
+    });
+
+    $("#wol-save").click(function(){
+        var valname = $("#wol-name").val();
+        var valmac = $("#mac-id").val();
+        valname = valname.trim();
+        socket.emit('wol_create', {name: valname, mac: valmac});
         refreshListOfSwitches();
     });
 
@@ -65,7 +99,13 @@ function switchView(index){
     document.getElementById("steckAendern"+index).style.display = "block";
     $("#steck"+index+"name").val(document.getElementById("row"+index+"name").innerHTML);
     $("#steck"+index+"code").val(document.getElementById("row"+index+"code").innerHTML);
+}
 
+function switchView(index){
+    document.getElementById("wol"+index).style.display = "none";
+    document.getElementById("wolAendern"+index).style.display = "block";
+    $("#wol"+index+"name").val(document.getElementById("wolRow"+index+"name").innerHTML);
+    $("#wol"+index+"mac-id").val(document.getElementById("wolRow"+index+"mac-id").innerHTML);
 }
 
 function changeButton(oldcode, index){
@@ -75,8 +115,20 @@ function changeButton(oldcode, index){
     refreshListOfSwitches();
 }
 
+function changeButton(oldmac, index){
+    var valnewname = $("#wol"+index+"name").val();
+    var valnewmac = $("#wol"+index+"mac-id").val();
+    socket.emit('wol_update_request', {oldmac: oldmac.toString(), newname: valnewname, newmac: valnewmac.toString()});
+    refreshListOfSwitches();
+}
+
 function deleteButton(code){
     socket.emit('switch_delete_request', {code: code.toString()});
+    refreshListOfSwitches();
+}
+
+function deleteButton(mac){
+    socket.emit('wol_delete_request', {mac: mac.toString()});
     refreshListOfSwitches();
 }
 
@@ -101,10 +153,38 @@ function refreshListOfSwitches(){
                     + '<div class="col-md-4"><input type="text" id="steck'+index+'name"></div>'
                     + '<div class="col-md-4"><input type="text" id="steck'+index+'code" onkeyup="checkCodeIndex('+index+')"></div>'
                     + '<div class="col-md-4"><button id="steck'+index+'save" onclick="changeButton('+value.code+','+index+')">Speichern</button></div>'
-                +'</div>'
+                + '</div>'
             );
         });
     });
 
     socket.emit('switch_all_request', {type: 'settings'});
+}
+
+function refreshWolList(){
+    var socket;
+    socket = io.connect();
+
+    socket.on('wol_all_response_settings', function(response){
+        console.log(response);
+        $("#wol-liste").text("Angelegte Weckrufe");
+        $.each(response, function(index, value){
+            $('#wol-liste').append(
+                '<div class="row" id="wol'+index+'">'
+                    + '<div class="col-md-4" id="wolRow'+index+'name">'+value.name+'</div>'
+                    + '<div class="col-md-4" id="wolRow'+index+'mac-id">'+value.mac+'</div>'
+                    + '<div class="col-md-4">'
+                        + '<button onclick="wolSwitchView('+index+')">&Auml;ndern</button>'
+                        + '<button onclick="wolDeleteButton('+value.mac+')">L&ouml;schen</button>'
+                    + '</div>'
+                + '</div>'
+                + '<div class="row gone" id="wolAendern'+index+'">'
+                    + '<div class="col-md-4"><input type="text" id="wol'+index+'name"></div>'
+                    + '<div class="col-md-4"><input type="text" id="wol'+index+'code" onkeyup="checkMacIndex('+index+')"></div>'
+                    + '<div class="col-md-4"><button id="steck'+index+'save" onclick="wolChangeButton('+value.mac+','+index+')">Speichern</button></div>'
+                + '</div>'
+            );
+        });
+    });
+    socket.emit('wol_all_request', {type: 'settings'});
 }
