@@ -1,39 +1,5 @@
 
 // Modulsetup
-<<<<<<< Updated upstream
-=======
-var express     = require('express'),
-    app         = express(),
-    server      = require('http').createServer(app),
-    io          = require('socket.io').listen(server),
-    conf        = require('./config.json'),
-    wol         = require('wake_on_lan'),
-    ts          = require('ds18x20'),
-    rc          = require('piswitch'),
-    mongoose    = require('mongoose'),
-    systeminfo  = require('./libs/systeminfo.js'),
-    raspicam    = require('raspicam'),
-    Camera      = require('camerapi');
-
-var cam = new Camera();
-
-// Kamera Konfiguration aus der config.json lesen
-var camera = new raspicam(conf.camera);
-
-// PiSwitch Konfiguration aus der config.json lesen
-rc.setup(conf.remotecontrol);
-
-// Treiber fuer den Temperatursensor testen
-ts.loadDriver(function (err) {
-    if (err) console.log('[something went wrong loading the driver:', err,']')
-    else console.log('[TempSensor driver is loaded]');
-});
-
-//Camera steuern
-camera.on('started', function( err, timestamp ){
-    console.log("photo started at " + timestamp );
-});
->>>>>>> Stashed changes
 
 // Models der MongoDB laden, muss als erstes passieren, da andere Funktionen davon abhaengen!!
 var mongoose    = require('mongoose');
@@ -107,25 +73,23 @@ io.sockets.on('connection', function(socket) {
     /*-----------------------------------------------------Temperatur--------------------------------------------------*/
 
     /*
-    if (tempSensor === null || tempSensor === "null") {
-        setInterval(function(data){
-            child = exec("cat /sys/bus/w1/devices/"+ tempSensor+ "/w1_slave", function (error, stdout, stderr) {
-                if (error !== null) {
-                    console.log('exec error: ' + error);
-                } else {
-                    // You must send time (X axis) and a temperature value (Y axis)
-                    var pos = stdout.indexOf("t=");
-                    var res = stdout.substring(pos+2, pos+8);
-                    var temp = parseFloat(res)/1000;
-                    var date = new Date().getTime();
-
-                    socket.emit('temperatureUpdate', date, temp);
-                }
-            });
-        }, 10000);
-    }
-
-*/
+     if (tempSensor === null || tempSensor === "null") {
+     setInterval(function(data){
+     child = exec("cat /sys/bus/w1/devices/"+ tempSensor+ "/w1_slave", function (error, stdout, stderr) {
+     if (error !== null) {
+     console.log('exec error: ' + error);
+     } else {
+     // You must send time (X axis) and a temperature value (Y axis)
+     var pos = stdout.indexOf("t=");
+     var res = stdout.substring(pos+2, pos+8);
+     var temp = parseFloat(res)/1000;
+     var date = new Date().getTime();
+     socket.emit('temperatureUpdate', date, temp);
+     }
+     });
+     }, 10000);
+     }
+     */
     /*-----------------------------------------------------Ende Temperatur--------------------------------------------------*/
 
     //Disconnect
@@ -140,11 +104,3 @@ io.sockets.on('connection', function(socket) {
     });
 
 });
-
-
-
-
-
-
-
-
