@@ -8,17 +8,17 @@ $(document).ready(function() {
         $.each(response, function(index, value){
             $('#steckdosen-liste').append(
                 '<div class="row" id="steck'+index+'">'
-                + '<div class="col-md-4" id="row'+index+'name">'+value.name+'</div>'
-                + '<div class="col-md-4" id="row'+index+'code">'+value.code+'</div>'
-                + '<div class="col-md-4">'
-                + '<button onclick="switchView('+index+')">&Auml;ndern</button>'
-                + '<button onclick="deleteButton('+value.code+')">L&ouml;schen</button>'
-                + '</div>'
+                    + '<div class="col-md-4" id="row'+index+'name">'+value.name+'</div>'
+                    + '<div class="col-md-4" id="row'+index+'code">'+value.code+'</div>'
+                    + '<div class="col-md-4">'
+                        + '<button onclick="switchView('+index+')">&Auml;ndern</button>'
+                        + '<button onclick="deleteButton('+value.code+')">L&ouml;schen</button>'
+                    + '</div>'
                 + '</div>'
                 + '<div class="row gone" id="steckAendern'+index+'">'
-                + '<div class="col-md-4"><input type="text" id="steck'+index+'name"></div>'
-                + '<div class="col-md-4"><input type="text" id="steck'+index+'code" onkeyup="checkCodeIndex('+index+')"></div>'
-                + '<div class="col-md-4"><button id="steck'+index+'save" onclick="changeButton('+value.code+','+index+')">Speichern</button></div>'
+                    + '<div class="col-md-4"><input type="text" id="steck'+index+'name"></div>'
+                    + '<div class="col-md-4"><input type="text" id="steck'+index+'code" onkeyup="checkCodeIndex('+index+')"></div>'
+                    + '<div class="col-md-4"><button id="steck'+index+'save" onclick="changeButton('+value.code+','+index+')">Speichern</button></div>'
                 +'</div>'
             );
         });
@@ -90,17 +90,17 @@ function refreshListOfSwitches(){
         $.each(response, function(index, value){
             $('#steckdosen-liste').append(
                 '<div class="row" id="steck'+index+'">'
-                + '<div class="col-md-4" id="row'+index+'name">'+value.name+'</div>'
-                + '<div class="col-md-4" id="row'+index+'code">'+value.code+'</div>'
-                + '<div class="col-md-4">'
-                + '<button onclick="switchView('+index+')">&Auml;ndern</button>'
-                + '<button onclick="deleteButton('+value.code+')">L&ouml;schen</button>'
-                + '</div>'
+                    + '<div class="col-md-4" id="row'+index+'name">'+value.name+'</div>'
+                    + '<div class="col-md-4" id="row'+index+'code">'+value.code+'</div>'
+                    + '<div class="col-md-4">'
+                        + '<button onclick="switchView('+index+')">&Auml;ndern</button>'
+                        + '<button onclick="deleteButton('+value.code+')">L&ouml;schen</button>'
+                    + '</div>'
                 + '</div>'
                 + '<div class="row gone" id="steckAendern'+index+'">'
-                + '<div class="col-md-4"><input type="text" id="steck'+index+'name"></div>'
-                + '<div class="col-md-4"><input type="text" id="steck'+index+'code" onkeyup="checkCodeIndex('+index+')"></div>'
-                + '<div class="col-md-4"><button id="steck'+index+'save" onclick="changeButton('+value.code+','+index+')">Speichern</button></div>'
+                    + '<div class="col-md-4"><input type="text" id="steck'+index+'name"></div>'
+                    + '<div class="col-md-4"><input type="text" id="steck'+index+'code" onkeyup="checkCodeIndex('+index+')"></div>'
+                    + '<div class="col-md-4"><button id="steck'+index+'save" onclick="changeButton('+value.code+','+index+')">Speichern</button></div>'
                 +'</div>'
             );
         });
