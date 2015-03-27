@@ -1,7 +1,25 @@
-var socket;
+
 
 $(document).ready(function() {
+    var socket;
     socket = io.connect();
+    socket.on('wol_all_request', function(wols) {
+        console.log(wols);
+
+        $.each(wols, function(index, value) {
+            $("#wakeonlan").append(
+                '<div class="col-md-6 col-xs-12" align="center">'
+                + '<div class="switch" class="col-md-12 col-xs-12" align="center">'
+                + '<h2>' + value.id + '</h2>'
+                + '</div>'
+                + '<button type="button" class="btn btn-on" onclick="switchOn(' + value.name + ',' + value.mac + '">An</button>'
+                + '</div>'
+            )
+        });
+    });
+
+    /*
+
     $.ajax({
         url: "wakeonlan.json",
         dataType: "text",
@@ -11,7 +29,7 @@ $(document).ready(function() {
                 $("#wakeonlan").append(
                     '<div class="col-md-6 col-xs-12" align="center">'
                 + '<div class="switch" class="col-md-12 col-xs-12" align="center">'
-                + '<h2>' + value.id + '</h2>'
+                + '<h2>' + value.name + '</h2>'
                 + '</div>'
                 + '<button type="button" class="btn btn-on" id="' + value.id.toLowerCase() + 'an"' + '">An</button>'
                 + '</div>'
@@ -31,5 +49,9 @@ $(document).ready(function() {
 
         }
     });
+    */
 });
 
+function switchOn(name, mac) {
+    socket.emit('wakeonlan_control', {name: name, mac:mac});
+}
