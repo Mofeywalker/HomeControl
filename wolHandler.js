@@ -60,13 +60,13 @@ module.exports = function(socket) {
         Wol.find({mac: req.mac}).remove().exec();
     });
 
-    socket.on('wakeonlan_control', function(wol) {
+    socket.on('wakeonlan_control', function(req) {
 
-        wol.wake(wol.mac, function(error) {
+        wol.wake(req.mac, function(error) {
             if (error) {
                 console.log('[something went wrong with Wake on Lan', err,']')
             } else {
-                console.log('[Wake on Lan for:', wol.id,' ',wol.mac,']')
+                console.log('[Wake on Lan for: '+ req.mac,']')
             }
         });
     });

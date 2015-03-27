@@ -12,7 +12,7 @@ $(document).ready(function() {
                 + '<div class="wakeonlan" class="col-md-12 col-xs-12" align="center">'
                 + '<h2>' + value.name + '</h2>'
                 + '</div>'
-                + '<button type="button" class="btn btn-on" onclick="switchOn(' + value.name + ',' + value.mac + ')">An</button>'
+                + '<button type="button" class="btn btn-on" onclick="switchOn('+ value.mac + ')">An</button>'
                 + '</div>'
             );
         });
@@ -53,6 +53,6 @@ $(document).ready(function() {
     socket.emit('wol_all_request', {type: 'overview'});
 });
 
-function switchOn(name, mac) {
-    socket.emit('wakeonlan_control', {name: name.toString(), mac:mac.toString()});
+function switchOn(mac) {
+    socket.emit('wakeonlan_control', {mac:mac.toString()});
 }
