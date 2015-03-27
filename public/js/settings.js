@@ -119,7 +119,7 @@ function wolChangeButton(oldmac, index){
     var valnewname = $("#wol"+index+"name").val();
     var valnewmac = $("#wol"+index+"mac-id").val();
     socket.emit('wol_update_request', {oldmac: oldmac.toString(), newname: valnewname, newmac: valnewmac.toString()});
-    refreshListOfSwitches();
+    refreshWolList();
 }
 
 function deleteButton(code){
@@ -129,7 +129,7 @@ function deleteButton(code){
 
 function wolDeleteButton(mac){
     socket.emit('wol_delete_request', {mac: mac.toString()});
-    refreshListOfSwitches();
+    refreshWolList();
 }
 
 function refreshListOfSwitches(){
