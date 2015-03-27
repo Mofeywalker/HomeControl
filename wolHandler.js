@@ -25,12 +25,17 @@ module.exports = function(socket) {
         });
     });
 
-    socket.on('wol_all_request', function() {
+    socket.on('wol_all_request', function(req) {
         Wol.find({}, function(error, objects) {
             if (error) {
                 console.log(error.toString());
             } else {
-                socket.emit('wol_all_response', objects);
+                if (req.type === 'overview') {
+                    socket.emit('wol_all_response_overview', objects);
+                } else {
+                    socket.emit('wol_all_response_settings', objects);
+                }
+
             }
         })
     });
