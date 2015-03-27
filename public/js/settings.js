@@ -41,7 +41,7 @@ $(document).ready(function() {
                 + '<div class="row gone" id="wolAendern'+index+'">'
                     + '<div class="col-md-4"><input type="text" id="wol'+index+'name"></div>'
                     + '<div class="col-md-4"><input type="text" id="wol'+index+'code" onkeyup="checkMacIndex('+index+')"></div>'
-                    + '<div class="col-md-4"><button id="steck'+index+'save" onclick="wolChangeButton('+value.mac+','+index+')">Speichern</button></div>'
+                    + '<div class="col-md-4"><button id="wol'+index+'save" onclick="wolChangeButton('+value.mac+','+index+')">Speichern</button></div>'
                 + '</div>'
             );
         });
@@ -101,7 +101,7 @@ function switchView(index){
     $("#steck"+index+"code").val(document.getElementById("row"+index+"code").innerHTML);
 }
 
-function switchView(index){
+function wolSwitchView(index){
     document.getElementById("wol"+index).style.display = "none";
     document.getElementById("wolAendern"+index).style.display = "block";
     $("#wol"+index+"name").val(document.getElementById("wolRow"+index+"name").innerHTML);
@@ -115,7 +115,7 @@ function changeButton(oldcode, index){
     refreshListOfSwitches();
 }
 
-function changeButton(oldmac, index){
+function wolChangeButton(oldmac, index){
     var valnewname = $("#wol"+index+"name").val();
     var valnewmac = $("#wol"+index+"mac-id").val();
     socket.emit('wol_update_request', {oldmac: oldmac.toString(), newname: valnewname, newmac: valnewmac.toString()});
@@ -127,7 +127,7 @@ function deleteButton(code){
     refreshListOfSwitches();
 }
 
-function deleteButton(mac){
+function wolDeleteButton(mac){
     socket.emit('wol_delete_request', {mac: mac.toString()});
     refreshListOfSwitches();
 }
@@ -181,7 +181,7 @@ function refreshWolList(){
                 + '<div class="row gone" id="wolAendern'+index+'">'
                     + '<div class="col-md-4"><input type="text" id="wol'+index+'name"></div>'
                     + '<div class="col-md-4"><input type="text" id="wol'+index+'code" onkeyup="checkMacIndex('+index+')"></div>'
-                    + '<div class="col-md-4"><button id="steck'+index+'save" onclick="wolChangeButton('+value.mac+','+index+')">Speichern</button></div>'
+                    + '<div class="col-md-4"><button id="wol'+index+'save" onclick="wolChangeButton('+value.mac+','+index+')">Speichern</button></div>'
                 + '</div>'
             );
         });
