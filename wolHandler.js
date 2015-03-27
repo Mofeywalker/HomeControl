@@ -50,7 +50,7 @@ module.exports = function(socket) {
         var upsertData = update_wol_data.toObject();
 
         delete upsertData._id;
-        Wol.update({code: req.oldmac}, upsertData, {upsert: true}, function(err) {
+        Wol.update({mac: req.oldmac}, upsertData, {upsert: true}, function(err) {
             console.log("[MONGODB - Update nicht moeglich]");
         });
     });
