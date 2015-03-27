@@ -18,6 +18,7 @@ module.exports = function(socket) {
                             console.log("[MONGODB - Probleme beim anlegen eines neuen WOL-Objekts!]");
                         } else {
                             console.log("[MONGODB - Neues WOL-Objekt erfolgreich angelegt!]");
+                            socket.emit('wol_created');
                         }
                     });
                 }
@@ -42,14 +43,14 @@ module.exports = function(socket) {
 
     socket.on('wol_update_request', function(req) {
         var update_wol_data = new Wol ({
-            name: req.name,
-            mac: req.mac
+            name: req.newname,
+            mac: req.newmac
         });
 
         var upsertData = update_wol_data.toObject();
 
         delete upsertData._id;
-        Wol.update({code: update_wol_data.code}, upsertData, {upsert: true}, function(err) {
+        Wol.update({code: req.oldmac}, upsertData, {upsert: true}, function(err) {
             console.log("[MONGODB - Update nicht moeglich]");
         });
     });
@@ -59,13 +60,13 @@ module.exports = function(socket) {
         Wol.find({mac: req.mac}).remove().exec();
     });
 
-    socket.on('wakeonlan_control', function(data) {
+    socket.on('wakeonlan_control', function(wol) {
 
-        wol.wake(data.mac, function(error) {
+        wol.wake(wol.mac, function(error) {
             if (error) {
                 console.log('[something went wrong with Wake on Lan', err,']')
             } else {
-                console.log('[Wake on Lan for:', data.id,' ',data.mac,']')
+                console.log('[Wake on Lan for:', wol.id,' ',wol.mac,']')
             }
         });
     });
