@@ -12,7 +12,7 @@ $(document).ready(function() {
                     + '<div class="col-md-4" id="row'+index+'code">'+value.code+'</div>'
                     + '<div class="col-md-4">'
                         + '<button onclick="switchView('+index+')">&Auml;ndern</button>'
-                        + '<button onclick="deleteButton('+value.code+')">L&ouml;schen</button>'
+                        + '<button onclick="deleteButton('+index+')">L&ouml;schen</button>'
                     + '</div>'
                 + '</div>'
                 + '<div class="row gone" id="steckAendern'+index+'">'
@@ -32,15 +32,15 @@ $(document).ready(function() {
             $('#wol-liste').append(
                 '<div class="row" id="wol'+index+'">'
                     + '<div class="col-md-4" id="wolRow'+index+'name">'+value.name+'</div>'
-                    + '<div class="col-md-4" id="wolRow'+index+'mac-id">'+value.mac+'</div>'
+                    + '<div class="col-md-4" id="wolRow'+index+'mac-id">'+value.mac.toString()+'</div>'
                     + '<div class="col-md-4">'
                         + '<button onclick="wolSwitchView('+index+')">&Auml;ndern</button>'
-                        + '<button onclick="wolDeleteButton('+value.mac+')">L&ouml;schen</button>'
+                        + '<button onclick="wolDeleteButton('+index+')">L&ouml;schen</button>'
                     + '</div>'
                 + '</div>'
                 + '<div class="row gone" id="wolAendern'+index+'">'
                     + '<div class="col-md-4"><input type="text" id="wol'+index+'name"></div>'
-                    + '<div class="col-md-4"><input type="text" id="wol'+index+'code" onkeyup="checkMacIndex('+index+')"></div>'
+                    + '<div class="col-md-4"><input type="text" id="wol'+index+'mac-id" onkeyup="checkMacIndex('+index+')"></div>'
                     + '<div class="col-md-4"><button id="wol'+index+'save" onclick="wolChangeButton('+value.mac+','+index+')">Speichern</button></div>'
                 + '</div>'
             );
@@ -119,17 +119,19 @@ function wolChangeButton(oldmac, index){
     var valnewname = $("#wol"+index+"name").val();
     var valnewmac = $("#wol"+index+"mac-id").val();
     socket.emit('wol_update_request', {oldmac: oldmac.toString(), newname: valnewname, newmac: valnewmac.toString()});
-    refreshListOfSwitches();
+    refreshWolList();
 }
 
-function deleteButton(code){
+function deleteButton(index){
+    var code = $('#row'+index+'code').val();
     socket.emit('switch_delete_request', {code: code.toString()});
     refreshListOfSwitches();
 }
 
-function wolDeleteButton(mac){
+function wolDeleteButton(index){
+    var mac = $('#wolRow'+index+'mac-id').val();
     socket.emit('wol_delete_request', {mac: mac.toString()});
-    refreshListOfSwitches();
+    refreshWolList();
 }
 
 function refreshListOfSwitches(){
@@ -146,7 +148,7 @@ function refreshListOfSwitches(){
                     + '<div class="col-md-4" id="row'+index+'code">'+value.code+'</div>'
                     + '<div class="col-md-4">'
                         + '<button onclick="switchView('+index+')">&Auml;ndern</button>'
-                        + '<button onclick="deleteButton('+value.code+')">L&ouml;schen</button>'
+                        + '<button onclick="deleteButton('+index+')">L&ouml;schen</button>'
                     + '</div>'
                 + '</div>'
                 + '<div class="row gone" id="steckAendern'+index+'">'
@@ -172,15 +174,15 @@ function refreshWolList(){
             $('#wol-liste').append(
                 '<div class="row" id="wol'+index+'">'
                     + '<div class="col-md-4" id="wolRow'+index+'name">'+value.name+'</div>'
-                    + '<div class="col-md-4" id="wolRow'+index+'mac-id">'+value.mac+'</div>'
+                    + '<div class="col-md-4" id="wolRow'+index+'mac-id">'+value.mac.toString()+'</div>'
                     + '<div class="col-md-4">'
                         + '<button onclick="wolSwitchView('+index+')">&Auml;ndern</button>'
-                        + '<button onclick="wolDeleteButton('+value.mac+')">L&ouml;schen</button>'
+                        + '<button onclick="wolDeleteButton('+index+')">L&ouml;schen</button>'
                     + '</div>'
                 + '</div>'
                 + '<div class="row gone" id="wolAendern'+index+'">'
                     + '<div class="col-md-4"><input type="text" id="wol'+index+'name"></div>'
-                    + '<div class="col-md-4"><input type="text" id="wol'+index+'code" onkeyup="checkMacIndex('+index+')"></div>'
+                    + '<div class="col-md-4"><input type="text" id="wol'+index+'mac-id" onkeyup="checkMacIndex('+index+')"></div>'
                     + '<div class="col-md-4"><button id="wol'+index+'save" onclick="wolChangeButton('+value.mac+','+index+')">Speichern</button></div>'
                 + '</div>'
             );
