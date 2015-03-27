@@ -16,19 +16,23 @@ ts.loadDriver(function (err) {
                 tempSensor = "null";
                 tempSensorAvailable = false;
             } else {
+                console.log("[DS18X20 - Temperatursensoren gefunden]");
                 tempSensor = sensors[0];
                 tempSensorAvailable = true;
-                setInterval(function(){
-                    var temp = ts.get(tempSensor);
-                    var date = new Date().getTime();
-                    socket.emit('temperatureUpdate', date, temp);
-                }, 10000);
             }
         });
     }
 });
 
 module.exports = function(socket) {
+
+    //TempSensor Verlauf
+    setInterval(function(){
+        var temp = ts.get(tempSensor);
+        var date = new Date().getTime();
+        socket.emit('temperatureUpdate', date, temp);
+    }, 10000);
+
     //TempSensor
     socket.on('tempsensor', function() {
         if (tempSensorAvailable) {
