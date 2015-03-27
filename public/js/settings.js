@@ -40,7 +40,7 @@ $(document).ready(function() {
                 + '</div>'
                 + '<div class="row gone" id="wolAendern'+index+'">'
                     + '<div class="col-md-4"><input type="text" id="wol'+index+'name"></div>'
-                    + '<div class="col-md-4"><input type="text" id="wol'+index+'code" onkeyup="checkMacIndex('+index+')"></div>'
+                    + '<div class="col-md-4"><input type="text" id="wol'+index+'mac-id" onkeyup="checkMacIndex('+index+')"></div>'
                     + '<div class="col-md-4"><button id="wol'+index+'save" onclick="wolChangeButton('+value.mac+','+index+')">Speichern</button></div>'
                 + '</div>'
             );
@@ -180,7 +180,7 @@ function refreshWolList(){
                 + '</div>'
                 + '<div class="row gone" id="wolAendern'+index+'">'
                     + '<div class="col-md-4"><input type="text" id="wol'+index+'name"></div>'
-                    + '<div class="col-md-4"><input type="text" id="wol'+index+'code" onkeyup="checkMacIndex('+index+')"></div>'
+                    + '<div class="col-md-4"><input type="text" id="wol'+index+'mac-id" onkeyup="checkMacIndex('+index+')"></div>'
                     + '<div class="col-md-4"><button id="wol'+index+'save" onclick="wolChangeButton('+value.mac+','+index+')">Speichern</button></div>'
                 + '</div>'
             );
