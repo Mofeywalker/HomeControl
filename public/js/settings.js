@@ -123,13 +123,15 @@ function wolChangeButton(oldmac, index){
 }
 
 function deleteButton(index){
-    var code = $('#row'+index+'code').val();
+    var code = $('#row'+index+'code').text();
     socket.emit('switch_delete_request', {code: code.toString()});
     refreshListOfSwitches();
 }
 
 function wolDeleteButton(index){
-    var mac = $('#wolRow'+index+'mac-id').val();
+    var mac = $('#wolRow'+index+'mac-id').text();
+    console.log(index);
+    console.log(mac);
     socket.emit('wol_delete_request', {mac: mac.toString()});
     refreshWolList();
 }

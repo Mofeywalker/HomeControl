@@ -34,7 +34,7 @@ function checkCodeIndex(index){
 
 function checkMac(){
     var code = $("#mac-id").val();
-    var regex = '^([0-9A-Fa-f]{2}[:]){5}([0-9A-Fa-f]{2})$|^([0-9A-Fa-f]{2}[-]){5}([0-9A-Fa-f]{2})$|^([0-9A-Fa-f]{2}){6}$';
+    var regex = '^([0-9A-Fa-f]{2}[-]){5}([0-9A-Fa-f]{2})$|^([0-9A-Fa-f]{2}){6}$';
     var constraint = new RegExp(regex);
 
     if(constraint.test(code)){
@@ -49,7 +49,7 @@ function checkMac(){
 
 function checkMacIndex(index){
     var code = $("#wol"+index+"mac-id").val();
-    var regex = '^([0-9A-Fa-f]{2}[:]){5}([0-9A-Fa-f]{2})$|^([0-9A-Fa-f]{2}[-]){5}([0-9A-Fa-f]{2})$|^([0-9A-Fa-f]{2}){6}$';
+    var regex = '^([0-9A-Fa-f]{2}[-]){5}([0-9A-Fa-f]{2})$|^([0-9A-Fa-f]{2}){6}$';
     var constraint = new RegExp(regex);
 
     if(constraint.test(code)){

@@ -57,6 +57,7 @@ module.exports = function(socket) {
 
 
     socket.on('wol_delete_request', function(req) {
+        console.log(req);
         Wol.find({mac: req.mac}).remove().exec();
     });
 
