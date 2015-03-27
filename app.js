@@ -1,5 +1,39 @@
 
 // Modulsetup
+<<<<<<< Updated upstream
+=======
+var express     = require('express'),
+    app         = express(),
+    server      = require('http').createServer(app),
+    io          = require('socket.io').listen(server),
+    conf        = require('./config.json'),
+    wol         = require('wake_on_lan'),
+    ts          = require('ds18x20'),
+    rc          = require('piswitch'),
+    mongoose    = require('mongoose'),
+    systeminfo  = require('./libs/systeminfo.js'),
+    raspicam    = require('raspicam'),
+    Camera      = require('camerapi');
+
+var cam = new Camera();
+
+// Kamera Konfiguration aus der config.json lesen
+var camera = new raspicam(conf.camera);
+
+// PiSwitch Konfiguration aus der config.json lesen
+rc.setup(conf.remotecontrol);
+
+// Treiber fuer den Temperatursensor testen
+ts.loadDriver(function (err) {
+    if (err) console.log('[something went wrong loading the driver:', err,']')
+    else console.log('[TempSensor driver is loaded]');
+});
+
+//Camera steuern
+camera.on('started', function( err, timestamp ){
+    console.log("photo started at " + timestamp );
+});
+>>>>>>> Stashed changes
 
 // Models der MongoDB laden, muss als erstes passieren, da andere Funktionen davon abhaengen!!
 var mongoose    = require('mongoose');
@@ -36,8 +70,6 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
     console.log("[MongoDB - Verbindung zur Datenbank steht!]");
 });
-
-
 
 //Server starten
 server.listen(nconf.get('port'));
