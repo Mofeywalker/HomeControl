@@ -2,7 +2,7 @@
  * Created by informaniac on 23.03.15.
  */
 
-/*
+/**
  * checkCode
  * Überprüfen des eingegebenen Codes bei Anlegen einer Steckdose
  * Code muss eine zehnstellige Binärzahl sein
@@ -27,7 +27,7 @@ function checkCode(){
     }
 }
 
-/*
+/**
  * checkCodeIndex
  * funktioniert wie checkCode
  * @param index Index, an welcher Stelle der zu überprüfender Code steht
@@ -47,7 +47,7 @@ function checkCodeIndex(index){
     }
 }
 
-/*
+/**
  * checkMac
  * analog zu CheckCode, überprüft Gültigkeit einer MAC-ID
  * Gültige Formate: Getrennt mit Bindestrich oder ganz ohne Trennzeichen
@@ -67,7 +67,7 @@ function checkMac(){
     }
 }
 
-/*
+/**
  * checkMacIndex
  * funktioniert wie checkMac
  * @param index Index, an welcher Stelle zu überprüfende MAC-Adresse steht
