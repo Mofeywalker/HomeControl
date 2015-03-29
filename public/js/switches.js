@@ -1,8 +1,13 @@
 $(document).ready(function() {
+    // Mit Websocket verbinden
     var socket;
     socket = io.connect();
+
+    /**
+     * Socket-Listener der auf eine eingehende Antwort mit einer Liste mit allen Switches wartet.
+     * Bei Eingang werden alle Switches dynamisch in die Website eingebunden.
+     */
     socket.on('switch_all_response_overview', function(switches) {
-        //var json = $.parseJSON(data);
         console.log(switches);
         $.each(switches, function (index, value) {
             $("#switches").append(
@@ -16,16 +21,24 @@ $(document).ready(function() {
             );
 
         });
-        console.log($("#switches"));
     });
 
+    // Anfrage aller Switches um bei der Antwort die Seite aufzubauen
     socket.emit('switch_all_request', {type: "overview"});
 });
 
+/**
+ * Methode zum einschalten eines Switches. Sendet per Websocket den Request an den Server.
+ * @param code Steckdosen Code
+ */
 function switchOn(code) {
     socket.emit('switch_control', {type: 'request', code: code.toString(), status:false});
 }
 
+/**
+ * Methode zum ausschalten eines Switches. Sendet per Websocket den Request an den Server.
+ * @param code Steckdosen Code
+ */
 function switchOff(code) {
     socket.emit('switch_control', {type: 'request', code: code.toString(), status:true});
 }
