@@ -3,30 +3,24 @@ var chart;
 var aktTemp;
 var timeinterval;
 
-// Sobald die Seite geladen ist
 $(document).ready(function() {
-    // Datum anzeigen lassen, sekündlich aktualisieren
     timeinterval = setInterval(writeDateTime, 1000);
 
-    // mit Websocket verbinden
     socket = io.connect();
 
-    // Socketlistener für Temperaturabfragen, Updaten des Temperaturfeldes
     socket.on('temperature', function(data) {
         console.log("Temperature: " + data.temperature);
          $("#tempAkt").text(data.temperature + " °C");
         aktTemp = data.temperature;
     });
 
-    // Temperatur abfragen
     socket.emit('tempsensor',{});
 
-    // Alle 100 Sekunden wiederholen
     setInterval(function() {
         socket.emit('tempsensor',{});
     }, 100000);
 
-    // ---------------------------------------- Highchart style definieren
+
     Highcharts.setOptions({
         global: {
             useUTC: false
@@ -101,6 +95,5 @@ $(document).ready(function() {
             }())
         }]
     });
-    // ---------------------------------------- Highchart style definieren
 
 });
