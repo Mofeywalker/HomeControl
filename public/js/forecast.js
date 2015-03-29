@@ -1,26 +1,28 @@
+// Wenn Seite geladen ist
 $(document).ready(function() {
-    console.log("Forecast document ready");
-    //console.log(cityName);
+    // Abfrage über Socket starten
     socket.emit('weatherlocation_request');
 
-    socket.on('weatherlocation_response', function(data) {
+    // Bei Antwort Informationen verarbeiten
+    socket.on('weatherlocation_response', function(data){
         var cityName = data.weatherlocation;
-        console.log(cityName);
         $.ajax({
             dataType: "jsonp",
             url: 'http://api.openweathermap.org/data/2.5/forecast/daily?q=' + cityName + ',de&units=metric&lang=de&cnt=4',
             success: function(data) {
                 console.log(data);
-                //var json = $.parseJSON(data);
-                //console.log(json);
+
+                // An zugehörige Stelle auf Dashboard einfügen
                 $("#forecast").append(
                     '<h2>' + cityName + '</h2>'
                 )
                 $.each(data.list, function (index, value) {
+                    // Datum Berechnen, Monat inkrementieren
                     var datum = new Date(value.dt*1000);
                     var tag = datum.getDate();
                     var monat = datum.getMonth();
                     monat++;
+                    // Führende Nullen falls nötig anfügen
                     if(tag < 10){
                         tag = '0'+tag;
                     }
@@ -28,7 +30,7 @@ $(document).ready(function() {
                         monat = '0'+monat;
                     }
                     var datumtext = tag+'.'+monat+'.';
-                    console.log(value.dt);
+                    // Wetterinformationen anfügen
                     $("#forecast").append(
                         '<div class="col-md-3 col-xs-12 wetter">'
                         + datumtext + '<br>'
