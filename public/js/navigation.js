@@ -1,11 +1,14 @@
+/*
+ * Einfache Navigation durch Laden der HTML-Dateien in Content-Div
+ */
+
+// Beim Laden der Seite Dashboard anzeigen
 $(document).ready(function(){
     $("#content").load("dashboard.html");
-        //e.preventDefault();
-
 });
 
+// Unterscheidung, welcher Button gedrückt wurde und hineinladen in Content-Div
 function navLoad($what){
-
     switch($what){
         case "navDashboard":
             $("#content").load("dashboard.html");
@@ -26,9 +29,11 @@ function navLoad($what){
             $("#content").load("settings.html");
         default: break;
     }
+    // Schließen der Navbar (mobil)
     closeCollapse();
 }
 
+// Funktion um die ausgefahrene Navbar (Mobil) zu schileßen
 function closeCollapse(){
     $("#bs-example-navbar-collapse-1").attr("aria-expanded", "false");
     $("#bs-example-navbar-collapse-1").attr("class", "navbar-collapse collapse");
