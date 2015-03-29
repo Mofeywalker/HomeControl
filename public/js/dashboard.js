@@ -27,6 +27,13 @@ $(document).ready(function() {
         }
     });
 
+    // RSS Feed
+    $('#rssFeed').gFeed({
+        url: 'http://www.weblica.ch/_rss/feed_6.xml',
+        title: 'Der IT News Feed',
+        max: 5
+    });
+
     chart = new Highcharts.Chart({
         chart: {
             renderTo: 'tempVerlauf',

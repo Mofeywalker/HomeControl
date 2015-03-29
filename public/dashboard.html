@@ -7,6 +7,8 @@
     <script language="javascript" type="text/javascript" src="js/datetime.js"></script>
     <script src="http://code.highcharts.com/highcharts.js"></script>
     <script src="js/forecast.js"></script>
+    <!-- Google Feed API -->
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
 
     <div id="dash">
         <div class="row oben">
@@ -21,6 +23,8 @@
             <!-- spacer -->
             <div class="col-md-2"></div>
             <div class="col-md-4 col-xs-12">
+                <!-- RSS Feed Reader -->
+                <div id="rssFeed"></div>
                 <!-- Temperaturverlauf, Highchart -->
                 <div id="tempVerlauf">#tempVerlauf</div>
                 <!-- Durchschnittstemperatur (noch nicht implementiert) -->
