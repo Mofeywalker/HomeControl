@@ -1,3 +1,4 @@
+/* Himbeere im Hintergrund, anpassungen wegen navbar */
 body{
     background: #111;
     background-image: url("img/pi_60pct.png");
@@ -9,15 +10,18 @@ body{
     padding-top: 50px;
 }
 
+/* Links in Navbar grün unterlegen bei mouseover */
 a:hover{
     background-color: #00aa00 !important;
 }
 
+/* Ecken der Navbar oben dezent abrunden */
 nav{
     border-top-left-radius: 15px !important;
     border-top-right-radius: 15px !important;
 }
 
+/* Content spezifizierungen, Transparenz, Ecken unten dezent abrunden */
 div#content{
     color: #fff;
     height: 95%;
@@ -28,6 +32,7 @@ div#content{
     border-bottom-right-radius: 15px;
 }
 
+/* -------------------- Diverse Dashboard anpassungen */
 div#dash{
     height: 100%;
 }
@@ -58,19 +63,23 @@ div#tempVerlauf{
     width: 100%;
 }
 
-div#image{
-    margin: 0 auto;
-}
-
 div#date{
     font-family: 'Source Code Pro', monospace;
     font-size: 8vmin;
 }
+/* -------------------- Diverse Dashboard anpassungen */
 
+/* Kamerabild mittig */
+div#image{
+    margin: 0 auto;
+}
+
+/* Ausblenden von Inhalt (ohne Platz wegzunehmen) */
 div.gone{
     display: none;
 }
 
+/* -------------------- Diverse Tabellen anpassungen */
 table{
     color:#fff !important;
 }
@@ -86,6 +95,7 @@ td{
     padding-left: 4px;
     font-size: 4vmin;
 }
+/* -------------------- Diverse Dashboard anpassungen */
 
 /* Allgemeine Spezifierung der Switch Control Buttons, da Probleme mit Bootstrap */
 .btn-on,
@@ -108,17 +118,20 @@ td{
     background: #e0163e;
 }
 
+/* Anpassunng für Input-Felder */
 input{
     background-color: #dedede;
     color: #000;
 }
 
+/* Anpassungen für standard (nicht Bootstrap) Buttons */
 button{
     background-color: #dedede;
     border-radius: 10px;
     color: #000;
 }
 
+/* Ausgrauen des standard-Buttons */
 button:disabled{
     opacity: 0.7;
 }
