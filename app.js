@@ -18,10 +18,7 @@ var express         = require('express'),
     handleWols      = require('./wolHandler.js'),
     handleCamera    = require('./cameraHandler.js'),
     handleWeather   = require('./weatherHandler'),
-    handleTemperature = require('./temperatureHandler.js'),
-    tempSensor;
-
-
+    handleTemperature = require('./temperatureHandler.js');
 
 // Config einlesen
 nconf.use('file', {file: './config.json'});
@@ -52,7 +49,7 @@ app.get('/', function(req, res) {
     res.sendfile(__dirname + '/public/index.html');
 });
 
-// 404 Error fuer nicht vorhandene ROuten
+// 404 Error fuer nicht vorhandene Routen
 app.get('*', function(req, res){
     res.sendStatus(404);
 });
@@ -60,41 +57,18 @@ app.get('*', function(req, res){
 // Socket.io Listener
 io.sockets.on('connection', function(socket) {
 
-    console.log("[Connection established for: "+socket.request.connection.remoteAddress+"]");
+    console.log("[Verbindung hergestellt fuer: "+socket.request.connection.remoteAddress+"]");
 
+    // Handler fuer die verschiedenen Websocket Anfragen
     handleSwitches(socket);
     handleWols(socket);
     handleCamera(socket);
     handleWeather(socket);
     handleTemperature(socket);
 
-
-
-    /*-----------------------------------------------------Temperatur--------------------------------------------------*/
-
-    /*
-     if (tempSensor === null || tempSensor === "null") {
-     setInterval(function(data){
-     child = exec("cat /sys/bus/w1/devices/"+ tempSensor+ "/w1_slave", function (error, stdout, stderr) {
-     if (error !== null) {
-     console.log('exec error: ' + error);
-     } else {
-     // You must send time (X axis) and a temperature value (Y axis)
-     var pos = stdout.indexOf("t=");
-     var res = stdout.substring(pos+2, pos+8);
-     var temp = parseFloat(res)/1000;
-     var date = new Date().getTime();
-     socket.emit('temperatureUpdate', date, temp);
-     }
-     });
-     }, 10000);
-     }
-     */
-    /*-----------------------------------------------------Ende Temperatur--------------------------------------------------*/
-
     //Disconnect
     socket.on('disconnect', function() {
-        console.log("[Connection closed for: "+socket.request.connection.remoteAddress+"]");
+        console.log("[Verbindung beendet fuer: "+socket.request.connection.remoteAddress+"]");
     });
 
 
