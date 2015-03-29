@@ -4,6 +4,14 @@ var aktTemp;
 var timeinterval;
 
 $(document).ready(function() {
+
+    // RSS Feed
+    $('#rssFeed').gFeed({
+        url: 'http://www.weblica.ch/_rss/feed_75.xml',
+        title: 'Der IT News Feed',
+        max: 5
+    });
+
     timeinterval = setInterval(writeDateTime, 1000);
 
     socket = io.connect();
@@ -25,13 +33,6 @@ $(document).ready(function() {
         global: {
             useUTC: false
         }
-    });
-
-    // RSS Feed
-    $('#rssFeed').gFeed({
-        url: 'http://www.weblica.ch/_rss/feed_6.xml',
-        title: 'Der IT News Feed',
-        max: 5
     });
 
     chart = new Highcharts.Chart({
