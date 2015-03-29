@@ -17,12 +17,6 @@ $(document).ready(function() {
         $("#freemem").text((Math.round((data.freemem /1024 /1024)*1000)/1000) + " MB");
     });
 
-    // Systeminfos beim Server anfragen, wird nur beim ersten Mal aufgerufen
+    // Systeminfos beim Server anfragen
     socket.emit('sysinfo', {});
-
-    // Alle 5 Sekunden werden die Infos auf der Seite aktualisiert
-    setInterval(function() {
-        socket.emit('sysinfo', {});
-    }, 5000);
-
 });
