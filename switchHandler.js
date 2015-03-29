@@ -1,3 +1,4 @@
+// variablen und Module
 var mongoose    = require('mongoose'),
     rc          = require('piswitch'),
     nconf       = require('nconf'),
@@ -11,6 +12,7 @@ nconf.load();
 rc.setup(nconf.get('remotecontrol'));
 
 module.exports = function(socket) {
+    // Socket-Listener fuer das Anlegen eines neuen Switches
     socket.on('switch_create', function(data) {
         Switch.find({code: data.code}, function (error, objects)  {
             if (error) {
@@ -37,6 +39,7 @@ module.exports = function(socket) {
         });
     });
 
+    // Socket-Listener fuer das zurueckgeben aller Switches in der Datenbank
     socket.on('switch_all_request', function(req) {
         Switch.find({}, function(error, objects) {
             if (error) {
@@ -55,16 +58,7 @@ module.exports = function(socket) {
 
     });
 
-    socket.on('switch_name_request', function(req) {
-        Switch.findOne({name: req.name}, function(error, objects) {
-            if (error) {
-                console.log(error.toString());
-            } else {
-                socket.emit('switch_name_response', objects);
-            }
-        });
-    });
-
+    // Socket-Listener fuer das Updaten eines bestimmten Datensatzes
     socket.on('switch_update_request', function(req) {
         var update_switch_data = new Switch ({
             name: req.newname,
@@ -79,13 +73,13 @@ module.exports = function(socket) {
         });
     });
 
+    // Socket-Listener fuer das Loeschen eines bestimmten Datensatzes
     socket.on('switch_delete_request', function(req) {
         Switch.find({code: req.code}).remove().exec();
     });
 
-    //Steckdosen
+    // Socket-Listener der auf eine Schalt-Anfrage wartet
     socket.on('switch_control', function(data) {
-        //schalten der Steckdosen
         // Code 1111110000, Typ-Dipschalter, an(false)/aus(true)
         rc.send(data.code, 'dip', data.status);
         console.log("[SEND] " + data.code +" "+ data.status);
