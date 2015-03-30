@@ -10,6 +10,8 @@ $(document).ready(function() {
     socket.on('switch_all_response_overview', function(switches) {
         console.log(switches);
         $.each(switches, function (index, value) {
+            console.log(value);
+            console.log(value.code);
             $("#switches").append(
                 '<div class="col-md-6 col-xs-12" align="center">'
                 + '<div class="switch" class="col-md-12 col-xs-12" align="center">'
@@ -32,8 +34,8 @@ $(document).ready(function() {
  * @param code Steckdosen Code
  */
 function switchOn(code) {
-    socket.emit('switch_control', {type: 'request', code: code.toString(), status:false});
     console.log("im switchOn "+code+" string: " +code.toString());
+    socket.emit('switch_control', {type: 'request', code: code.toString(), status:false});
 }
 
 /**
@@ -41,5 +43,6 @@ function switchOn(code) {
  * @param code Steckdosen Code
  */
 function switchOff(code) {
+    console.log("im switchOff "+code+" string: " +code.toString());
     socket.emit('switch_control', {type: 'request', code: code.toString(), status:true});
 }
