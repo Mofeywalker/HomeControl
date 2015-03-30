@@ -44,10 +44,11 @@ $(document).ready(function() {
             events: {
                 load: function() {
                     // jedes Mal wenn man ein Update vom Sensor bekommt wird der Graph aktualisiert
-                    socket.on('temperatureUpdate', function (time, data) {
+                    console.log("in load: function");
+                    socket.on('temperatureUpdate', function (date, temp) {
                         var series = chart.series[0];
-                        aktTemp = data;
-                        series.addPoint([time, data], true, true);
+                        aktTemp = temp;
+                        series.addPoint([date, temp], true, true);
                     });
                 }
             }
