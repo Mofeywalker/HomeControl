@@ -18,6 +18,7 @@ module.exports = function(socket) {
             if (error) {
                 console.log("[MONGODB - Fehler beim Suchen in der Datenbank]");
             } else {
+                console.log("CODE IM switch_create "+data.name+" "+data.code);
                 if (objects.length === 0) {
                     var newSwitch = new Switch({
                         name: data.name,
@@ -46,11 +47,9 @@ module.exports = function(socket) {
                 console.log(error.toString());
             } else {
                 if (req.type === 'overview') {
-                    console.log("overview");
                     socket.emit('switch_all_response_overview', objects);
                 }
                 else {
-                    console.log("settings");
                     socket.emit('switch_all_response_settings', objects);
                 }
             }
