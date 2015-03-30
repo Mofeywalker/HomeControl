@@ -16,9 +16,10 @@ $(document).ready(function() {
                 '<div class="col-md-6 col-xs-12" align="center">'
                 + '<div class="switch" class="col-md-12 col-xs-12" align="center">'
                 + '<h2>' + value.name + '</h2>'
+                + '<div class="gone" id="schalte'+index+'">'+value.code+'</div>'
                 + '</div>'
-                + '<button type="button" class="btn btn-on" onclick="switchOn(' + value.code + ')' + '">An</button>'
-                + '<button type="button" class="btn btn-off" onclick="switchOff(' + value.code + ')' + '">Aus</button>'
+                + '<button type="button" class="btn btn-on" onclick="switchOn(' + index + ')' + '">An</button>'
+                + '<button type="button" class="btn btn-off" onclick="switchOff(' + index + ')' + '">Aus</button>'
                 + '</div>'
             );
 
@@ -33,7 +34,8 @@ $(document).ready(function() {
  * Methode zum einschalten eines Switches. Sendet per Websocket den Request an den Server.
  * @param code Steckdosen Code
  */
-function switchOn(code) {
+function switchOn(index) {
+    var code = $("#schalte"+index).text();
     console.log("im switchOn "+code+" string: " +code.toString());
     socket.emit('switch_control', {type: 'request', code: code.toString(), status:false});
 }
@@ -42,7 +44,8 @@ function switchOn(code) {
  * Methode zum ausschalten eines Switches. Sendet per Websocket den Request an den Server.
  * @param code Steckdosen Code
  */
-function switchOff(code) {
+function switchOff(index) {
+    var code = $("#schalte"+index).text();
     console.log("im switchOff "+code+" string: " +code.toString());
     socket.emit('switch_control', {type: 'request', code: code.toString(), status:true});
 }
