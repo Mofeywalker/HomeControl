@@ -32,6 +32,9 @@ module.exports = function(socket) {
         if (tempSensorAvailable) {
             ts.get(tempSensor, function (err, temp) {
                 socket.emit('temperature', { temperature: temp });
+                var date = new Date().getTime();
+                var temp = parseFloat(stdout)/1000;
+                socket.emit('temperatureUpdate', { temperature: temp ,date: date});
             });
         }else {
             console.log("[DS18X20 - Fehler bei Auslesen der Temperatur-Sensoren]");

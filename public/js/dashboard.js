@@ -24,7 +24,7 @@ $(document).ready(function() {
     // alle 100 Sekunden wiederholen
     setInterval(function() {
         socket.emit('tempsensor',{});
-    }, 100000);
+    }, 10000);
 
     // ---------------------------------------- Highchart style definieren
     Highcharts.setOptions({
