@@ -34,7 +34,7 @@ module.exports = function(socket) {
                 socket.emit('temperature', { temperature: temp });
                 var date = new Date().getTime();
                 var temp = parseFloat(temp)/1000;
-                socket.emit('temperatureUpdate', { date: date, temperature: temp});
+                socket.emit('temperatureUpdate', date, temp);
                 console.log("in tempavailable if"+date+"  "+temp);
             });
         }else {

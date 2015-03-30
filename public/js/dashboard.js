@@ -39,16 +39,16 @@ $(document).ready(function() {
             defaultSeriesType: 'spline',
             backgroundColor: 'rgba(20,20,20,0.1)',
             type: 'spline',
-            animation: Highcharts.svg, // don't animate in old IE
+            animation: Highcharts.svg,
             marginRight: 10,
             events: {
                 load: function() {
                     // jedes Mal wenn man ein Update vom Sensor bekommt wird der Graph aktualisiert
-                    socket.on('temperatureUpdate', function (date, temp) {
-                        console.log("in load: function"+date+"  "+temp);
+                    socket.on('temperatureUpdate', function (time, data) {
+                        console.log("in load: function"+data+"  "+time);
                         var series = chart.series[0];
-                        aktTemp = temp;
-                        series.addPoint([date, temp], true, true);
+                        aktTemp = data;
+                        series.addPoint([time, data], true, true);
                     });
                 }
             }
@@ -87,7 +87,6 @@ $(document).ready(function() {
         series: [{
             name: 'Temperatur',
             data: (function () {
-                // generate an array of random data
                 var data = [],
                     time = (new Date()).getTime(),
                     i;
