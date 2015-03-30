@@ -90,7 +90,6 @@ $(document).ready(function() {
         var valcode = $("#code").val();
         valname = valname.trim();
         socket.emit('switch_create', {name: valname, code: valcode});
-        console.log("CODE IM BUTTONLISTENER "+valname+" "+valcode);
         refreshListOfSwitches();
     });
 

@@ -33,6 +33,7 @@ $(document).ready(function() {
  */
 function switchOn(code) {
     socket.emit('switch_control', {type: 'request', code: code.toString(), status:false});
+    console.log("im switchOn "+code+" string: " +code.toString());
 }
 
 /**
