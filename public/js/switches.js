@@ -8,10 +8,7 @@ $(document).ready(function() {
      * Bei Eingang werden alle Switches dynamisch in die Website eingebunden.
      */
     socket.on('switch_all_response_overview', function(switches) {
-        console.log(switches);
         $.each(switches, function (index, value) {
-            console.log(value);
-            console.log(value.code);
             $("#switches").append(
                 '<div class="col-md-6 col-xs-12" align="center">'
                 + '<div class="switch" class="col-md-12 col-xs-12" align="center">'
@@ -36,7 +33,6 @@ $(document).ready(function() {
  */
 function switchOn(index) {
     var code = $("#schalte"+index).text();
-    console.log("im switchOn "+code+" string: " +code.toString());
     socket.emit('switch_control', {type: 'request', code: code.toString(), status:false});
 }
 
@@ -46,6 +42,5 @@ function switchOn(index) {
  */
 function switchOff(index) {
     var code = $("#schalte"+index).text();
-    console.log("im switchOff "+code+" string: " +code.toString());
     socket.emit('switch_control', {type: 'request', code: code.toString(), status:true});
 }
