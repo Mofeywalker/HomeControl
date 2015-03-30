@@ -8,15 +8,5 @@
     "pin": 11,
     "repeats": 5
   },
-  "weatherlocation": "Illingen",
-  "switches": [
-    {
-      "id": "Wohnzimmer",
-      "code": "1111110000"
-    },
-    {
-      "id": "Schlafzimmer",
-      "code": "1111110000"
-    }
-  ]
+  "weatherlocation": "Illingen"
 }

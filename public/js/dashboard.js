@@ -43,7 +43,7 @@ $(document).ready(function() {
             marginRight: 10,
             events: {
                 load: function() {
-                    // Each time you receive a value from the socket, I put it on the graph
+                    // jedes Mal wenn man ein Update vom Sensor bekommt wird der Graph aktualisiert
                     socket.on('temperatureUpdate', function (time, data) {
                         var series = chart.series[0];
                         aktTemp = data;

@@ -1,4 +1,3 @@
-
 // Modulsetup
 
 // Models der MongoDB laden, muss als erstes passieren, da andere Funktionen davon abhaengen!!

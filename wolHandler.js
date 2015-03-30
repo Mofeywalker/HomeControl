@@ -55,19 +55,19 @@ module.exports = function(socket) {
         });
     });
 
-
+    // Eintrag löschen
     socket.on('wol_delete_request', function(req) {
         console.log(req);
         Wol.find({mac: req.mac}).remove().exec();
     });
 
+    // aufwecken für mitgegebene MAC
     socket.on('wakeonlan_control', function(req) {
-
         wol.wake(req.mac, function(error) {
             if (error) {
-                console.log('[something went wrong with Wake on Lan', err,']')
+                console.log('[WOL - Fehler beim aufwecken', err,']')
             } else {
-                console.log('[Wake on Lan for: '+ req.mac,']')
+                console.log('[WOL - Wake on Lan für: '+ req.mac,']')
             }
         });
     });

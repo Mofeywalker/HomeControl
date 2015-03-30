@@ -1,3 +1,4 @@
+// Temperatursensor Modul laden
 var ts = require('ds18x20'),
     tempSensor,
     tempSensorAvailable = false;
@@ -32,6 +33,8 @@ module.exports = function(socket) {
             ts.get(tempSensor, function (err, temp) {
                 socket.emit('temperature', { temperature: temp });
             });
+        }else {
+            console.log("[DS18X20 - Fehler bei Auslesen der Temperatur-Sensoren]");
         }
     });
 
@@ -43,21 +46,7 @@ module.exports = function(socket) {
                 console.log(sensors);
                 socket.emit('temp_sensors_response', {sensors: sensors});
             }
-
         });
     });
 
-    /*
-    socket.on('temp_sensor_selection', function(data) {
-        var new_sensor = new TempSensor(data.sensor);
-        TempSensor.find({}, function(error, sensors) {
-            if (sensors.length === 0) {
-                new_sensor.save();
-            } else {
-                TempSensor.find({}).remove().exec();
-                new_sensor.save();
-            }
-        })
-    });
-    */
 };

@@ -1,9 +1,10 @@
+// Kamera Modul laden
 var Camera  = require('camerapi'),
     cam     = new Camera();
 
 module.exports = function(socket) {
 
-    //Kamera
+    //KameraHandler
     socket.on('camera', function() {
 
         cam.baseFolder(__dirname+ '/public/camPics');
@@ -15,10 +16,10 @@ module.exports = function(socket) {
 
         function callback(file,error){
             if (!error) {
-                console.log("Picture filename:" + file);
+                console.log("[KAMERA - Dateipfad/Name:" + file+"]");
                 socket.emit('camera', { camera: file });
             } else{
-                console.log("Error:" + error)
+                console.log("[KAMERA - Fehler:" + error+"]")
             }
         }
     });
