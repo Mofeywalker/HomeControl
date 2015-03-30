@@ -44,8 +44,8 @@ $(document).ready(function() {
             events: {
                 load: function() {
                     // jedes Mal wenn man ein Update vom Sensor bekommt wird der Graph aktualisiert
-                    console.log("in load: function");
                     socket.on('temperatureUpdate', function (date, temp) {
+                        console.log("in load: function"+date+"  "+temp);
                         var series = chart.series[0];
                         aktTemp = temp;
                         series.addPoint([date, temp], true, true);

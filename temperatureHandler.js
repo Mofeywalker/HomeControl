@@ -35,7 +35,7 @@ module.exports = function(socket) {
                 var date = new Date().getTime();
                 var temp = parseFloat(temp)/1000;
                 socket.emit('temperatureUpdate', { date: date, temperature: temp});
-                console.log("in tempavailable if");
+                console.log("in tempavailable if"+date+"  "+temp);
             });
         }else {
             console.log("[DS18X20 - Fehler bei Auslesen der Temperatur-Sensoren]");
